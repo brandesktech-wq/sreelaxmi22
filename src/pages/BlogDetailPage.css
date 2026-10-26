@@ -1,0 +1,450 @@
+/* Scoped styles for BlogDetailPage (Prompt 35 — Blog Detail Page Redesign) */
+.sld-blog-detail-page {
+  --bd-navy: #01183C;
+  --bd-navy-secondary: #001E3D;
+  --bd-gold: #C9A45C;
+  --bd-gold-dark: #A68038;
+  --bd-white: #FFFFFF;
+  --bd-ivory: #F8F7F3;
+  --bd-border: rgba(201, 164, 92, 0.3);
+  --bd-font-serif: 'Cinzel', Georgia, serif;
+  --bd-font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --bd-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  width: 100%;
+  background-color: var(--bd-ivory);
+  font-family: var(--bd-font-sans);
+  color: var(--bd-navy);
+  overflow-x: hidden;
+}
+
+/* =========================================================
+   Title Bar Adjustments for Dynamic Multi-Line Blog Titles
+   ========================================================= */
+.sld-blog-detail-page .sld-project-banner {
+  height: auto;
+  min-height: 210px;
+  padding: clamp(2.6rem, 4.8vw, 3.85rem) 0;
+}
+
+.sld-blog-detail-page .sld-project-banner__content {
+  max-width: 980px;
+}
+
+.sld-blog-detail-page .sld-project-banner__title {
+  font-family: var(--bd-font-serif);
+  font-size: clamp(1.5rem, 2.75vw, 2.4rem);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0.025em;
+  color: var(--bd-white);
+  text-wrap: balance;
+  overflow-wrap: break-word;
+  margin: 0 0 1rem 0;
+}
+
+/* =========================================================
+   Main Blog Detail Section
+   ========================================================= */
+.sld-blog-detail {
+  padding: clamp(2.75rem, 5.5vw, 4.75rem) 0 clamp(3.5rem, 6.5vw, 5.5rem);
+  background: linear-gradient(
+    180deg,
+    #F8F7F3 0%,
+    #FFFFFF 18%,
+    #FFFFFF 82%,
+    #F8F7F3 100%
+  );
+  border-bottom: 1px solid var(--bd-border);
+}
+
+.sld-blog-detail__container {
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* 1. Back-to-Blog Navigation Row */
+.sld-blog-detail__topbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 1.85rem;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid rgba(201, 164, 92, 0.25);
+}
+
+.sld-blog-detail__back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--bd-font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--bd-navy);
+  transition: color 180ms var(--bd-ease), transform 180ms var(--bd-ease);
+}
+
+.sld-blog-detail__back-link:hover {
+  color: var(--bd-gold-dark);
+  transform: translateX(-3px);
+}
+
+.sld-blog-detail__back-link:focus-visible {
+  outline: 2px solid var(--bd-gold);
+  outline-offset: 4px;
+}
+
+/* 2. Category Label Row */
+.sld-blog-detail__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1.35rem;
+}
+
+.sld-blog-detail__category {
+  display: inline-block;
+  font-family: var(--bd-font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bd-gold);
+}
+
+.sld-blog-detail__category-line {
+  width: 38px;
+  height: 1.5px;
+  background-color: var(--bd-gold);
+  opacity: 0.75;
+}
+
+/* 3. Featured Image */
+.sld-blog-detail__media {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--bd-border);
+  box-shadow: 0 18px 40px -24px rgba(1, 24, 60, 0.2);
+  margin-bottom: 2.65rem;
+  background-color: var(--bd-navy);
+}
+
+.sld-blog-detail__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* 4. Article Body Content */
+.sld-blog-detail__content {
+  font-family: var(--bd-font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.85;
+  color: var(--bd-navy);
+  overflow-wrap: break-word;
+}
+
+.sld-blog-detail__content p {
+  margin: 0 0 1.45rem 0;
+  color: rgba(1, 24, 60, 0.9);
+}
+
+.sld-blog-detail__content h1,
+.sld-blog-detail__content h2,
+.sld-blog-detail__content h3,
+.sld-blog-detail__content h4 {
+  font-family: var(--bd-font-serif);
+  color: var(--bd-navy);
+  font-weight: 600;
+  line-height: 1.34;
+  letter-spacing: 0.015em;
+  margin: 2.35rem 0 0.9rem 0;
+  text-wrap: balance;
+}
+
+.sld-blog-detail__content h2 {
+  font-size: clamp(1.32rem, 2.1vw, 1.65rem);
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid rgba(201, 164, 92, 0.22);
+}
+
+.sld-blog-detail__content h3 {
+  font-size: clamp(1.16rem, 1.7vw, 1.38rem);
+}
+
+.sld-blog-detail__content h4 {
+  font-size: 1.1rem;
+}
+
+.sld-blog-detail__content ul,
+.sld-blog-detail__content ol {
+  margin: 0 0 1.6rem 1.4rem;
+  padding: 0;
+  color: rgba(1, 24, 60, 0.9);
+}
+
+.sld-blog-detail__content li {
+  margin-bottom: 0.7rem;
+  padding-left: 0.25rem;
+}
+
+.sld-blog-detail__content li::marker {
+  color: var(--bd-gold);
+}
+
+.sld-blog-detail__content img,
+.sld-blog-detail__content figure {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1.75rem 0;
+}
+
+.sld-blog-detail__content a {
+  color: var(--bd-gold-dark);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 180ms ease;
+}
+
+.sld-blog-detail__content a:hover {
+  color: var(--bd-navy);
+}
+
+.sld-blog-detail__content strong {
+  color: var(--bd-navy);
+  font-weight: 700;
+}
+
+/* =========================================================
+   Bottom Article Footer Navigation
+   ========================================================= */
+.sld-blog-detail__footer {
+  margin-top: 3.25rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--bd-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.sld-blog-detail__back-btn,
+.sld-blog-detail__projects-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.82rem 1.7rem;
+  font-family: var(--bd-font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 5px;
+  white-space: nowrap;
+  transition:
+    background-color 200ms var(--bd-ease),
+    color 200ms var(--bd-ease),
+    border-color 200ms var(--bd-ease),
+    transform 200ms var(--bd-ease);
+}
+
+.sld-blog-detail__back-btn {
+  color: var(--bd-navy);
+  background-color: var(--bd-ivory);
+  border: 1px solid var(--bd-border);
+}
+
+.sld-blog-detail__back-btn:hover {
+  border-color: var(--bd-gold);
+  background-color: rgba(201, 164, 92, 0.14);
+}
+
+.sld-blog-detail__projects-btn {
+  color: var(--bd-white);
+  background-color: var(--bd-navy);
+  border: 1px solid var(--bd-gold);
+}
+
+.sld-blog-detail__projects-btn:hover {
+  background-color: var(--bd-gold);
+  color: var(--bd-navy);
+}
+
+/* =========================================================
+   Missing Article Fallback State
+   ========================================================= */
+.sld-blog-detail-missing {
+  padding: 5rem 0;
+  text-align: center;
+}
+
+.sld-blog-detail-missing__box {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  background-color: var(--bd-white);
+  border: 1px solid var(--bd-border);
+  border-radius: 10px;
+}
+
+.sld-blog-detail-missing__title {
+  font-family: var(--bd-font-serif);
+  font-size: 1.85rem;
+  margin: 0.5rem 0 1rem;
+  color: var(--bd-navy);
+}
+
+.sld-blog-detail-missing__text {
+  color: rgba(1, 24, 60, 0.85);
+  margin-bottom: 1.75rem;
+  line-height: 1.65;
+}
+
+/* =========================================================
+   Related Articles Section
+   ========================================================= */
+.sld-blog-related {
+  padding: clamp(3.5rem, 6vw, 5.25rem) 0;
+  background-color: var(--bd-ivory);
+}
+
+.sld-blog-related__container {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+}
+
+.sld-blog-related__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.sld-blog-related__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: var(--bd-gold);
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+
+.sld-blog-related__eyebrow-line {
+  width: 26px;
+  height: 1.5px;
+  background-color: var(--bd-gold);
+}
+
+.sld-blog-related__heading {
+  margin: 0 0 0.85rem 0;
+  font-family: var(--bd-font-serif);
+  font-size: clamp(1.65rem, 2.6vw, 2.2rem);
+  font-weight: 600;
+  color: var(--bd-navy);
+}
+
+.sld-blog-related__rule {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+}
+
+.sld-blog-related__rule-line {
+  width: 44px;
+  height: 1.5px;
+  background: linear-gradient(
+    90deg,
+    rgba(201, 164, 92, 0.15) 0%,
+    var(--bd-gold) 100%
+  );
+}
+
+.sld-blog-related__rule-line:last-child {
+  background: linear-gradient(
+    90deg,
+    var(--bd-gold) 0%,
+    rgba(201, 164, 92, 0.15) 100%
+  );
+}
+
+.sld-blog-related__rule-diamond {
+  width: 7px;
+  height: 7px;
+  background-color: var(--bd-gold);
+  transform: rotate(45deg);
+}
+
+/* =========================================================
+   Responsive Breakpoints (Desktop / Tablet / Mobile)
+   ========================================================= */
+@media (max-width: 960px) {
+  .sld-blog-detail-page .sld-project-banner {
+    min-height: 185px;
+    padding: 2.35rem 0;
+  }
+
+  .sld-blog-detail__container {
+    padding: 0 1.75rem;
+  }
+
+  .sld-blog-related__container {
+    padding: 0 1.75rem;
+  }
+}
+
+@media (max-width: 680px) {
+  .sld-blog-detail-page .sld-project-banner {
+    min-height: 165px;
+    padding: 1.9rem 0;
+  }
+
+  .sld-blog-detail-page .sld-project-banner__title {
+    font-size: clamp(1.32rem, 5.2vw, 1.75rem);
+    line-height: 1.32;
+  }
+
+  .sld-blog-detail__container,
+  .sld-blog-related__container {
+    padding: 0 1.25rem;
+  }
+
+  .sld-blog-detail__topbar {
+    margin-bottom: 1.4rem;
+    padding-bottom: 0.9rem;
+  }
+
+  .sld-blog-detail__media {
+    margin-bottom: 2rem;
+  }
+
+  .sld-blog-detail__content {
+    font-size: 1rem;
+    line-height: 1.78;
+  }
+
+  .sld-blog-detail__footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

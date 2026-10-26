@@ -1,0 +1,616 @@
+/* Scoped styles for MilestonesSection (Dark Luxury Version) */
+.sld-milestones {
+  --ms-bg-primary: #01183C;
+  --ms-bg-secondary: #001E3D;
+  --ms-card-bg: rgba(0, 30, 61, 0.72);
+  --ms-card-bg-hover: rgba(3, 36, 74, 0.92);
+  --ms-white: #FFFFFF;
+  --ms-ivory: rgba(255, 255, 255, 0.88);
+  --ms-gold: #C9A45C;
+  --ms-gold-bright: #E4C582;
+  --ms-border-gold: rgba(201, 164, 92, 0.28);
+  --ms-border-gold-hover: rgba(201, 164, 92, 0.68);
+  --ms-font-serif: 'Cinzel', Georgia, serif;
+  --ms-font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --ms-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  position: relative;
+  width: 100%;
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(201, 164, 92, 0.08) 0%,
+      rgba(1, 24, 60, 0) 58%
+    ),
+    linear-gradient(
+      180deg,
+      var(--ms-bg-primary) 0%,
+      var(--ms-bg-secondary) 52%,
+      var(--ms-bg-primary) 100%
+    );
+  padding: clamp(5rem, 8vw, 7.25rem) 0;
+  font-family: var(--ms-font-sans);
+  color: var(--ms-white);
+  overflow: hidden;
+}
+
+/* Subtle Architectural Line Pattern & Faint Building Silhouette */
+.sld-milestones__backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(
+      to right,
+      rgba(201, 164, 92, 0.03) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(201, 164, 92, 0.025) 1px,
+      transparent 1px
+    );
+  background-size: 72px 72px;
+}
+
+.sld-milestones__skyline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: clamp(180px, 24vw, 280px);
+  display: block;
+}
+
+.sld-milestones__edge-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(201, 164, 92, 0) 0%,
+    rgba(201, 164, 92, 0.45) 50%,
+    rgba(201, 164, 92, 0) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sld-milestones__edge-line--top {
+  top: 0;
+}
+
+.sld-milestones__edge-line--bottom {
+  bottom: 0;
+}
+
+.sld-milestones__container {
+  position: relative;
+  z-index: 2;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+}
+
+/* Centered Section Heading */
+.sld-milestones__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: clamp(3.25rem, 5.5vw, 4.75rem);
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 680ms var(--ms-ease),
+    transform 680ms var(--ms-ease);
+}
+
+.sld-milestones--visible .sld-milestones__header {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sld-milestones__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  margin-bottom: 0.85rem;
+  font-family: var(--ms-font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  color: var(--ms-gold);
+  text-transform: uppercase;
+}
+
+.sld-milestones__eyebrow-line {
+  width: 28px;
+  height: 1.5px;
+  background-color: var(--ms-gold);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.sld-milestones__heading {
+  margin: 0 0 1.05rem 0;
+  font-family: var(--ms-font-serif);
+  font-size: clamp(2rem, 3.2vw, 2.85rem);
+  font-weight: 600;
+  line-height: 1.22;
+  letter-spacing: 0.04em;
+  color: var(--ms-white);
+}
+
+/* Thin Gold Divider with Center Diamond */
+.sld-milestones__heading-rule {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.sld-milestones__heading-line {
+  width: 48px;
+  height: 1.5px;
+  background: linear-gradient(
+    90deg,
+    rgba(201, 164, 92, 0.15) 0%,
+    var(--ms-gold) 100%
+  );
+  transform: scaleX(0);
+  transition: transform 750ms var(--ms-ease) 160ms;
+}
+
+.sld-milestones__heading-line:last-child {
+  background: linear-gradient(
+    90deg,
+    var(--ms-gold) 0%,
+    rgba(201, 164, 92, 0.15) 100%
+  );
+}
+
+.sld-milestones--visible .sld-milestones__heading-line {
+  transform: scaleX(1);
+}
+
+.sld-milestones__heading-diamond {
+  width: 7px;
+  height: 7px;
+  background-color: var(--ms-gold);
+  transform: rotate(45deg) scale(0);
+  transition: transform 600ms var(--ms-ease) 240ms;
+}
+
+.sld-milestones--visible .sld-milestones__heading-diamond {
+  transform: rotate(45deg) scale(1);
+}
+
+/* Horizontal Timeline Wrapper (Desktop) */
+.sld-milestones__timeline-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* Connecting Champagne-Gold Line */
+.sld-milestones__track {
+  position: absolute;
+  top: 4.1rem;
+  left: 12.5%;
+  right: 12.5%;
+  height: 1.5px;
+  background-color: rgba(201, 164, 92, 0.2);
+  z-index: 1;
+  overflow: hidden;
+}
+
+.sld-milestones__track-fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(201, 164, 92, 0.45) 0%,
+    var(--ms-gold) 50%,
+    rgba(201, 164, 92, 0.45) 100%
+  );
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1100ms var(--ms-ease) 180ms;
+}
+
+.sld-milestones--visible .sld-milestones__track-fill {
+  transform: scaleX(1);
+}
+
+/* 4 Evenly Spaced Milestone Columns */
+.sld-milestones__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.75rem;
+  position: relative;
+  z-index: 2;
+}
+
+.sld-milestones__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 680ms var(--ms-ease),
+    transform 680ms var(--ms-ease);
+}
+
+.sld-milestones--visible .sld-milestones__item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sld-milestones--visible .sld-milestones__item--1 {
+  transition-delay: 140ms;
+}
+
+.sld-milestones--visible .sld-milestones__item--2 {
+  transition-delay: 280ms;
+}
+
+.sld-milestones--visible .sld-milestones__item--3 {
+  transition-delay: 420ms;
+}
+
+.sld-milestones--visible .sld-milestones__item--4 {
+  transition-delay: 560ms;
+}
+
+/* Prominent Gold Year Above Marker */
+.sld-milestones__year-wrap {
+  margin-bottom: 1.05rem;
+  min-height: 2.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sld-milestones__year {
+  font-family: var(--ms-font-serif);
+  font-size: clamp(1.5rem, 2.1vw, 1.85rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--ms-gold);
+  line-height: 1.15;
+  transition: color 300ms ease, transform 300ms var(--ms-ease);
+}
+
+.sld-milestones__item:hover .sld-milestones__year {
+  color: var(--ms-gold-bright);
+  transform: translateY(-2px);
+}
+
+.sld-milestones__year-mobile {
+  display: none;
+}
+
+/* Marker Node with Restrained Gold Glow */
+.sld-milestones__marker {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin-bottom: 1.65rem;
+  flex-shrink: 0;
+}
+
+.sld-milestones__marker-ring {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: var(--ms-bg-primary);
+  border: 1.5px solid var(--ms-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 4px rgba(1, 24, 60, 0.9);
+  transform: scale(0.5);
+  opacity: 0;
+  transition:
+    transform 560ms var(--ms-ease),
+    opacity 560ms var(--ms-ease),
+    box-shadow 320ms ease,
+    border-color 320ms ease;
+}
+
+.sld-milestones--visible .sld-milestones__marker-ring {
+  transform: scale(1);
+  opacity: 1;
+  box-shadow:
+    0 0 0 4px rgba(1, 24, 60, 0.92),
+    0 0 16px rgba(201, 164, 92, 0.38);
+}
+
+.sld-milestones--visible .sld-milestones__item--1 .sld-milestones__marker-ring {
+  transition-delay: 180ms;
+}
+
+.sld-milestones--visible .sld-milestones__item--2 .sld-milestones__marker-ring {
+  transition-delay: 320ms;
+}
+
+.sld-milestones--visible .sld-milestones__item--3 .sld-milestones__marker-ring {
+  transition-delay: 460ms;
+}
+
+.sld-milestones--visible .sld-milestones__item--4 .sld-milestones__marker-ring {
+  transition-delay: 600ms;
+}
+
+.sld-milestones__marker-diamond {
+  width: 7px;
+  height: 7px;
+  background-color: var(--ms-gold);
+  transform: rotate(45deg);
+  transition: background-color 300ms ease, transform 300ms var(--ms-ease);
+}
+
+.sld-milestones__item:hover .sld-milestones__marker-ring {
+  border-color: var(--ms-gold-bright);
+  box-shadow:
+    0 0 0 4px rgba(1, 24, 60, 0.92),
+    0 0 22px rgba(228, 197, 130, 0.58);
+}
+
+.sld-milestones__item:hover .sld-milestones__marker-diamond {
+  background-color: var(--ms-gold-bright);
+  transform: rotate(45deg) scale(1.18);
+}
+
+/* Milestone Content Card */
+.sld-milestones__card {
+  width: 100%;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1.6rem 1.35rem 1.7rem;
+  background-color: var(--ms-card-bg);
+  border: 1px solid var(--ms-border-gold);
+  border-top: 2px solid var(--ms-gold);
+  border-radius: 6px;
+  box-sizing: border-box;
+  backdrop-filter: blur(6px);
+  transition:
+    background-color 320ms ease,
+    border-color 320ms ease,
+    transform 320ms var(--ms-ease),
+    box-shadow 320ms ease;
+}
+
+.sld-milestones__item:hover .sld-milestones__card {
+  background-color: var(--ms-card-bg-hover);
+  border-color: var(--ms-border-gold-hover);
+  transform: translateY(-4px);
+  box-shadow: 0 18px 36px -18px rgba(0, 0, 0, 0.55);
+}
+
+.sld-milestones__title {
+  margin: 0 0 0.75rem 0;
+  font-family: var(--ms-font-serif);
+  font-size: 1.12rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.03em;
+  color: var(--ms-white);
+}
+
+.sld-milestones__card-divider {
+  width: 32px;
+  height: 1.5px;
+  background-color: rgba(201, 164, 92, 0.55);
+  margin-bottom: 0.8rem;
+  transition: width 300ms var(--ms-ease), background-color 300ms ease;
+}
+
+.sld-milestones__item:hover .sld-milestones__card-divider {
+  width: 48px;
+  background-color: var(--ms-gold-bright);
+}
+
+.sld-milestones__description {
+  margin: 0;
+  font-family: var(--ms-font-sans);
+  font-size: 0.92rem;
+  font-weight: 400;
+  line-height: 1.62;
+  color: var(--ms-ivory);
+  overflow-wrap: break-word;
+}
+
+/* Tablet & Mobile Vertical Timeline (<= 960px) */
+@media (max-width: 960px) {
+  .sld-milestones__container {
+    padding: 0 1.75rem;
+  }
+
+  .sld-milestones__timeline-wrapper {
+    max-width: 640px;
+    margin: 0 auto;
+    padding-left: 2.5rem;
+    box-sizing: border-box;
+  }
+
+  /* Vertical Gold Line Along Left Side */
+  .sld-milestones__track {
+    top: 0.75rem;
+    bottom: 0.75rem;
+    left: 0.85rem;
+    right: auto;
+    width: 1.5px;
+    height: auto;
+  }
+
+  .sld-milestones__track-fill {
+    background: linear-gradient(
+      180deg,
+      rgba(201, 164, 92, 0.55) 0%,
+      var(--ms-gold) 50%,
+      rgba(201, 164, 92, 0.45) 100%
+    );
+    transform: scaleY(0);
+    transform-origin: top center;
+  }
+
+  .sld-milestones--visible .sld-milestones__track-fill {
+    transform: scaleY(1);
+  }
+
+  .sld-milestones__list {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.35rem;
+  }
+
+  .sld-milestones__item {
+    position: relative;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: left;
+  }
+
+  .sld-milestones__year-wrap {
+    display: none;
+  }
+
+  .sld-milestones__marker {
+    position: absolute;
+    left: -2.5rem;
+    top: 1.35rem;
+    margin-bottom: 0;
+    transform: translateX(-1px);
+  }
+
+  .sld-milestones__card {
+    align-items: flex-start;
+    text-align: left;
+    padding: 1.35rem 1.35rem 1.45rem;
+  }
+
+  .sld-milestones__year-mobile {
+    display: inline-block;
+    margin-bottom: 0.35rem;
+    font-family: var(--ms-font-serif);
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--ms-gold);
+    line-height: 1.2;
+  }
+
+  .sld-milestones__title {
+    margin-bottom: 0.55rem;
+    font-size: 1.08rem;
+  }
+
+  .sld-milestones__card-divider {
+    margin-bottom: 0.65rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .sld-milestones {
+    padding: 3.85rem 0;
+  }
+
+  .sld-milestones__container {
+    padding: 0 1.25rem;
+  }
+
+  .sld-milestones__header {
+    margin-bottom: 2.35rem;
+  }
+
+  .sld-milestones__eyebrow {
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    gap: 0.5rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .sld-milestones__eyebrow-line {
+    width: 18px;
+  }
+
+  .sld-milestones__heading {
+    font-size: clamp(1.6rem, 6.2vw, 2rem);
+    margin-bottom: 0.8rem;
+  }
+
+  .sld-milestones__heading-line {
+    width: 34px;
+  }
+
+  .sld-milestones__timeline-wrapper {
+    padding-left: 2.15rem;
+  }
+
+  .sld-milestones__track {
+    left: 0.72rem;
+  }
+
+  .sld-milestones__marker {
+    left: -2.15rem;
+    top: 1.2rem;
+  }
+
+  .sld-milestones__card {
+    padding: 1.2rem 1.15rem 1.3rem;
+  }
+
+  .sld-milestones__description {
+    font-size: 0.88rem;
+    line-height: 1.58;
+  }
+}
+
+/* Reduced Motion Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .sld-milestones__header,
+  .sld-milestones__heading-line,
+  .sld-milestones__heading-diamond,
+  .sld-milestones__track-fill,
+  .sld-milestones__item,
+  .sld-milestones__marker-ring,
+  .sld-milestones__marker-diamond,
+  .sld-milestones__year,
+  .sld-milestones__card,
+  .sld-milestones__card-divider {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .sld-milestones__header,
+  .sld-milestones__item,
+  .sld-milestones__marker-ring {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .sld-milestones__heading-line,
+  .sld-milestones__track-fill {
+    transform: scale(1) !important;
+  }
+
+  .sld-milestones__heading-diamond {
+    transform: rotate(45deg) scale(1) !important;
+  }
+}

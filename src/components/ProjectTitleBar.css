@@ -1,0 +1,245 @@
+/* Scoped styles for ProjectTitleBar component — consistent with AboutTitleBar */
+.sld-project-banner {
+  --pb-navy-deep: #01183C;
+  --pb-navy-secondary: #001E3D;
+  --pb-gold: #C9A45C;
+  --pb-gold-soft: rgba(201, 164, 92, 0.38);
+  --pb-white: #FFFFFF;
+  --pb-ivory: #E4E9F2;
+  --pb-font-serif: 'Cinzel', Georgia, serif;
+  --pb-font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --pb-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  position: relative;
+  width: 100%;
+  min-height: 190px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--pb-navy-deep);
+  background-image: linear-gradient(
+    135deg,
+    var(--pb-navy-deep) 0%,
+    var(--pb-navy-secondary) 55%,
+    var(--pb-navy-deep) 100%
+  );
+  border-bottom: 1px solid var(--pb-gold-soft);
+  padding: clamp(2.4rem, 4.2vw, 3.5rem) 0;
+  overflow: hidden;
+  font-family: var(--pb-font-sans);
+  color: var(--pb-white);
+}
+
+.sld-project-banner__bg-image {
+  position: absolute;
+  inset: 0;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.14;
+  transform: scale(1.03);
+  transition: transform 1400ms var(--pb-ease), opacity 900ms var(--pb-ease);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sld-project-banner--visible .sld-project-banner__bg-image {
+  transform: scale(1);
+}
+
+.sld-project-banner__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at 50% 42%,
+      rgba(0, 30, 61, 0.55) 0%,
+      rgba(1, 24, 60, 0.92) 78%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(1, 24, 60, 0.86) 0%,
+      rgba(0, 30, 61, 0.78) 50%,
+      rgba(1, 24, 60, 0.95) 100%
+    );
+  pointer-events: none;
+  z-index: 2;
+}
+
+.sld-project-banner__grid-lines {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(
+      to right,
+      rgba(201, 164, 92, 0.04) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(201, 164, 92, 0.04) 1px,
+      transparent 1px
+    );
+  background-size: 64px 64px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.sld-project-banner__container {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+}
+
+.sld-project-banner__content {
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 680ms var(--pb-ease),
+    transform 680ms var(--pb-ease);
+}
+
+.sld-project-banner--visible .sld-project-banner__content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Breadcrumb */
+.sld-project-banner__breadcrumb {
+  margin-bottom: 0.65rem;
+}
+
+.sld-project-banner__breadcrumb-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.55rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--pb-ivory);
+}
+
+.sld-project-banner__breadcrumb-link {
+  color: var(--pb-ivory);
+  text-decoration: none;
+  transition: color 180ms var(--pb-ease);
+}
+
+.sld-project-banner__breadcrumb-link:hover {
+  color: var(--pb-gold);
+}
+
+.sld-project-banner__breadcrumb-sep {
+  color: var(--pb-gold);
+  font-weight: 400;
+  opacity: 0.85;
+}
+
+.sld-project-banner__breadcrumb-item--current {
+  color: var(--pb-gold);
+}
+
+/* Main Heading */
+.sld-project-banner__title {
+  margin: 0 0 0.85rem 0;
+  font-family: var(--pb-font-serif);
+  font-size: clamp(2rem, 3.8vw, 3.1rem);
+  font-weight: 600;
+  line-height: 1.16;
+  letter-spacing: 0.04em;
+  color: var(--pb-white);
+}
+
+/* Decorative Gold Rule */
+.sld-project-banner__rule {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+}
+
+.sld-project-banner__rule-line {
+  width: 54px;
+  height: 1.5px;
+  background: linear-gradient(
+    90deg,
+    rgba(201, 164, 92, 0.15) 0%,
+    var(--pb-gold) 100%
+  );
+}
+
+.sld-project-banner__rule-line:last-child {
+  background: linear-gradient(
+    90deg,
+    var(--pb-gold) 0%,
+    rgba(201, 164, 92, 0.15) 100%
+  );
+}
+
+.sld-project-banner__rule-diamond {
+  width: 7px;
+  height: 7px;
+  background-color: var(--pb-gold);
+  transform: rotate(45deg);
+}
+
+@media (max-width: 960px) {
+  .sld-project-banner {
+    min-height: 168px;
+    padding: 2.1rem 0;
+  }
+
+  .sld-project-banner__container {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .sld-project-banner {
+    min-height: 148px;
+    padding: 1.75rem 0;
+  }
+
+  .sld-project-banner__container {
+    padding: 0 1.25rem;
+  }
+
+  .sld-project-banner__breadcrumb-list {
+    font-size: 0.6875rem;
+    letter-spacing: 0.16em;
+    gap: 0.4rem;
+  }
+
+  .sld-project-banner__title {
+    font-size: clamp(1.65rem, 6.5vw, 2.15rem);
+    margin-bottom: 0.7rem;
+  }
+
+  .sld-project-banner__rule-line {
+    width: 38px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sld-project-banner__bg-image,
+  .sld-project-banner__content {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

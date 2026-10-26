@@ -1,0 +1,329 @@
+/* Scoped styles for LeadershipSection component */
+.sld-leadership {
+  --ld-bg: #FFFFFF;
+  --ld-bg-soft: #F8F7F3;
+  --ld-primary: #01183C;
+  --ld-gold: #C9A45C;
+  --ld-text-secondary: #334155;
+  --ld-text-muted: #475569;
+  --ld-border-gold: #D8C5A3;
+  --ld-border-gold-hover: #C9A45C;
+  --ld-avatar-bg: #F3F0EA;
+  --ld-font-serif: 'Cinzel', Georgia, serif;
+  --ld-font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --ld-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  position: relative;
+  width: 100%;
+  background-color: var(--ld-bg-soft);
+  padding: clamp(3.5rem, 6vw, 5.25rem) 0;
+  font-family: var(--ld-font-sans);
+  color: var(--ld-primary);
+}
+
+.sld-leadership__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+}
+
+/* Centered Section Heading Group */
+.sld-leadership__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: clamp(2.15rem, 3.8vw, 3rem);
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 600ms var(--ld-ease),
+    transform 600ms var(--ld-ease);
+}
+
+.sld-leadership--visible .sld-leadership__header {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sld-leadership__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--ld-font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  color: var(--ld-gold);
+  text-transform: uppercase;
+}
+
+.sld-leadership__eyebrow-line {
+  width: 28px;
+  height: 1.5px;
+  background-color: var(--ld-gold);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.sld-leadership__heading {
+  margin: 0 0 0.95rem 0;
+  font-family: var(--ld-font-serif);
+  font-size: clamp(1.95rem, 3vw, 2.65rem);
+  font-weight: 600;
+  line-height: 1.22;
+  letter-spacing: 0.03em;
+  text-transform: none;
+  color: var(--ld-primary);
+}
+
+/* Subtle Decorative Gold Divider with Center Diamond */
+.sld-leadership__heading-rule {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+}
+
+.sld-leadership__heading-line {
+  width: 46px;
+  height: 1.5px;
+  background: linear-gradient(
+    90deg,
+    rgba(201, 164, 92, 0.15) 0%,
+    var(--ld-gold) 100%
+  );
+  transform: scaleX(0);
+  transition: transform 680ms var(--ld-ease) 140ms;
+}
+
+.sld-leadership__heading-line:last-child {
+  background: linear-gradient(
+    90deg,
+    var(--ld-gold) 0%,
+    rgba(201, 164, 92, 0.15) 100%
+  );
+}
+
+.sld-leadership--visible .sld-leadership__heading-line {
+  transform: scaleX(1);
+}
+
+.sld-leadership__heading-diamond {
+  width: 7px;
+  height: 7px;
+  background-color: var(--ld-gold);
+  transform: rotate(45deg) scale(0);
+  transition: transform 550ms var(--ld-ease) 220ms;
+}
+
+.sld-leadership--visible .sld-leadership__heading-diamond {
+  transform: rotate(45deg) scale(1);
+}
+
+/* Two Equal-Width Horizontal Cards on Desktop */
+.sld-leadership__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+.sld-leadership__card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  height: 100%;
+  padding: 0.95rem 1.1rem;
+  background-color: var(--ld-bg);
+  border: 1px solid var(--ld-border-gold);
+  border-radius: 10px;
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 520ms var(--ld-ease),
+    transform 520ms var(--ld-ease),
+    border-color 240ms ease;
+}
+
+.sld-leadership--visible .sld-leadership__card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sld-leadership--visible .sld-leadership__card--1 {
+  transition-delay: 60ms, 60ms, 0ms;
+}
+
+.sld-leadership--visible .sld-leadership__card--2 {
+  transition-delay: 140ms, 140ms, 0ms;
+}
+
+.sld-leadership__card:hover {
+  border-color: var(--ld-border-gold-hover);
+}
+
+/* Left: Circular Profile Image (72px) */
+.sld-leadership__avatar {
+  flex: 0 0 72px;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background-color: var(--ld-avatar-bg);
+  border: 1px solid rgba(216, 197, 163, 0.65);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sld-leadership__avatar-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 50%;
+}
+
+.sld-leadership__avatar-fallback {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: var(--ld-avatar-bg);
+}
+
+/* Right: Leadership Information */
+.sld-leadership__info {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+
+.sld-leadership__name {
+  margin: 0 0 0.15rem 0;
+  font-family: var(--ld-font-sans);
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ld-primary);
+  overflow-wrap: break-word;
+}
+
+.sld-leadership__designation {
+  margin: 0 0 0.35rem 0;
+  font-family: var(--ld-font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--ld-text-secondary);
+}
+
+.sld-leadership__description {
+  margin: 0;
+  font-family: var(--ld-font-sans);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--ld-text-muted);
+  overflow-wrap: break-word;
+}
+
+/* Tablet Layout */
+@media (max-width: 1024px) {
+  .sld-leadership__container {
+    padding: 0 1.75rem;
+  }
+
+  .sld-leadership__grid {
+    gap: 1rem;
+  }
+}
+
+/* Mobile Layout: Stack Cards Vertically, Keep Avatar on Left & Text on Right */
+@media (max-width: 768px) {
+  .sld-leadership {
+    padding: 2.85rem 0;
+  }
+
+  .sld-leadership__container {
+    padding: 0 1.25rem;
+  }
+
+  .sld-leadership__header {
+    margin-bottom: 1.85rem;
+  }
+
+  .sld-leadership__eyebrow {
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .sld-leadership__eyebrow-line {
+    width: 18px;
+  }
+
+  .sld-leadership__heading {
+    font-size: clamp(1.55rem, 6.2vw, 1.95rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .sld-leadership__heading-line {
+    width: 34px;
+  }
+
+  .sld-leadership__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.9rem;
+  }
+
+  .sld-leadership__card {
+    flex-direction: row;
+    align-items: center;
+    padding: 0.85rem 0.95rem;
+    gap: 0.85rem;
+  }
+
+  .sld-leadership__avatar {
+    flex: 0 0 68px;
+    width: 68px;
+    height: 68px;
+  }
+}
+
+/* Reduced Motion Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .sld-leadership__header,
+  .sld-leadership__heading-line,
+  .sld-leadership__heading-diamond,
+  .sld-leadership__card {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .sld-leadership__header,
+  .sld-leadership__card {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .sld-leadership__heading-line {
+    transform: scaleX(1) !important;
+  }
+
+  .sld-leadership__heading-diamond {
+    transform: rotate(45deg) scale(1) !important;
+  }
+}

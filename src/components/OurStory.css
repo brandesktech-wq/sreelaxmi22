@@ -1,0 +1,535 @@
+/* Scoped styles for OurStory component */
+.sld-story {
+  --story-primary: #01183C;
+  --story-secondary: #001E3D;
+  --story-gold: #C5A059;
+  --story-gold-light: #D4AF6A;
+  --story-bg: #F9F9F7;
+  --story-white: #FFFFFF;
+  --story-text-body: #3B4C66;
+  --story-font-serif: 'Cinzel', Georgia, serif;
+  --story-font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --story-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  position: relative;
+  width: 100%;
+  background-color: var(--story-bg);
+  padding: clamp(5rem, 8.5vw, 7.5rem) 0;
+  font-family: var(--story-font-sans);
+  overflow: hidden;
+}
+
+/* Subtle Architectural Linework in Section Background */
+.sld-story__bg-lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(90deg, rgba(1, 24, 60, 0.028) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(197, 160, 89, 0.04) 1px, transparent 1px);
+  background-size: 160px 160px;
+  background-position: center center;
+  z-index: 0;
+}
+
+/* Two-Column Grid with Balanced Column Heights */
+.sld-story__container {
+  position: relative;
+  z-index: 1;
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+  align-items: stretch;
+  gap: clamp(3rem, 5.5vw, 5.25rem);
+}
+
+/* Left Column — Layered Architectural Image Presentation */
+.sld-story__media-col {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.sld-story__media-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 450px;
+  padding: 14px 18px 18px 14px;
+  display: flex;
+}
+
+/* Small Decorative Geometric Accent Behind Bottom-Left Corner */
+.sld-story__geo-accent {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 96px;
+  height: 96px;
+  background-color: var(--story-primary);
+  border-top-right-radius: 28px;
+  border-bottom-left-radius: 3px;
+  opacity: 0;
+  transform: translate(-10px, 10px) scale(0.92);
+  transition:
+    opacity 750ms var(--story-ease) 260ms,
+    transform 750ms var(--story-ease) 260ms;
+  z-index: 0;
+}
+
+.sld-story--visible .sld-story__geo-accent {
+  opacity: 0.92;
+  transform: translate(0, 0) scale(1);
+}
+
+/* Second Offset Outline Behind the Image for Editorial Depth */
+.sld-story__offset-frame {
+  position: absolute;
+  top: 26px;
+  left: 26px;
+  right: 2px;
+  bottom: 2px;
+  border: 1px solid rgba(197, 160, 89, 0.58);
+  border-radius: 3px 18px 3px 3px;
+  opacity: 0;
+  transform: translate(8px, 8px);
+  transition:
+    opacity 800ms var(--story-ease) 220ms,
+    transform 800ms var(--story-ease) 220ms,
+    border-color 400ms var(--story-ease);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.sld-story--visible .sld-story__offset-frame {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.sld-story__media-stage:hover .sld-story__offset-frame {
+  transform: translate(4px, 4px);
+  border-color: var(--story-gold);
+}
+
+/* Main Architectural Image Frame (Subtly Asymmetrical Luxury Cut) */
+.sld-story__image-frame {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  flex: 1 1 auto;
+  border-radius: 3px 20px 3px 3px;
+  overflow: hidden;
+  background-color: var(--story-primary);
+  box-shadow:
+    0 24px 52px -14px rgba(1, 24, 60, 0.2),
+    0 8px 20px -6px rgba(1, 24, 60, 0.08);
+  opacity: 0;
+  transform: translateX(-24px) scale(0.975);
+  transition:
+    opacity 800ms var(--story-ease),
+    transform 800ms var(--story-ease),
+    box-shadow 500ms var(--story-ease);
+}
+
+.sld-story--visible .sld-story__image-frame {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+
+.sld-story__media-stage:hover .sld-story__image-frame {
+  box-shadow:
+    0 28px 60px -12px rgba(1, 24, 60, 0.25),
+    0 10px 24px -6px rgba(1, 24, 60, 0.1);
+}
+
+.sld-story__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  transform: scale(1);
+  filter: brightness(1) contrast(1);
+  transition:
+    transform 750ms var(--story-ease),
+    filter 750ms var(--story-ease);
+}
+
+.sld-story__media-stage:hover .sld-story__img {
+  transform: scale(1.03);
+  filter: brightness(1.03) contrast(1.02);
+}
+
+/* Thin Champagne-Gold Corner Accents */
+.sld-story__corner {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0;
+  transition:
+    opacity 700ms var(--story-ease) 320ms,
+    transform 700ms var(--story-ease) 320ms;
+}
+
+.sld-story__corner--tl {
+  top: 6px;
+  left: 6px;
+  border-top: 2px solid var(--story-gold);
+  border-left: 2px solid var(--story-gold);
+  transform: translate(-6px, -6px);
+}
+
+.sld-story__corner--br {
+  right: 10px;
+  bottom: 10px;
+  border-bottom: 2px solid var(--story-gold);
+  border-right: 2px solid var(--story-gold);
+  transform: translate(6px, 6px);
+}
+
+.sld-story--visible .sld-story__corner--tl,
+.sld-story--visible .sld-story__corner--br {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* Right Column — Our Story Content */
+.sld-story__content-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: left;
+  padding: 0.75rem 0;
+}
+
+/* Step 1 — Eyebrow Label & Smooth Gold Line Reveal */
+.sld-story__kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.1rem;
+  font-family: var(--story-font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--story-gold);
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateX(-14px);
+  transition:
+    opacity 650ms var(--story-ease) 100ms,
+    transform 650ms var(--story-ease) 100ms;
+}
+
+.sld-story--visible .sld-story__kicker {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.sld-story__kicker-line {
+  width: 32px;
+  height: 1.5px;
+  background-color: var(--story-gold);
+  display: inline-block;
+  flex-shrink: 0;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 700ms var(--story-ease) 160ms;
+}
+
+.sld-story--visible .sld-story__kicker-line {
+  transform: scaleX(1);
+}
+
+/* Step 2 — Main Serif Heading (Two Staggered Lines) */
+.sld-story__heading {
+  margin: 0 0 1.65rem 0;
+  font-family: var(--story-font-serif);
+  font-size: clamp(1.9rem, 2.85vw, 2.7rem);
+  font-weight: 600;
+  line-height: 1.22;
+  letter-spacing: 0.015em;
+  color: var(--story-primary);
+}
+
+.sld-story__heading-line {
+  display: block;
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 650ms var(--story-ease),
+    transform 650ms var(--story-ease);
+}
+
+.sld-story__heading-line--1 {
+  transition-delay: 200ms;
+}
+
+.sld-story__heading-line--2 {
+  margin-top: 0.15rem;
+  color: var(--story-secondary);
+  transition-delay: 300ms;
+}
+
+.sld-story--visible .sld-story__heading-line {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Step 3 — Staggered Paragraphs */
+.sld-story__description {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  margin-bottom: 2.25rem;
+  max-width: 58ch;
+}
+
+.sld-story__paragraph {
+  margin: 0;
+  font-size: clamp(0.95rem, 1.05vw, 1.025rem);
+  font-weight: 400;
+  line-height: 1.78;
+  color: var(--story-text-body);
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 650ms var(--story-ease),
+    transform 650ms var(--story-ease);
+}
+
+.sld-story--visible .sld-story__paragraph--1 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 390ms;
+}
+
+.sld-story--visible .sld-story__paragraph--2 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 480ms;
+}
+
+.sld-story--visible .sld-story__paragraph--3 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 570ms;
+}
+
+/* Step 4 — Discover More CTA Button */
+.sld-story__cta-wrap {
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 650ms var(--story-ease) 660ms,
+    transform 650ms var(--story-ease) 660ms;
+}
+
+.sld-story--visible .sld-story__cta-wrap {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sld-story__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  min-height: 48px;
+  padding: 0.875rem 2rem;
+  background-color: var(--story-primary);
+  color: var(--story-white);
+  font-family: var(--story-font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  border: 1px solid var(--story-primary);
+  border-radius: 3px;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(1, 24, 60, 0.14);
+  transition:
+    background-color 200ms var(--story-ease),
+    border-color 200ms var(--story-ease),
+    color 200ms var(--story-ease),
+    transform 200ms var(--story-ease),
+    box-shadow 200ms var(--story-ease);
+}
+
+.sld-story__cta:hover {
+  background-color: var(--story-secondary);
+  border-color: var(--story-gold);
+  color: var(--story-white);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0, 30, 61, 0.24);
+}
+
+.sld-story__cta:active {
+  transform: translateY(0);
+}
+
+.sld-story__cta:focus-visible {
+  outline: 2px solid var(--story-gold);
+  outline-offset: 3px;
+}
+
+.sld-story__cta-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--story-gold-light);
+  transition: transform 200ms var(--story-ease);
+}
+
+.sld-story__cta:hover .sld-story__cta-icon {
+  transform: translateX(4px);
+}
+
+/* Tablet Responsive Layout */
+@media (max-width: 1080px) {
+  .sld-story__container {
+    padding: 0 1.5rem;
+    gap: 2.5rem;
+  }
+
+  .sld-story__media-stage {
+    min-height: 410px;
+    padding: 12px 14px 14px 12px;
+  }
+}
+
+/* Stack Columns When Available Width Becomes Insufficient */
+@media (max-width: 860px) {
+  .sld-story {
+    padding: clamp(3.5rem, 7vw, 5rem) 0;
+  }
+
+  .sld-story__container {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 0 1.375rem;
+  }
+
+  .sld-story__media-stage {
+    min-height: 0;
+    height: auto;
+    aspect-ratio: 16 / 10;
+  }
+
+  .sld-story__content-col {
+    padding: 0;
+  }
+
+  .sld-story__description {
+    max-width: 100%;
+    margin-bottom: 1.85rem;
+  }
+}
+
+/* Mobile Responsive Layout */
+@media (max-width: 640px) {
+  .sld-story {
+    padding: 3.25rem 0;
+  }
+
+  .sld-story__container {
+    padding: 0 1.25rem;
+    gap: 2rem;
+  }
+
+  .sld-story__media-stage {
+    padding: 10px 12px 12px 10px;
+    aspect-ratio: 16 / 10.5;
+  }
+
+  .sld-story__geo-accent {
+    width: 64px;
+    height: 64px;
+    border-top-right-radius: 18px;
+  }
+
+  .sld-story__offset-frame {
+    top: 18px;
+    left: 18px;
+    border-radius: 3px 14px 3px 3px;
+  }
+
+  .sld-story__image-frame {
+    border-radius: 3px 14px 3px 3px;
+  }
+
+  .sld-story__corner {
+    width: 24px;
+    height: 24px;
+  }
+
+  .sld-story__corner--tl {
+    top: 4px;
+    left: 4px;
+  }
+
+  .sld-story__corner--br {
+    right: 6px;
+    bottom: 6px;
+  }
+
+  .sld-story__kicker {
+    font-size: 0.7rem;
+    letter-spacing: 0.17em;
+    margin-bottom: 0.75rem;
+    gap: 0.55rem;
+  }
+
+  .sld-story__kicker-line {
+    width: 22px;
+  }
+
+  .sld-story__heading {
+    font-size: clamp(1.5rem, 6vw, 1.95rem);
+    margin-bottom: 1.15rem;
+  }
+
+  .sld-story__description {
+    gap: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .sld-story__paragraph {
+    font-size: 0.925rem;
+    line-height: 1.68;
+  }
+
+  .sld-story__cta {
+    min-height: 46px;
+    padding: 0.75rem 1.65rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Reduced Motion Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .sld-story__geo-accent,
+  .sld-story__offset-frame,
+  .sld-story__image-frame,
+  .sld-story__img,
+  .sld-story__corner,
+  .sld-story__kicker,
+  .sld-story__kicker-line,
+  .sld-story__heading-line,
+  .sld-story__paragraph,
+  .sld-story__cta-wrap,
+  .sld-story__cta,
+  .sld-story__cta-icon {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}

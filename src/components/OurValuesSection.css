@@ -1,0 +1,374 @@
+/* Scoped styles for OurValuesSection (Light Luxury Version) */
+.sld-values {
+  --val-bg-soft: #F8F7F3;
+  --val-card-bg: #FFFFFF;
+  --val-primary: #01183C;
+  --val-text-muted: rgba(1, 24, 60, 0.76);
+  --val-gold: #C9A45C;
+  --val-gold-dark: #A68038;
+  --val-border: rgba(201, 164, 92, 0.28);
+  --val-border-hover: rgba(201, 164, 92, 0.72);
+  --val-font-serif: 'Cinzel', Georgia, serif;
+  --val-font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --val-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  position: relative;
+  width: 100%;
+  background-color: var(--val-bg-soft);
+  padding: clamp(4.25rem, 7vw, 6.25rem) 0;
+  font-family: var(--val-font-sans);
+  color: var(--val-primary);
+  overflow: hidden;
+}
+
+/* Faint Architectural Line Pattern */
+.sld-values__backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(
+      to right,
+      rgba(201, 164, 92, 0.045) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(201, 164, 92, 0.04) 1px,
+      transparent 1px
+    );
+  background-size: 68px 68px;
+}
+
+.sld-values__container {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+}
+
+/* Centered Section Heading (Matching Leadership Heading Style) */
+.sld-values__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: clamp(2.5rem, 4.5vw, 3.6rem);
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 600ms var(--val-ease),
+    transform 600ms var(--val-ease);
+}
+
+.sld-values--visible .sld-values__header {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sld-values__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--val-font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  color: var(--val-gold);
+  text-transform: uppercase;
+}
+
+.sld-values__eyebrow-line {
+  width: 28px;
+  height: 1.5px;
+  background-color: var(--val-gold);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.sld-values__heading {
+  margin: 0 0 0.95rem 0;
+  font-family: var(--val-font-serif);
+  font-size: clamp(1.95rem, 3vw, 2.65rem);
+  font-weight: 600;
+  line-height: 1.22;
+  letter-spacing: 0.03em;
+  text-transform: none;
+  color: var(--val-primary);
+}
+
+/* Subtle Decorative Gold Divider with Center Diamond */
+.sld-values__heading-rule {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+}
+
+.sld-values__heading-line {
+  width: 46px;
+  height: 1.5px;
+  background: linear-gradient(
+    90deg,
+    rgba(201, 164, 92, 0.15) 0%,
+    var(--val-gold) 100%
+  );
+  transform: scaleX(0);
+  transition: transform 680ms var(--val-ease) 140ms;
+}
+
+.sld-values__heading-line:last-child {
+  background: linear-gradient(
+    90deg,
+    var(--val-gold) 0%,
+    rgba(201, 164, 92, 0.15) 100%
+  );
+}
+
+.sld-values--visible .sld-values__heading-line {
+  transform: scaleX(1);
+}
+
+.sld-values__heading-diamond {
+  width: 7px;
+  height: 7px;
+  background-color: var(--val-gold);
+  transform: rotate(45deg) scale(0);
+  transition: transform 550ms var(--val-ease) 220ms;
+}
+
+.sld-values--visible .sld-values__heading-diamond {
+  transform: rotate(45deg) scale(1);
+}
+
+/* Desktop 3-Column x 2-Row Grid */
+.sld-values__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.sld-values__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  width: 100%;
+  height: 100%;
+  padding: 1.85rem 1.75rem 1.9rem;
+  background-color: var(--val-card-bg);
+  border: 1px solid var(--val-border);
+  border-radius: 8px;
+  box-sizing: border-box;
+  box-shadow: 0 10px 28px -18px rgba(1, 24, 60, 0.08);
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 600ms var(--val-ease),
+    transform 340ms var(--val-ease),
+    border-color 280ms ease,
+    box-shadow 340ms var(--val-ease);
+}
+
+.sld-values--visible .sld-values__card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sld-values--visible .sld-values__card--1 {
+  transition-delay: 60ms, 0ms, 0ms, 0ms;
+}
+
+.sld-values--visible .sld-values__card--2 {
+  transition-delay: 130ms, 0ms, 0ms, 0ms;
+}
+
+.sld-values--visible .sld-values__card--3 {
+  transition-delay: 200ms, 0ms, 0ms, 0ms;
+}
+
+.sld-values--visible .sld-values__card--4 {
+  transition-delay: 270ms, 0ms, 0ms, 0ms;
+}
+
+.sld-values--visible .sld-values__card--5 {
+  transition-delay: 340ms, 0ms, 0ms, 0ms;
+}
+
+.sld-values--visible .sld-values__card--6 {
+  transition-delay: 410ms, 0ms, 0ms, 0ms;
+}
+
+.sld-values__card:hover {
+  transform: translateY(-4px);
+  border-color: var(--val-border-hover);
+  box-shadow: 0 18px 36px -18px rgba(1, 24, 60, 0.14);
+}
+
+/* Gold Line Icon Frame */
+.sld-values__icon-frame {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background-color: rgba(201, 164, 92, 0.08);
+  border: 1px solid rgba(201, 164, 92, 0.38);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.15rem;
+  flex-shrink: 0;
+  transition:
+    background-color 280ms ease,
+    border-color 280ms ease,
+    transform 300ms var(--val-ease);
+}
+
+.sld-values__card:hover .sld-values__icon-frame {
+  background-color: rgba(201, 164, 92, 0.14);
+  border-color: var(--val-gold);
+  transform: scale(1.05);
+}
+
+.sld-values__icon {
+  width: 22px;
+  height: 22px;
+  color: var(--val-gold-dark);
+  transition: color 280ms ease, transform 300ms var(--val-ease);
+}
+
+.sld-values__card:hover .sld-values__icon {
+  color: var(--val-gold);
+}
+
+/* Card Title */
+.sld-values__title {
+  margin: 0 0 0.65rem 0;
+  font-family: var(--val-font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  color: var(--val-primary);
+}
+
+/* Small Gold Accent Line Beneath Heading */
+.sld-values__card-rule {
+  width: 34px;
+  height: 1.5px;
+  background-color: var(--val-gold);
+  margin-bottom: 0.8rem;
+  flex-shrink: 0;
+  transition: width 280ms var(--val-ease);
+}
+
+.sld-values__card:hover .sld-values__card-rule {
+  width: 52px;
+}
+
+/* Muted Navy Body Copy */
+.sld-values__description {
+  margin: 0;
+  font-family: var(--val-font-sans);
+  font-size: 0.92rem;
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--val-text-muted);
+  overflow-wrap: break-word;
+}
+
+/* Tablet Layout: Two Columns and Three Rows */
+@media (max-width: 1024px) {
+  .sld-values__container {
+    padding: 0 1.75rem;
+  }
+
+  .sld-values__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+/* Mobile Layout: Single Column Stack */
+@media (max-width: 640px) {
+  .sld-values {
+    padding: 3.25rem 0;
+  }
+
+  .sld-values__container {
+    padding: 0 1.25rem;
+  }
+
+  .sld-values__header {
+    margin-bottom: 2rem;
+  }
+
+  .sld-values__eyebrow {
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .sld-values__eyebrow-line {
+    width: 18px;
+  }
+
+  .sld-values__heading {
+    font-size: clamp(1.55rem, 6.2vw, 1.95rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .sld-values__heading-line {
+    width: 34px;
+  }
+
+  .sld-values__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+  }
+
+  .sld-values__card {
+    padding: 1.45rem 1.35rem 1.5rem;
+  }
+
+  .sld-values__description {
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+}
+
+/* Reduced Motion Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .sld-values__header,
+  .sld-values__heading-line,
+  .sld-values__heading-diamond,
+  .sld-values__card,
+  .sld-values__icon-frame,
+  .sld-values__icon,
+  .sld-values__card-rule {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .sld-values__header,
+  .sld-values__card {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .sld-values__heading-line {
+    transform: scaleX(1) !important;
+  }
+
+  .sld-values__heading-diamond {
+    transform: rotate(45deg) scale(1) !important;
+  }
+}

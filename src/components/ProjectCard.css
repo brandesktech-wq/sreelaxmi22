@@ -1,0 +1,196 @@
+/* Scoped styles for ProjectCard component */
+.sld-project-card {
+  --pc-navy: #01183C;
+  --pc-navy-secondary: #001E3D;
+  --pc-gold: #C9A45C;
+  --pc-gold-dark: #A68038;
+  --pc-white: #FFFFFF;
+  --pc-text-muted: rgba(1, 24, 60, 0.74);
+  --pc-border: rgba(201, 164, 92, 0.28);
+  --pc-border-hover: rgba(201, 164, 92, 0.75);
+  --pc-font-serif: 'Cinzel', Georgia, serif;
+  --pc-font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --pc-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  display: flex;
+  width: 100%;
+  height: 100%;
+  font-family: var(--pc-font-sans);
+}
+
+.sld-project-card__link {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: var(--pc-white);
+  border: 1px solid var(--pc-border);
+  border-top: 2px solid var(--pc-gold);
+  border-radius: 8px;
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--pc-navy);
+  box-shadow: 0 14px 32px -18px rgba(1, 24, 60, 0.12);
+  transition:
+    transform 360ms var(--pc-ease),
+    border-color 280ms ease,
+    box-shadow 360ms var(--pc-ease);
+}
+
+.sld-project-card__link:hover {
+  transform: translateY(-6px);
+  border-color: var(--pc-border-hover);
+  box-shadow:
+    0 22px 44px -16px rgba(1, 24, 60, 0.18),
+    0 0 20px -10px rgba(201, 164, 92, 0.25);
+}
+
+.sld-project-card__link:focus-visible {
+  outline: 2px solid var(--pc-gold);
+  outline-offset: 3px;
+}
+
+/* Property Image Frame */
+.sld-project-card__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-color: #EDEAE2;
+  overflow: hidden;
+}
+
+.sld-project-card__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  transform: scale(1.001);
+  transition: transform 650ms var(--pc-ease);
+}
+
+.sld-project-card__link:hover .sld-project-card__img {
+  transform: scale(1.06);
+}
+
+.sld-project-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(1, 24, 60, 0.08) 0%,
+    rgba(1, 24, 60, 0) 45%,
+    rgba(1, 24, 60, 0.35) 100%
+  );
+  pointer-events: none;
+}
+
+.sld-project-card__badge {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  padding: 0.32rem 0.78rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  background-color: rgba(1, 24, 60, 0.9);
+  color: #E4C582;
+  border: 1px solid rgba(201, 164, 92, 0.55);
+  backdrop-filter: blur(4px);
+}
+
+/* Card Body */
+.sld-project-card__body {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.45rem 1.45rem 1.5rem;
+  background-color: var(--pc-white);
+}
+
+.sld-project-card__title {
+  margin: 0 0 0.55rem 0;
+  font-family: var(--pc-font-serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.32;
+  letter-spacing: 0.02em;
+  color: var(--pc-navy);
+  transition: color 220ms ease;
+}
+
+.sld-project-card__link:hover .sld-project-card__title {
+  color: var(--pc-navy-secondary);
+}
+
+.sld-project-card__location {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--pc-text-muted);
+}
+
+.sld-project-card__pin {
+  width: 16px;
+  height: 16px;
+  color: var(--pc-gold-dark);
+  flex-shrink: 0;
+  margin-top: 0.12rem;
+}
+
+.sld-project-card__footer {
+  margin-top: auto;
+  padding-top: 0.95rem;
+  border-top: 1px solid rgba(1, 24, 60, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sld-project-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--pc-navy);
+  transition: color 220ms ease;
+}
+
+.sld-project-card__link:hover .sld-project-card__cta {
+  color: var(--pc-gold-dark);
+}
+
+.sld-project-card__cta-icon {
+  width: 15px;
+  height: 15px;
+  color: var(--pc-gold-dark);
+  transition: transform 260ms var(--pc-ease);
+}
+
+.sld-project-card__link:hover .sld-project-card__cta-icon {
+  transform: translateX(4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sld-project-card__link,
+  .sld-project-card__img,
+  .sld-project-card__cta-icon {
+    transition: none !important;
+  }
+
+  .sld-project-card__link:hover,
+  .sld-project-card__link:hover .sld-project-card__img,
+  .sld-project-card__link:hover .sld-project-card__cta-icon {
+    transform: none !important;
+  }
+}

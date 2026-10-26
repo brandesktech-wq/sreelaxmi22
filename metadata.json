@@ -1,0 +1,6 @@
+{
+  "name": "Sree Laxmi Developers",
+  "description": "Luxury real estate navigation and brand header for Sree Laxmi Developers.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

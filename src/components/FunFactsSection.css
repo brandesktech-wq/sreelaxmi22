@@ -1,0 +1,605 @@
+/* Scoped styles for FunFactsSection component */
+.sld-funfacts {
+  --ff-primary: #01183C;
+  --ff-secondary: #001E3D;
+  --ff-panel-bg: rgba(1, 22, 52, 0.74);
+  --ff-item-hover: rgba(4, 38, 78, 0.78);
+  --ff-gold: #C9A45C;
+  --ff-gold-bright: #E4C582;
+  --ff-ivory: #F8FAFC;
+  --ff-label-color: #DCE5F2;
+  --ff-border-gold: rgba(201, 164, 92, 0.34);
+  --ff-font-serif: 'Cinzel', Georgia, serif;
+  --ff-font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --ff-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  position: relative;
+  width: 100%;
+  background: linear-gradient(180deg, var(--ff-primary) 0%, var(--ff-secondary) 100%);
+  padding: clamp(5.25rem, 8.5vw, 7.5rem) 0;
+  font-family: var(--ff-font-sans);
+  color: var(--ff-ivory);
+  border-top: 1px solid rgba(201, 164, 92, 0.24);
+  border-bottom: 1px solid rgba(201, 164, 92, 0.24);
+  overflow: hidden;
+}
+
+/* Understated Architectural Grid Pattern */
+.sld-funfacts__bg-decor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(201, 164, 92, 0.028) 1px, transparent 1px);
+  background-size: 140px 140px;
+  background-position: center center;
+  z-index: 0;
+}
+
+/* Subtle Radial Light Effect Behind Statistics */
+@keyframes sldAmbientPulse {
+  0%, 100% {
+    opacity: 0.75;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+}
+
+.sld-funfacts__ambient-light {
+  position: absolute;
+  top: 56%;
+  left: 50%;
+  width: 860px;
+  height: 420px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(201, 164, 92, 0.11) 0%,
+    rgba(0, 30, 61, 0.05) 48%,
+    rgba(1, 24, 60, 0) 75%
+  );
+  pointer-events: none;
+  z-index: 0;
+  animation: sldAmbientPulse 9s ease-in-out infinite;
+}
+
+.sld-funfacts__container {
+  position: relative;
+  z-index: 1;
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+}
+
+/* Centered Section Heading: OUR ACHIEVEMENTS */
+.sld-funfacts__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: clamp(3.25rem, 5.5vw, 4.75rem);
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 700ms var(--ff-ease),
+    transform 700ms var(--ff-ease);
+}
+
+.sld-funfacts--visible .sld-funfacts__header {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sld-funfacts__kicker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+  font-family: var(--ff-font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  color: var(--ff-gold-bright);
+  text-transform: uppercase;
+}
+
+.sld-funfacts__kicker-line {
+  width: 28px;
+  height: 1.5px;
+  background-color: var(--ff-gold);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.sld-funfacts__heading {
+  margin: 0 0 1.15rem 0;
+  font-family: var(--ff-font-serif);
+  font-size: clamp(2rem, 3.2vw, 2.9rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  color: var(--ff-ivory);
+}
+
+/* Animated Decorative Gold Underline Beneath Heading */
+.sld-funfacts__heading-rule {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.sld-funfacts__heading-line {
+  width: 48px;
+  height: 1.5px;
+  background: linear-gradient(
+    90deg,
+    rgba(201, 164, 92, 0.15) 0%,
+    var(--ff-gold) 100%
+  );
+  transform: scaleX(0);
+  transition: transform 750ms var(--ff-ease) 180ms;
+}
+
+.sld-funfacts__heading-line:last-child {
+  background: linear-gradient(
+    90deg,
+    var(--ff-gold) 0%,
+    rgba(201, 164, 92, 0.15) 100%
+  );
+}
+
+.sld-funfacts--visible .sld-funfacts__heading-line {
+  transform: scaleX(1);
+}
+
+.sld-funfacts__heading-diamond {
+  width: 7px;
+  height: 7px;
+  background-color: var(--ff-gold-bright);
+  transform: rotate(45deg) scale(0);
+  transition: transform 600ms var(--ff-ease) 260ms;
+}
+
+.sld-funfacts--visible .sld-funfacts__heading-diamond {
+  transform: rotate(45deg) scale(1);
+}
+
+/* Glass-Like Dark Navy Statistics Container with Gold Light Sweep */
+.sld-funfacts__panel {
+  position: relative;
+  background-color: var(--ff-panel-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--ff-border-gold);
+  border-radius: 4px;
+  box-shadow:
+    0 24px 56px -16px rgba(0, 8, 22, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  transition:
+    border-color 350ms var(--ff-ease),
+    box-shadow 350ms var(--ff-ease);
+}
+
+/* Gentle Gold Light Sweep Along Top Border on Hover */
+.sld-funfacts__panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 65%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(201, 164, 92, 0) 0%,
+    var(--ff-gold-bright) 50%,
+    rgba(201, 164, 92, 0) 100%
+  );
+  transition: left 900ms var(--ff-ease);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.sld-funfacts__panel:hover {
+  border-color: rgba(201, 164, 92, 0.55);
+  box-shadow:
+    0 28px 64px -16px rgba(0, 8, 22, 0.75),
+    0 0 32px -10px rgba(201, 164, 92, 0.14);
+}
+
+.sld-funfacts__panel:hover::before {
+  left: 135%;
+}
+
+/* Four-Column Statistics Grid on Desktop */
+.sld-funfacts__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Individual Statistic Item */
+.sld-funfacts__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3.35rem 1.85rem;
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 650ms var(--ff-ease),
+    transform 320ms var(--ff-ease),
+    background-color 320ms var(--ff-ease);
+}
+
+/* Subtle Vertical Separator Between Statistics on Desktop */
+.sld-funfacts__item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 18%;
+  bottom: 18%;
+  right: 0;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    rgba(201, 164, 92, 0) 0%,
+    rgba(201, 164, 92, 0.36) 50%,
+    rgba(201, 164, 92, 0) 100%
+  );
+  pointer-events: none;
+}
+
+/* Delicate Top Gold Accent Revealed on Item Hover */
+.sld-funfacts__item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 28%;
+  right: 28%;
+  height: 2px;
+  background-color: var(--ff-gold-bright);
+  opacity: 0;
+  transform: scaleX(0.4);
+  transition:
+    opacity 280ms var(--ff-ease),
+    transform 280ms var(--ff-ease);
+}
+
+.sld-funfacts--visible .sld-funfacts__item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sld-funfacts--visible .sld-funfacts__item--1 {
+  transition-delay: 100ms, 0ms, 0ms;
+}
+
+.sld-funfacts--visible .sld-funfacts__item--2 {
+  transition-delay: 200ms, 0ms, 0ms;
+}
+
+.sld-funfacts--visible .sld-funfacts__item--3 {
+  transition-delay: 300ms, 0ms, 0ms;
+}
+
+.sld-funfacts--visible .sld-funfacts__item--4 {
+  transition-delay: 400ms, 0ms, 0ms;
+}
+
+.sld-funfacts__item:hover {
+  transform: translateY(-5px);
+  background-color: var(--ff-item-hover);
+}
+
+.sld-funfacts__item:hover::before {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* Circular Architectural Medallion with Layered Outer Ring */
+.sld-funfacts__medallion {
+  position: relative;
+  width: 74px;
+  height: 74px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.6rem;
+}
+
+/* Outer Decorative Architectural Ring */
+.sld-funfacts__medallion-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px dashed rgba(201, 164, 92, 0.48);
+  transition:
+    transform 550ms var(--ff-ease),
+    border-color 320ms var(--ff-ease),
+    box-shadow 320ms var(--ff-ease);
+}
+
+/* Inner Circular Gold-Outline Frame */
+.sld-funfacts__medallion-core {
+  position: relative;
+  z-index: 1;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(4, 38, 78, 0.95) 0%,
+    rgba(1, 20, 48, 0.98) 100%
+  );
+  border: 1px solid rgba(201, 164, 92, 0.62);
+  color: var(--ff-gold);
+  box-shadow:
+    0 8px 20px rgba(0, 8, 22, 0.45),
+    inset 0 0 12px rgba(201, 164, 92, 0.08);
+  transition:
+    border-color 300ms var(--ff-ease),
+    color 300ms var(--ff-ease),
+    box-shadow 300ms var(--ff-ease),
+    transform 300ms var(--ff-ease);
+}
+
+.sld-funfacts__item:hover .sld-funfacts__medallion-ring {
+  transform: rotate(45deg) scale(1.06);
+  border-color: var(--ff-gold-bright);
+  box-shadow: 0 0 20px rgba(201, 164, 92, 0.18);
+}
+
+.sld-funfacts__item:hover .sld-funfacts__medallion-core {
+  border-color: var(--ff-gold-bright);
+  color: var(--ff-gold-bright);
+  transform: scale(1.03);
+  box-shadow:
+    0 10px 24px rgba(0, 8, 22, 0.55),
+    0 0 18px rgba(201, 164, 92, 0.26);
+}
+
+.sld-funfacts__icon {
+  width: 25px;
+  height: 25px;
+  transition: transform 300ms var(--ff-ease);
+}
+
+.sld-funfacts__item:hover .sld-funfacts__icon {
+  transform: scale(1.08);
+}
+
+/* Large, Bold Animated Statistic Number */
+.sld-funfacts__number {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  margin: 0 0 0.85rem 0;
+  font-family: var(--ff-font-serif);
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(2.35rem, 3.5vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: 0.02em;
+  color: var(--ff-ivory);
+}
+
+.sld-funfacts__value {
+  color: var(--ff-ivory);
+}
+
+.sld-funfacts__suffix {
+  color: var(--ff-gold);
+  margin-left: 0.06em;
+  transition: color 250ms var(--ff-ease);
+}
+
+.sld-funfacts__item:hover .sld-funfacts__suffix {
+  color: var(--ff-gold-bright);
+}
+
+/* Small Elegant Gold Divider Beneath Each Number */
+.sld-funfacts__divider {
+  position: relative;
+  width: 36px;
+  height: 1.5px;
+  background-color: rgba(201, 164, 92, 0.52);
+  margin-bottom: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    width 280ms var(--ff-ease),
+    background-color 280ms var(--ff-ease);
+}
+
+.sld-funfacts__divider-dot {
+  width: 5px;
+  height: 5px;
+  background-color: var(--ff-gold);
+  transform: rotate(45deg);
+  transition: background-color 280ms var(--ff-ease), transform 280ms var(--ff-ease);
+}
+
+.sld-funfacts__item:hover .sld-funfacts__divider {
+  width: 52px;
+  background-color: var(--ff-gold-bright);
+}
+
+.sld-funfacts__item:hover .sld-funfacts__divider-dot {
+  background-color: var(--ff-gold-bright);
+  transform: rotate(45deg) scale(1.15);
+}
+
+/* Statistic Label */
+.sld-funfacts__label {
+  margin: 0;
+  font-family: var(--ff-font-sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: 0.03em;
+  color: var(--ff-label-color);
+  transition: color 250ms var(--ff-ease);
+}
+
+.sld-funfacts__item:hover .sld-funfacts__label {
+  color: var(--ff-ivory);
+}
+
+/* Tablet Responsive Layout (Two Columns, Two Rows) */
+@media (max-width: 1024px) {
+  .sld-funfacts__container {
+    padding: 0 1.5rem;
+  }
+
+  .sld-funfacts__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sld-funfacts__item {
+    padding: 2.75rem 1.5rem;
+    border-bottom: 1px solid rgba(201, 164, 92, 0.16);
+  }
+
+  .sld-funfacts__item:nth-child(2n)::after {
+    display: none;
+  }
+
+  .sld-funfacts__item:nth-last-child(-n + 2) {
+    border-bottom: none;
+  }
+}
+
+/* Mobile Responsive Layout (Single Column — One Statistic Per Row) */
+@media (max-width: 640px) {
+  .sld-funfacts {
+    padding: 3.5rem 0;
+  }
+
+  .sld-funfacts__container {
+    padding: 0 1.25rem;
+  }
+
+  .sld-funfacts__header {
+    margin-bottom: 2.25rem;
+  }
+
+  .sld-funfacts__kicker {
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    gap: 0.5rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .sld-funfacts__kicker-line {
+    width: 18px;
+  }
+
+  .sld-funfacts__heading {
+    font-size: clamp(1.55rem, 6vw, 2rem);
+    letter-spacing: 0.06em;
+    margin-bottom: 0.85rem;
+  }
+
+  .sld-funfacts__heading-line {
+    width: 34px;
+  }
+
+  .sld-funfacts__grid,
+  .sld-funfacts__grid--mobile-stack {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sld-funfacts__item {
+    padding: 1.95rem 1.25rem;
+    border-bottom: 1px solid rgba(201, 164, 92, 0.2);
+  }
+
+  /* Remove desktop vertical side dividers on mobile single-column stack */
+  .sld-funfacts__item::after,
+  .sld-funfacts__item:not(:last-child)::after {
+    display: none;
+  }
+
+  /* Ensure the final row has no bottom border */
+  .sld-funfacts__item:nth-last-child(-n + 2) {
+    border-bottom: 1px solid rgba(201, 164, 92, 0.2);
+  }
+
+  .sld-funfacts__item:last-child {
+    border-bottom: none;
+  }
+
+  .sld-funfacts__medallion {
+    width: 62px;
+    height: 62px;
+    margin-bottom: 1rem;
+  }
+
+  .sld-funfacts__medallion-core {
+    width: 48px;
+    height: 48px;
+  }
+
+  .sld-funfacts__icon {
+    width: 21px;
+    height: 21px;
+  }
+
+  .sld-funfacts__number {
+    font-size: clamp(1.95rem, 7.5vw, 2.35rem);
+    margin-bottom: 0.55rem;
+  }
+
+  .sld-funfacts__divider {
+    width: 32px;
+    margin-bottom: 0.65rem;
+  }
+
+  .sld-funfacts__label {
+    font-size: 0.9rem;
+    letter-spacing: 0.025em;
+  }
+}
+
+/* Reduced Motion Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .sld-funfacts__ambient-light,
+  .sld-funfacts__header,
+  .sld-funfacts__heading-line,
+  .sld-funfacts__heading-diamond,
+  .sld-funfacts__panel,
+  .sld-funfacts__panel::before,
+  .sld-funfacts__item,
+  .sld-funfacts__item::before,
+  .sld-funfacts__medallion-ring,
+  .sld-funfacts__medallion-core,
+  .sld-funfacts__icon,
+  .sld-funfacts__divider,
+  .sld-funfacts__divider-dot {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .sld-funfacts__heading-diamond,
+  .sld-funfacts__divider-dot {
+    transform: rotate(45deg) !important;
+  }
+}

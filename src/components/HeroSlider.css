@@ -1,0 +1,614 @@
+/* Scoped styles for HeroSlider component */
+.sld-hero {
+  --hero-primary: #01183C;
+  --hero-secondary: #001E3D;
+  --hero-gold: #D4AF6A;
+  --hero-white: #FFFFFF;
+  --hero-font-serif: 'Cinzel', Georgia, serif;
+  --hero-font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --hero-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  position: relative;
+  width: 100%;
+  height: clamp(600px, calc(100vh - 84px), 680px);
+  margin: 0;
+  padding: 0;
+  background-color: var(--hero-primary);
+  overflow: hidden;
+  font-family: var(--hero-font-sans);
+  user-select: none;
+}
+
+.sld-hero:focus-visible {
+  outline: 2px solid var(--hero-gold);
+  outline-offset: -2px;
+}
+
+/* Slides Track */
+.sld-hero__slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.sld-hero__slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 950ms var(--hero-ease),
+    visibility 950ms;
+  z-index: 1;
+}
+
+.sld-hero__slide--active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  z-index: 2;
+}
+
+/* Full-Width Real Estate Photography */
+.sld-hero__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--hero-primary);
+  background-size: cover;
+  background-repeat: no-repeat;
+  transform: scale(1);
+  transition: transform 6000ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+.sld-hero__media--slide-1 {
+  background-image: url('/assets/hero-slide-1.jpg');
+  background-position: right center;
+}
+
+.sld-hero__media--slide-2 {
+  background-image: url('/assets/hero-slide-2.jpg');
+  background-position: center center;
+}
+
+.sld-hero__slide--active .sld-hero__media {
+  transform: scale(1.045);
+}
+
+.sld-hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.sld-hero__img--slide-1 {
+  object-position: right center;
+}
+
+.sld-hero__img--slide-2 {
+  object-position: center center;
+}
+
+/* Subtle Brand Navy Overlay (#01183C & #001E3D) preserving architecture on the right */
+.sld-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(1, 24, 60, 0.88) 0%,
+      rgba(0, 30, 61, 0.72) 42%,
+      rgba(1, 24, 60, 0.26) 76%,
+      rgba(1, 24, 60, 0.10) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(1, 24, 60, 0.18) 0%,
+      rgba(1, 24, 60, 0) 40%,
+      rgba(1, 24, 60, 0.48) 100%
+    );
+  z-index: 1;
+}
+
+/* Centered Maximum-Width Content Container Overlaid on the Image */
+.sld-hero__container {
+  position: relative;
+  z-index: 2;
+  max-width: 1440px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Generous width so both headings always render in exactly 2 lines on desktop */
+.sld-hero__content {
+  max-width: 880px;
+}
+
+/* Smooth Text Transitions Without Flickering */
+.sld-hero__kicker,
+.sld-hero__heading,
+.sld-hero__actions {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 600ms var(--hero-ease),
+    transform 600ms var(--hero-ease);
+}
+
+.sld-hero__slide--active .sld-hero__kicker {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 120ms;
+}
+
+.sld-hero__slide--active .sld-hero__heading {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 220ms;
+}
+
+.sld-hero__slide--active .sld-hero__actions {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 320ms;
+}
+
+/* Small Label / Kicker */
+.sld-hero__kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.15rem;
+  font-family: var(--hero-font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: var(--hero-gold);
+  text-transform: uppercase;
+}
+
+.sld-hero__kicker-line {
+  width: 30px;
+  height: 1.5px;
+  background-color: var(--hero-gold);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* Main Serif Heading — Strictly Two Lines on Desktop */
+.sld-hero__heading {
+  margin: 0 0 2rem 0;
+  font-family: var(--hero-font-serif);
+  font-size: clamp(2rem, 3.1vw, 3.1rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.015em;
+  color: var(--hero-white);
+  text-align: left;
+}
+
+.sld-hero__heading-line {
+  display: block;
+  white-space: nowrap;
+}
+
+.sld-hero__heading-line--second {
+  margin-top: 0.2rem;
+  color: #F5E6C8;
+}
+
+/* Single Prominent CTA Button */
+.sld-hero__actions {
+  display: flex;
+  align-items: center;
+}
+
+.sld-hero__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  min-height: 50px;
+  padding: 0.875rem 1.9rem;
+  background-color: var(--hero-primary);
+  color: var(--hero-white);
+  font-family: var(--hero-font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  border: 1px solid var(--hero-gold);
+  border-radius: 3px;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(1, 24, 60, 0.36);
+  transition:
+    background-color 180ms var(--hero-ease),
+    border-color 180ms var(--hero-ease),
+    color 180ms var(--hero-ease),
+    transform 180ms var(--hero-ease),
+    box-shadow 180ms var(--hero-ease);
+}
+
+.sld-hero__btn:hover {
+  background-color: var(--hero-secondary);
+  border-color: #E5C583;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 30, 61, 0.48);
+}
+
+.sld-hero__btn:active {
+  transform: translateY(0);
+}
+
+.sld-hero__btn:focus-visible {
+  outline: 2px solid var(--hero-gold);
+  outline-offset: 3px;
+}
+
+.sld-hero__btn-icon {
+  width: 16px;
+  height: 16px;
+  transition: transform 180ms var(--hero-ease);
+}
+
+.sld-hero__btn:hover .sld-hero__btn-icon {
+  transform: translateX(3px);
+}
+
+/* Discreet Lower-Right Arrow Controls */
+.sld-hero__controls-wrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 2rem;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.sld-hero__controls {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.sld-hero__arrows {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  pointer-events: auto;
+}
+
+.sld-hero__arrow {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(1, 24, 60, 0.68);
+  color: var(--hero-white);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 3px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition:
+    background-color 180ms var(--hero-ease),
+    border-color 180ms var(--hero-ease),
+    color 180ms var(--hero-ease),
+    transform 180ms var(--hero-ease);
+}
+
+.sld-hero__arrow:hover {
+  background-color: var(--hero-secondary);
+  border-color: var(--hero-gold);
+  color: var(--hero-gold);
+  transform: translateY(-1px);
+}
+
+.sld-hero__arrow:active {
+  transform: translateY(0);
+}
+
+.sld-hero__arrow:focus-visible {
+  outline: 2px solid var(--hero-gold);
+  outline-offset: 2px;
+}
+
+/* Tablet Responsive Layout */
+@media (max-width: 1200px) {
+  .sld-hero {
+    height: clamp(520px, 72vh, 620px);
+  }
+
+  .sld-hero__container,
+  .sld-hero__controls {
+    padding: 0 1.5rem;
+  }
+
+  .sld-hero__content {
+    max-width: 780px;
+  }
+
+  .sld-hero__heading {
+    font-size: clamp(1.75rem, 3vw, 2.65rem);
+  }
+}
+
+@media (max-width: 960px) {
+  .sld-hero {
+    height: clamp(440px, 62vh, 540px);
+  }
+
+  .sld-hero__container,
+  .sld-hero__controls {
+    padding: 0 1.25rem;
+  }
+
+  .sld-hero__content {
+    max-width: 680px;
+  }
+
+  .sld-hero__heading {
+    font-size: clamp(1.5rem, 3.1vw, 2.15rem);
+    margin-bottom: 1.5rem;
+  }
+
+  .sld-hero__overlay {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(1, 24, 60, 0.86) 0%,
+        rgba(0, 30, 61, 0.68) 50%,
+        rgba(1, 24, 60, 0.24) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(1, 24, 60, 0.14) 0%,
+        rgba(1, 24, 60, 0.56) 100%
+      );
+  }
+}
+
+/* Mobile Layout — Exact 16:9 Frame (No Top Blue Bar) & Left-Aligned Vertically Centered Content */
+@media (max-width: 640px) {
+  .sld-hero {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+  }
+
+  .sld-hero__slides,
+  .sld-hero__slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+  }
+
+  /* Image begins flush at the top edge of the slider with zero top gap */
+  .sld-hero__media,
+  .sld-hero__media--slide-1,
+  .sld-hero__media--slide-2 {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    background-image: none;
+    background-size: contain;
+    background-position: top center;
+    transform: none !important;
+  }
+
+  .sld-hero__img,
+  .sld-hero__img--slide-1,
+  .sld-hero__img--slide-2 {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: top center;
+    background-color: transparent;
+    display: block;
+  }
+
+  /* Directional navy overlay matching desktop composition for left-aligned text */
+  .sld-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(
+        90deg,
+        rgba(1, 24, 60, 0.86) 0%,
+        rgba(0, 30, 61, 0.62) 55%,
+        rgba(1, 24, 60, 0.18) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(1, 24, 60, 0.18) 0%,
+        rgba(0, 30, 61, 0.36) 50%,
+        rgba(1, 24, 60, 0.64) 100%
+      );
+  }
+
+  /* Vertically centered, left-aligned text content over the hero image */
+  .sld-hero__container {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    padding: 0.75rem 1.375rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+    background: transparent;
+  }
+
+  .sld-hero__content {
+    max-width: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+  }
+
+  .sld-hero__kicker {
+    justify-content: flex-start;
+    font-size: 0.625rem;
+    letter-spacing: 0.16em;
+    margin-bottom: 0.35rem;
+    gap: 0.45rem;
+  }
+
+  .sld-hero__kicker-line {
+    width: 18px;
+  }
+
+  .sld-hero__heading {
+    font-size: clamp(1.05rem, 4.4vw, 1.45rem);
+    line-height: 1.22;
+    margin-bottom: 0.75rem;
+    text-align: left;
+  }
+
+  .sld-hero__heading-line {
+    white-space: nowrap;
+  }
+
+  .sld-hero__heading-line--second {
+    margin-top: 0.12rem;
+  }
+
+  .sld-hero__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding-right: 5rem;
+  }
+
+  .sld-hero__btn {
+    min-height: 36px;
+    padding: 0.45rem 1rem;
+    font-size: 0.75rem;
+    gap: 0.4rem;
+  }
+
+  .sld-hero__btn-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* Keep previous and next arrows near the bottom-right corner */
+  .sld-hero__controls-wrapper {
+    bottom: 0.65rem;
+  }
+
+  .sld-hero__controls {
+    padding: 0 1.25rem;
+  }
+
+  .sld-hero__arrows {
+    gap: 0.35rem;
+  }
+
+  .sld-hero__arrow {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* Narrow Mobile Screens (320px - 375px) */
+@media (max-width: 375px) {
+  .sld-hero__container {
+    padding: 0.5rem 1.25rem;
+  }
+
+  .sld-hero__kicker {
+    font-size: 0.55rem;
+    letter-spacing: 0.14em;
+    margin-bottom: 0.25rem;
+  }
+
+  .sld-hero__kicker-line {
+    width: 14px;
+  }
+
+  .sld-hero__heading {
+    font-size: clamp(0.95rem, 4.2vw, 1.15rem);
+    margin-bottom: 0.55rem;
+  }
+
+  .sld-hero__heading-line {
+    white-space: normal;
+  }
+
+  .sld-hero__actions {
+    padding-right: 4.5rem;
+  }
+
+  .sld-hero__btn {
+    min-height: 32px;
+    padding: 0.38rem 0.85rem;
+    font-size: 0.6875rem;
+  }
+
+  .sld-hero__controls-wrapper {
+    bottom: 0.5rem;
+  }
+
+  .sld-hero__controls {
+    padding: 0 1.25rem;
+  }
+
+  .sld-hero__arrow {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Reduced Motion Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .sld-hero__slide,
+  .sld-hero__media,
+  .sld-hero__kicker,
+  .sld-hero__heading,
+  .sld-hero__actions,
+  .sld-hero__btn,
+  .sld-hero__btn-icon,
+  .sld-hero__arrow {
+    transition: none !important;
+  }
+
+  .sld-hero__slide--active .sld-hero__media,
+  .sld-hero__btn:hover,
+  .sld-hero__arrow:hover {
+    transform: none !important;
+  }
+}

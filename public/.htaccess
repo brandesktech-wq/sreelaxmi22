@@ -1,0 +1,42 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Never rewrite static asset requests under /assets/ to index.html
+  RewriteRule ^assets/ - [L]
+
+  # Serve existing files and directories directly (images, CSS, JS, PDFs, SVGs)
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Redirect all other client-side React Router paths to index.html
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# Ensure proper MIME types for stylesheets, scripts, modern web assets, and brochures
+<IfModule mod_mime.c>
+  AddType text/css .css
+  AddType application/javascript .js .mjs
+  AddType image/webp .webp
+  AddType image/svg+xml .svg
+  AddType application/pdf .pdf
+</IfModule>
+
+# Enable GZIP / Deflate compression where supported by Hostinger Apache/LiteSpeed
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/json image/svg+xml
+</IfModule>
+
+# Cache static assets for fast repeat visits while keeping index.html fresh
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType application/pdf "access plus 1 month"
+</IfModule>

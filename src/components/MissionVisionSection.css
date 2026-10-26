@@ -1,0 +1,237 @@
+/* Scoped styles for MissionVisionSection component (Lite Luxury Version) */
+.sld-mission-vision {
+  --mv-bg: #F8F7F3;
+  --mv-card-bg: #FFFFFF;
+  --mv-primary: #01183C;
+  --mv-secondary: #001E3D;
+  --mv-gold: #C9A45C;
+  --mv-gold-dark: #A68038;
+  --mv-gold-bright: #E4C582;
+  --mv-text-body: #32435C;
+  --mv-border: rgba(1, 24, 60, 0.09);
+  --mv-border-gold: rgba(201, 164, 92, 0.58);
+  --mv-font-serif: 'Cinzel', Georgia, serif;
+  --mv-font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mv-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  position: relative;
+  width: 100%;
+  background: linear-gradient(180deg, var(--mv-bg) 0%, #FFFFFF 100%);
+  padding: clamp(4.75rem, 7.5vw, 6.75rem) 0;
+  font-family: var(--mv-font-sans);
+  color: var(--mv-primary);
+  overflow: hidden;
+}
+
+.sld-mission-vision__container {
+  position: relative;
+  z-index: 1;
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+}
+
+/* Two Equal-Width Side-by-Side Cards on Desktop */
+.sld-mission-vision__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.85rem, 3.2vw, 2.75rem);
+  align-items: stretch;
+}
+
+/* Individual Mission / Vision Card with Staggered Fade-Up & Hover Lift */
+.sld-mission-vision__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: 100%;
+  box-sizing: border-box;
+  padding: clamp(2.25rem, 3.8vw, 3.15rem);
+  background-color: var(--mv-card-bg);
+  border: 1px solid var(--mv-border);
+  border-top: 2px solid var(--mv-gold);
+  border-radius: 6px;
+  box-shadow: 0 18px 42px -18px rgba(1, 24, 60, 0.1);
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 650ms var(--mv-ease),
+    transform 340ms var(--mv-ease),
+    border-color 320ms var(--mv-ease),
+    box-shadow 320ms var(--mv-ease);
+}
+
+.sld-mission-vision--visible .sld-mission-vision__card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sld-mission-vision--visible .sld-mission-vision__card--1 {
+  transition-delay: 80ms, 0ms, 0ms, 0ms;
+}
+
+.sld-mission-vision--visible .sld-mission-vision__card--2 {
+  transition-delay: 220ms, 0ms, 0ms, 0ms;
+}
+
+.sld-mission-vision__card:hover {
+  transform: translateY(-5px);
+  border-color: var(--mv-border-gold);
+  box-shadow:
+    0 24px 52px -16px rgba(1, 24, 60, 0.16),
+    0 0 24px -10px rgba(201, 164, 92, 0.2);
+}
+
+/* Refined Gold-Outline Circle Icon Badge */
+.sld-mission-vision__icon-badge {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(201, 164, 92, 0.08);
+  border: 1.5px solid rgba(201, 164, 92, 0.65);
+  color: var(--mv-primary);
+  margin-bottom: 1.6rem;
+  opacity: 0;
+  transform: scale(0.9);
+  transition:
+    opacity 550ms var(--mv-ease) 160ms,
+    transform 280ms var(--mv-ease),
+    background-color 280ms var(--mv-ease),
+    border-color 280ms var(--mv-ease),
+    color 280ms var(--mv-ease),
+    box-shadow 280ms var(--mv-ease);
+}
+
+.sld-mission-vision--visible .sld-mission-vision__icon-badge {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.sld-mission-vision__card:hover .sld-mission-vision__icon-badge {
+  transform: scale(1.06);
+  background-color: var(--mv-primary);
+  border-color: var(--mv-gold);
+  color: var(--mv-gold-bright);
+  box-shadow: 0 10px 22px -8px rgba(1, 24, 60, 0.35);
+}
+
+.sld-mission-vision__icon {
+  width: 25px;
+  height: 25px;
+}
+
+/* Serif Card Heading */
+.sld-mission-vision__heading {
+  margin: 0 0 0.9rem 0;
+  font-family: var(--mv-font-serif);
+  font-size: clamp(1.5rem, 2.2vw, 1.85rem);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: 0.03em;
+  color: var(--mv-primary);
+}
+
+/* Small Gold Decorative Line Beneath Each Heading */
+.sld-mission-vision__rule {
+  width: 48px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--mv-gold) 0%,
+    rgba(201, 164, 92, 0.22) 100%
+  );
+  margin-bottom: 1.35rem;
+  transition: width 300ms var(--mv-ease);
+}
+
+.sld-mission-vision__card:hover .sld-mission-vision__rule {
+  width: 66px;
+}
+
+/* Clean Sans-Serif Body Text */
+.sld-mission-vision__text {
+  margin: 0;
+  font-family: var(--mv-font-sans);
+  font-size: 1.025rem;
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--mv-text-body);
+}
+
+/* Tablet Layout */
+@media (max-width: 1024px) {
+  .sld-mission-vision__container {
+    padding: 0 1.75rem;
+  }
+
+  .sld-mission-vision__grid {
+    gap: 1.5rem;
+  }
+
+  .sld-mission-vision__card {
+    padding: 2rem 1.75rem;
+  }
+}
+
+/* Mobile Layout: Stack Mission First and Vision Second */
+@media (max-width: 720px) {
+  .sld-mission-vision {
+    padding: 3.75rem 0;
+  }
+
+  .sld-mission-vision__container {
+    padding: 0 1.25rem;
+  }
+
+  .sld-mission-vision__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+
+  .sld-mission-vision__card {
+    padding: 1.85rem 1.45rem;
+  }
+
+  .sld-mission-vision__icon-badge {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 1.3rem;
+  }
+
+  .sld-mission-vision__icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .sld-mission-vision__heading {
+    font-size: 1.4rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .sld-mission-vision__rule {
+    width: 42px;
+    margin-bottom: 1.1rem;
+  }
+
+  .sld-mission-vision__text {
+    font-size: 0.96rem;
+    line-height: 1.74;
+  }
+}
+
+/* Reduced Motion Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .sld-mission-vision__card,
+  .sld-mission-vision__icon-badge,
+  .sld-mission-vision__rule {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

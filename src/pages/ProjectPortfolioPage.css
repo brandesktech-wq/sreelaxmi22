@@ -1,0 +1,176 @@
+/* Scoped styles for ProjectPortfolioPage */
+.sld-portfolio-section {
+  --pp-bg: #F8F7F3;
+  --pp-navy: #01183C;
+  --pp-navy-secondary: #001E3D;
+  --pp-gold: #C9A45C;
+  --pp-gold-dark: #A68038;
+  --pp-border: rgba(201, 164, 92, 0.3);
+  --pp-font-serif: 'Cinzel', Georgia, serif;
+  --pp-font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --pp-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  position: relative;
+  width: 100%;
+  background-color: var(--pp-bg);
+  padding: clamp(3.75rem, 6.5vw, 5.75rem) 0;
+  font-family: var(--pp-font-sans);
+  color: var(--pp-navy);
+}
+
+.sld-portfolio-section__container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+}
+
+.sld-portfolio-section__categories {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3.25rem, 5.5vw, 4.75rem);
+}
+
+.sld-portfolio-section__category-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.sld-portfolio-section__category-bar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1.75rem;
+  border-bottom: 1px solid var(--pp-border);
+}
+
+.sld-portfolio-section__category-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.sld-portfolio-section__category-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--pp-gold-dark);
+}
+
+.sld-portfolio-section__category-heading {
+  margin: 0;
+  font-family: var(--pp-font-serif);
+  font-size: clamp(1.45rem, 2.2vw, 1.85rem);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--pp-navy);
+}
+
+.sld-portfolio-section__category-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.1rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--pp-navy);
+  background-color: #FFFFFF;
+  border: 1px solid rgba(201, 164, 92, 0.48);
+  border-radius: 5px;
+  white-space: nowrap;
+  transition:
+    background-color 220ms var(--pp-ease),
+    color 220ms var(--pp-ease),
+    border-color 220ms var(--pp-ease),
+    transform 220ms var(--pp-ease);
+}
+
+.sld-portfolio-section__category-link:hover {
+  background-color: var(--pp-navy);
+  color: #FFFFFF;
+  border-color: var(--pp-navy);
+  transform: translateY(-2px);
+}
+
+.sld-portfolio-section__category-icon {
+  width: 15px;
+  height: 15px;
+  color: var(--pp-gold);
+  transition: transform 240ms var(--pp-ease);
+}
+
+.sld-portfolio-section__category-link:hover .sld-portfolio-section__category-icon {
+  transform: translateX(3px);
+}
+
+/* Responsive 3-Column Desktop Grid */
+.sld-portfolio-section__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.75rem;
+  align-items: stretch;
+}
+
+.sld-portfolio-section__grid-item {
+  display: flex;
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 560ms var(--pp-ease),
+    transform 560ms var(--pp-ease);
+  transition-delay: calc(var(--card-index, 0) * 65ms);
+}
+
+.sld-portfolio-section--visible .sld-portfolio-section__grid-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Tablet: 2 Columns */
+@media (max-width: 1024px) {
+  .sld-portfolio-section__container {
+    padding: 0 1.75rem;
+  }
+
+  .sld-portfolio-section__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.35rem;
+  }
+}
+
+/* Mobile: 1 Column */
+@media (max-width: 640px) {
+  .sld-portfolio-section {
+    padding: 3rem 0;
+  }
+
+  .sld-portfolio-section__container {
+    padding: 0 1.25rem;
+  }
+
+  .sld-portfolio-section__category-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.85rem;
+  }
+
+  .sld-portfolio-section__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sld-portfolio-section__grid-item,
+  .sld-portfolio-section__category-link,
+  .sld-portfolio-section__category-icon {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

@@ -1,0 +1,280 @@
+/* Scoped styles for AboutTitleBar component (Compact Luxury Version) */
+.sld-about-banner {
+  --ab-primary: #01183C;
+  --ab-secondary: #001E3D;
+  --ab-gold: #C9A45C;
+  --ab-gold-bright: #E4C582;
+  --ab-white: #FFFFFF;
+  --ab-ivory: #F1F5F9;
+  --ab-font-serif: 'Cinzel', Georgia, serif;
+  --ab-font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --ab-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  position: relative;
+  width: 100%;
+  min-height: clamp(175px, 20vw, 235px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--ab-primary) 0%, var(--ab-secondary) 100%);
+  border-bottom: 1px solid rgba(201, 164, 92, 0.32);
+  padding: clamp(2.5rem, 4.2vw, 3.65rem) 0;
+  font-family: var(--ab-font-sans);
+  color: var(--ab-white);
+  overflow: hidden;
+}
+
+/* Subtle Architectural Background Image */
+.sld-about-banner__bg-image {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 35%;
+  background-repeat: no-repeat;
+  opacity: 0.22;
+  transform: scale(1.03);
+  transition: transform 1400ms var(--ab-ease);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sld-about-banner--visible .sld-about-banner__bg-image {
+  transform: scale(1);
+}
+
+/* Refined Dark Navy Overlay for Maximum Text Readability */
+.sld-about-banner__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(1, 24, 60, 0.72) 0%,
+      rgba(1, 24, 60, 0.92) 75%,
+      rgba(0, 18, 42, 0.96) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(1, 24, 60, 0.86) 0%,
+      rgba(0, 30, 61, 0.82) 50%,
+      rgba(1, 24, 60, 0.94) 100%
+    );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Subtle Architectural Linework Pattern */
+.sld-about-banner__grid-lines {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(201, 164, 92, 0.028) 1px, transparent 1px);
+  background-size: 140px 140px;
+  background-position: center center;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sld-about-banner__container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+}
+
+.sld-about-banner__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Breadcrumb: Home / About Us */
+.sld-about-banner__breadcrumb {
+  margin-bottom: 0.85rem;
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 650ms var(--ab-ease) 60ms,
+    transform 650ms var(--ab-ease) 60ms;
+}
+
+.sld-about-banner--visible .sld-about-banner__breadcrumb {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sld-about-banner__breadcrumb-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.sld-about-banner__breadcrumb-link {
+  color: rgba(241, 245, 249, 0.78);
+  text-decoration: none;
+  transition: color 220ms var(--ab-ease);
+}
+
+.sld-about-banner__breadcrumb-link:hover {
+  color: var(--ab-gold-bright);
+}
+
+.sld-about-banner__breadcrumb-link:focus-visible {
+  outline: 2px solid var(--ab-gold-bright);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.sld-about-banner__breadcrumb-sep {
+  color: var(--ab-gold);
+  font-weight: 400;
+}
+
+.sld-about-banner__breadcrumb-item--current {
+  color: var(--ab-gold-bright);
+}
+
+/* Main Heading: About Us */
+.sld-about-banner__title {
+  margin: 0 0 0.95rem 0;
+  font-family: var(--ab-font-serif);
+  font-size: clamp(2.1rem, 3.8vw, 3.15rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: 0.06em;
+  color: var(--ab-white);
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 700ms var(--ab-ease) 140ms,
+    transform 700ms var(--ab-ease) 140ms;
+}
+
+.sld-about-banner--visible .sld-about-banner__title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Subtle Gold Decorative Line Beneath Title */
+.sld-about-banner__rule {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  margin: 0;
+}
+
+.sld-about-banner__rule-line {
+  width: 52px;
+  height: 1.5px;
+  background: linear-gradient(
+    90deg,
+    rgba(201, 164, 92, 0.14) 0%,
+    var(--ab-gold) 100%
+  );
+  transform: scaleX(0);
+  transition: transform 750ms var(--ab-ease) 220ms;
+}
+
+.sld-about-banner__rule-line:last-child {
+  background: linear-gradient(
+    90deg,
+    var(--ab-gold) 0%,
+    rgba(201, 164, 92, 0.14) 100%
+  );
+}
+
+.sld-about-banner--visible .sld-about-banner__rule-line {
+  transform: scaleX(1);
+}
+
+.sld-about-banner__rule-diamond {
+  width: 7px;
+  height: 7px;
+  background-color: var(--ab-gold-bright);
+  transform: rotate(45deg) scale(0);
+  transition: transform 600ms var(--ab-ease) 280ms;
+}
+
+.sld-about-banner--visible .sld-about-banner__rule-diamond {
+  transform: rotate(45deg) scale(1);
+}
+
+/* Tablet Adjustments */
+@media (max-width: 1024px) {
+  .sld-about-banner__container {
+    padding: 0 1.75rem;
+  }
+}
+
+/* Mobile Adjustments */
+@media (max-width: 640px) {
+  .sld-about-banner {
+    min-height: 150px;
+    padding: 2.15rem 0;
+  }
+
+  .sld-about-banner__container {
+    padding: 0 1.25rem;
+  }
+
+  .sld-about-banner__breadcrumb {
+    margin-bottom: 0.65rem;
+  }
+
+  .sld-about-banner__breadcrumb-list {
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    gap: 0.45rem;
+  }
+
+  .sld-about-banner__title {
+    font-size: clamp(1.75rem, 6.8vw, 2.2rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .sld-about-banner__rule-line {
+    width: 36px;
+  }
+}
+
+/* Reduced Motion Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .sld-about-banner__bg-image,
+  .sld-about-banner__breadcrumb,
+  .sld-about-banner__title,
+  .sld-about-banner__rule-line,
+  .sld-about-banner__rule-diamond {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .sld-about-banner__bg-image,
+  .sld-about-banner__breadcrumb,
+  .sld-about-banner__title {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .sld-about-banner__rule-line {
+    transform: scaleX(1) !important;
+  }
+
+  .sld-about-banner__rule-diamond {
+    transform: rotate(45deg) scale(1) !important;
+  }
+}
