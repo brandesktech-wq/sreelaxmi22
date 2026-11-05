@@ -38,12 +38,73 @@ function githubPagesSpaPlugin(): Plugin {
       const indexHtmlPath = path.join(outDir, 'index.html');
       const notFoundHtmlPath = path.join(outDir, '404.html');
       const noJekyllPath = path.join(outDir, '.nojekyll');
+      const distAssetsDir = path.join(outDir, 'assets');
 
       if (fs.existsSync(indexHtmlPath)) {
+        const rawHtml = fs.readFileSync(indexHtmlPath, 'utf-8');
+        const cleanedHtml = rawHtml.replace(
+          /<script id="gh-pages-raw-branch-loader">[\s\S]*?<\/script>\s*/g,
+          ''
+        );
+        fs.writeFileSync(indexHtmlPath, cleanedHtml, 'utf-8');
         fs.copyFileSync(indexHtmlPath, notFoundHtmlPath);
+        fs.copyFileSync(indexHtmlPath, path.join(rootDir, '404.html'));
       }
+
+      if (fs.existsSync(distAssetsDir)) {
+        const assetFiles = fs.readdirSync(distAssetsDir);
+        const entryJs = assetFiles.find(
+          (f) => f.startsWith('index-') && f.endsWith('.js')
+        );
+        const entryCss = assetFiles.find(
+          (f) => f.startsWith('index-') && f.endsWith('.css')
+        );
+        if (entryJs) {
+          fs.copyFileSync(
+            path.join(distAssetsDir, entryJs),
+            path.join(distAssetsDir, 'app.js')
+          );
+        }
+        if (entryCss) {
+          fs.copyFileSync(
+            path.join(distAssetsDir, entryCss),
+            path.join(distAssetsDir, 'app.css')
+          );
+        }
+        const rootAssetsDir = path.join(rootDir, 'assets');
+        fs.cpSync(distAssetsDir, rootAssetsDir, { recursive: true, force: true });
+        const nestedBaseAssetsDir = path.join(
+          outDir,
+          GITHUB_PAGES_BASE.replace(/^\/+|\/+$/g, ''),
+          'assets'
+        );
+        fs.cpSync(distAssetsDir, nestedBaseAssetsDir, {
+          recursive: true,
+          force: true,
+        });
+      }
+
+      const distBrochuresDir = path.join(outDir, 'brochures');
+      if (fs.existsSync(distBrochuresDir)) {
+        const rootBrochuresDir = path.join(rootDir, 'brochures');
+        fs.cpSync(distBrochuresDir, rootBrochuresDir, {
+          recursive: true,
+          force: true,
+        });
+        const nestedBaseBrochuresDir = path.join(
+          outDir,
+          GITHUB_PAGES_BASE.replace(/^\/+|\/+$/g, ''),
+          'brochures'
+        );
+        fs.cpSync(distBrochuresDir, nestedBaseBrochuresDir, {
+          recursive: true,
+          force: true,
+        });
+      }
+
       if (fs.existsSync(outDir)) {
         fs.writeFileSync(noJekyllPath, '', 'utf-8');
+        fs.writeFileSync(path.join(rootDir, '.nojekyll'), '', 'utf-8');
       }
     },
   };

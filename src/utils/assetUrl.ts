@@ -48,7 +48,7 @@ export function withBaseUrl(assetPath: string): string {
  */
 export function mapAssetUrls<T>(value: T): T {
   if (typeof value === 'string') {
-    if (value.startsWith('/assets/')) {
+    if (value.startsWith('/assets/') || value.startsWith('/brochures/')) {
       return withBaseUrl(value) as unknown as T;
     }
     return value;

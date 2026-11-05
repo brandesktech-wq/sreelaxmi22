@@ -17,6 +17,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Compass,
+  Download,
   Droplets,
   Dumbbell,
   ExternalLink,
@@ -25,6 +26,7 @@ import {
   Gamepad2,
   GraduationCap,
   HeartPulse,
+  LayoutGrid,
   MapPin,
   Maximize2,
   Navigation,
@@ -42,6 +44,12 @@ import {
 } from 'lucide-react';
 import ProjectTitleBar from '../components/ProjectTitleBar.jsx';
 import ContactSection from '../components/ContactSection.jsx';
+import BrochureEnquiryModal from '../components/BrochureEnquiryModal.jsx';
+import ProjectSpecifications from '../components/ProjectSpecifications.jsx';
+import ProjectSectionNav, {
+  ProjectNavSection,
+} from '../components/ProjectSectionNav.jsx';
+import { withBaseUrl } from '../utils/assetUrl.ts';
 import {
   PORTFOLIO_TABS,
   PROJECT_FLOOR_PLAN_CATEGORIES,
@@ -163,6 +171,7 @@ function ProjectFloorPlansSection({
   const [visibleCount, setVisibleCount] = useState(3);
   const [stepPx, setStepPx] = useState(0);
   const [maxTranslatePx, setMaxTranslatePx] = useState(0);
+  const [failedImages, setFailedImages] = useState({});
 
   const viewportRef = useRef(null);
   const trackRef = useRef(null);
@@ -173,11 +182,18 @@ function ProjectFloorPlansSection({
   useEffect(() => {
     setActiveCategoryId(categories[0]?.id || 'ground-floor');
     setCurrentSlide(0);
+    setFailedImages({});
   }, [project.id, categories]);
 
   const activeCategory =
     categories.find((cat) => cat.id === activeCategoryId) || categories[0];
-  const slides = activeCategory ? activeCategory.items : [];
+  const slides = useCallback(() => {
+    if (!activeCategory || !Array.isArray(activeCategory.items)) return [];
+    return activeCategory.items.map((item) => ({
+      ...item,
+      image: item.image ? withBaseUrl(item.image) : '',
+    }));
+  }, [activeCategory])();
   const totalSlides = slides.length;
 
   const measureSlider = useCallback(() => {
@@ -303,10 +319,20 @@ function ProjectFloorPlansSection({
     }
   }, [maxSlideIndex]);
 
+  const handleImageError = useCallback((slideKey, imagePath) => {
+    console.error('[FloorPlans] Failed to load floor plan image:', imagePath);
+    setFailedImages((prev) =>
+      prev[slideKey] ? prev : { ...prev, [slideKey]: true }
+    );
+  }, []);
+
   if (!activeCategory || totalSlides === 0) return null;
 
   return (
     <section
+      id="project-floor-plans"
+      data-project-nav-section="true"
+      data-project-nav-label="Floor Plans"
       className="floor-plans-section sld-project-detail__floor-plans"
       aria-labelledby="sld-project-floor-plans-heading"
     >
@@ -401,40 +427,92 @@ function ProjectFloorPlansSection({
                 transform: `translate3d(${-translateX}px, 0, 0)`,
               }}
             >
-              {slides.map((item, idx) => (
-                <li
-                  key={item.id || `${item.title}-${idx}`}
-                  className="floor-plan-slide sld-project-detail__floor-plan-slide"
-                >
-                  <button
-                    type="button"
-                    className="sld-project-detail__floor-plan-card"
-                    onClick={(event) => onSelectFloorPlan(slides, idx, event)}
-                    aria-label={`View full size ${item.alt || item.title}`}
+              {slides.map((item, idx) => {
+                const slideKey =
+                  item.id || `${activeCategory.id}-${item.title}-${idx}`;
+                const hasImageSource = Boolean(
+                  item.image && typeof item.image === 'string' && item.image.trim()
+                );
+                const isBroken = !hasImageSource || Boolean(failedImages[slideKey]);
+
+                return (
+                  <li
+                    key={slideKey}
+                    className="floor-plan-slide sld-project-detail__floor-plan-slide"
                   >
-                    <div className="sld-project-detail__floor-plan-img-box">
-                      <img
-                        src={item.image}
-                        alt={item.alt || item.title}
-                        className="floor-plan-img sld-project-detail__floor-plan-img"
-                        loading={idx < 3 ? 'eager' : 'lazy'}
-                        onLoad={measureSlider}
-                      />
-                      <span
-                        className="sld-project-detail__floor-plan-zoom"
-                        aria-hidden="true"
-                      >
-                        <Maximize2 size={15} strokeWidth={1.75} />
-                      </span>
-                    </div>
-                    {item.title && (
-                      <span className="sld-project-detail__floor-plan-caption">
-                        {item.title}
-                      </span>
-                    )}
-                  </button>
-                </li>
-              ))}
+                    <button
+                      type="button"
+                      className={`sld-project-detail__floor-plan-card ${
+                        isBroken
+                          ? 'sld-project-detail__floor-plan-card--placeholder'
+                          : ''
+                      }`}
+                      onClick={(event) => {
+                        if (!isBroken) {
+                          onSelectFloorPlan(slides, idx, event);
+                        }
+                      }}
+                      disabled={isBroken}
+                      aria-label={
+                        isBroken
+                          ? `${item.title || 'Floor Plan'} — Floor Plan Image Coming Soon`
+                          : `View full size ${item.alt || item.title}`
+                      }
+                    >
+                      <div className="sld-project-detail__floor-plan-img-box">
+                        {!isBroken ? (
+                          <>
+                            <img
+                              src={item.image}
+                              alt={item.alt || item.title}
+                              className="floor-plan-img sld-project-detail__floor-plan-img"
+                              loading={idx < 3 ? 'eager' : 'lazy'}
+                              onLoad={measureSlider}
+                              onError={() =>
+                                handleImageError(slideKey, item.image)
+                              }
+                            />
+                            <span
+                              className="sld-project-detail__floor-plan-zoom"
+                              aria-hidden="true"
+                            >
+                              <Maximize2 size={15} strokeWidth={1.75} />
+                            </span>
+                          </>
+                        ) : (
+                          <div
+                            className="sld-project-detail__floor-plan-fallback"
+                            role="img"
+                            aria-label={`${
+                              item.title || 'Floor Plan'
+                            } — Floor Plan Image Coming Soon`}
+                          >
+                            <LayoutGrid
+                              size={28}
+                              strokeWidth={1.5}
+                              className="sld-project-detail__floor-plan-fallback-icon"
+                              aria-hidden="true"
+                            />
+                            <span className="sld-project-detail__floor-plan-fallback-title">
+                              Floor Plan Image Coming Soon
+                            </span>
+                            {item.title && (
+                              <span className="sld-project-detail__floor-plan-fallback-sub">
+                                {item.title}
+                              </span>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                      {item.title && (
+                        <span className="sld-project-detail__floor-plan-caption">
+                          {item.title}
+                        </span>
+                      )}
+                    </button>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
@@ -557,6 +635,9 @@ function ScrollHorizontalGallery({
 
   return (
     <section
+      id="project-gallery"
+      data-project-nav-section="true"
+      data-project-nav-label="Gallery"
       ref={scrollSectionRef}
       className={`sld-project-detail__hgallery ${
         isScrollDriven
@@ -745,6 +826,9 @@ function ProjectVideoBlock({ project, prefersReducedMotion }) {
 
   return (
     <section
+      id="project-video"
+      data-project-nav-section="true"
+      data-project-nav-label="Video"
       ref={videoSectionRef}
       className="sld-project-detail__video-block"
       aria-labelledby="sld-project-video-heading"
@@ -886,7 +970,11 @@ export default function ProjectDetailPage() {
   const [lightboxCustomItems, setLightboxCustomItems] = useState(null);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [mapLoadError, setMapLoadError] = useState(false);
+  const [isBrochureModalOpen, setIsBrochureModalOpen] = useState(false);
+  const [brochureDownloadFeedback, setBrochureDownloadFeedback] =
+    useState(null);
 
+  const pageContainerRef = useRef(null);
   const closeBtnRef = useRef(null);
   const triggerBtnRef = useRef(null);
   const lastFocusedElementRef = useRef(null);
@@ -905,6 +993,8 @@ export default function ProjectDetailPage() {
     setLightboxCustomItems(null);
     setLightboxIndex(0);
     setMapLoadError(false);
+    setIsBrochureModalOpen(false);
+    setBrochureDownloadFeedback(null);
   }, [projectId]);
 
   const totalGalleryImages = galleryImages.length;
@@ -1086,6 +1176,45 @@ export default function ProjectDetailPage() {
 
   const activeImageSrc = galleryImages[activeIndex] || project.image;
 
+  const hasBrochure = Boolean(
+    project.brochureUrl &&
+      typeof project.brochureUrl === 'string' &&
+      project.brochureUrl.trim()
+  );
+
+  const keyFacts = [
+    {
+      id: 'rera',
+      label: 'RERA',
+      value: project.reraNumber?.trim() || 'Details Coming Soon',
+      icon: ShieldCheck,
+    },
+    {
+      id: 'land-area',
+      label: 'LAND AREA',
+      value: project.landArea?.trim() || 'Details Coming Soon',
+      icon: Compass,
+    },
+    {
+      id: 'total-homes',
+      label: 'TOTAL HOMES',
+      value: project.totalUnits?.trim() || 'Details Coming Soon',
+      icon: Building2,
+    },
+    {
+      id: 'configuration',
+      label: 'CONFIGURATION',
+      value: project.configuration?.trim() || 'Details Coming Soon',
+      icon: LayoutGrid,
+    },
+    {
+      id: 'status',
+      label: 'STATUS',
+      value: project.status?.trim() || 'Details Coming Soon',
+      icon: CheckCircle2,
+    },
+  ];
+
   const educationalFacilities =
     project.nearbyFacilities?.educational || [];
   const healthcareFacilities =
@@ -1130,7 +1259,7 @@ export default function ProjectDetailPage() {
       };
 
   return (
-    <div className="sld-project-detail">
+    <div ref={pageContainerRef} className="sld-project-detail">
       {/* =====================================================================
           1. Compact Project Title Bar
           ===================================================================== */}
@@ -1146,7 +1275,15 @@ export default function ProjectDetailPage() {
       />
 
       {/* =====================================================================
-          2. Full-Width Project Image Section (Immediately Below Title Bar)
+          1B. Sticky Section Navigation Menu (Supports All Existing & Future Sections)
+          ===================================================================== */}
+      <ProjectSectionNav
+        project={project}
+        containerRef={pageContainerRef}
+      />
+
+      {/* =====================================================================
+          2. Full-Width Project Image Section (Immediately Below Sticky Nav)
           ===================================================================== */}
       <section
         className="sld-project-detail__full-image-section"
@@ -1168,11 +1305,14 @@ export default function ProjectDetailPage() {
       </section>
 
       {/* =====================================================================
-          3. Square Project Gallery (1:1) & Equal-Width Project Details Side Panel
+          3. Overview: Square Project Gallery (1:1) & Equal-Width Project Details Side Panel
           ===================================================================== */}
       <section
+        id="project-overview"
+        data-project-nav-section="true"
+        data-project-nav-label="Overview"
         className="sld-project-detail__main"
-        aria-label={`${project.name} Introduction`}
+        aria-label={`${project.name} Overview`}
       >
         <div className="sld-project-detail__container">
           <div className="sld-project-detail__hero-grid">
@@ -1283,9 +1423,38 @@ export default function ProjectDetailPage() {
                     </p>
                   </div>
                 )}
+
+                {/* 6. Key Facts Strip — Five Project Information Items */}
+                <dl
+                  className="sld-project-detail__key-facts"
+                  aria-label={`${project.name} Key Facts`}
+                >
+                  {keyFacts.map((fact) => {
+                    const FactIcon = fact.icon;
+                    return (
+                      <div
+                        key={fact.id}
+                        className={`sld-project-detail__key-fact-item sld-project-detail__key-fact-item--${fact.id}`}
+                      >
+                        <dt className="sld-project-detail__key-fact-label">
+                          <FactIcon
+                            className="sld-project-detail__key-fact-icon"
+                            size={14}
+                            strokeWidth={1.65}
+                            aria-hidden="true"
+                          />
+                          <span>{fact.label}</span>
+                        </dt>
+                        <dd className="sld-project-detail__key-fact-value">
+                          {fact.value}
+                        </dd>
+                      </div>
+                    );
+                  })}
+                </dl>
               </div>
 
-              {/* 6. Side-by-Side Action Buttons: Read More & Enquire Now */}
+              {/* 7 & 8. Side-by-Side Action Buttons: Read More & Enquire Now */}
               <div className="sld-project-detail__actions">
                 <a
                   href="#project-details-next"
@@ -1312,6 +1481,70 @@ export default function ProjectDetailPage() {
                   <span>Enquire Now</span>
                 </a>
               </div>
+
+              {/* 9. Full-Width Download Brochure Button Directly Below Action Buttons */}
+              <div className="sld-project-detail__brochure-wrap">
+                {hasBrochure ? (
+                  <button
+                    type="button"
+                    className="sld-project-detail__btn-brochure"
+                    onClick={() => {
+                      setBrochureDownloadFeedback(null);
+                      setIsBrochureModalOpen(true);
+                    }}
+                    aria-label={`Download brochure for ${project.name}`}
+                  >
+                    <Download
+                      size={17}
+                      strokeWidth={1.75}
+                      className="sld-project-detail__btn-brochure-icon"
+                      aria-hidden="true"
+                    />
+                    <span>Download Brochure</span>
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    className="sld-project-detail__btn-brochure sld-project-detail__btn-brochure--disabled"
+                    disabled
+                    aria-disabled="true"
+                    aria-label={`Brochure coming soon for ${project.name}`}
+                  >
+                    <Download
+                      size={17}
+                      strokeWidth={1.75}
+                      className="sld-project-detail__btn-brochure-icon"
+                      aria-hidden="true"
+                    />
+                    <span>Brochure Coming Soon</span>
+                  </button>
+                )}
+
+                {brochureDownloadFeedback && (
+                  <div
+                    className="sld-project-detail__brochure-success"
+                    role="status"
+                    aria-live="polite"
+                  >
+                    <CheckCircle2
+                      size={16}
+                      strokeWidth={1.85}
+                      className="sld-project-detail__brochure-success-icon"
+                      aria-hidden="true"
+                    />
+                    <div className="sld-project-detail__brochure-success-body">
+                      <p className="sld-project-detail__brochure-success-msg">
+                        {brochureDownloadFeedback.message}
+                      </p>
+                      {brochureDownloadFeedback.integrationNote && (
+                        <p className="sld-project-detail__brochure-success-note">
+                          {brochureDownloadFeedback.integrationNote}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
             </motion.div>
           </div>
         </div>
@@ -1322,11 +1555,13 @@ export default function ProjectDetailPage() {
           ===================================================================== */}
       {project.amenities && project.amenities.length > 0 && (
         <section
-          id="project-details-next"
+          id="project-amenities"
+          data-project-nav-section="true"
+          data-project-nav-label="Amenities"
           className="sld-project-detail__amenities"
           aria-labelledby="sld-project-amenities-heading"
         >
-          <div className="sld-project-detail__container">
+          <div id="project-details-next" className="sld-project-detail__container">
             <motion.header
               className="sld-project-detail__section-header"
               {...revealProps}
@@ -1393,6 +1628,9 @@ export default function ProjectDetailPage() {
           ===================================================================== */}
       {project.highlights && project.highlights.length > 0 && (
         <section
+          id="project-highlights"
+          data-project-nav-section="true"
+          data-project-nav-label="Highlights"
           className="sld-project-detail__highlights-dark"
           aria-labelledby="sld-project-highlights-heading"
         >
@@ -1460,11 +1698,24 @@ export default function ProjectDetailPage() {
       )}
 
       {/* =====================================================================
-          6. Nearby Facilities – Two Equal-Width Blocks
+          6. Specifications – Seven Categories Immediately After Project Highlights
+          ===================================================================== */}
+      <ProjectSpecifications
+        id="project-specifications"
+        navLabel="Specifications"
+        project={project}
+        prefersReducedMotion={Boolean(prefersReducedMotion)}
+      />
+
+      {/* =====================================================================
+          7. Nearby Facilities – Two Equal-Width Blocks
           ===================================================================== */}
       {(educationalFacilities.length > 0 ||
         healthcareFacilities.length > 0) && (
         <section
+          id="project-nearby-facilities"
+          data-project-nav-section="true"
+          data-project-nav-label="Nearby Facilities"
           className="sld-project-detail__nearby"
           aria-labelledby="sld-project-nearby-heading"
         >
@@ -1649,7 +1900,11 @@ export default function ProjectDetailPage() {
       {/* =====================================================================
           10. Start A Conversation – Enquiry Section (Preselects Current Project)
           ===================================================================== */}
-      <div id="sld-project-enquiry">
+      <div
+        id="sld-project-enquiry"
+        data-project-nav-section="true"
+        data-project-nav-label="Enquire"
+      >
         <ContactSection defaultProject={project.name} />
       </div>
 
@@ -1657,6 +1912,9 @@ export default function ProjectDetailPage() {
           11. Project Location – Google Map
           ===================================================================== */}
       <section
+        id="project-location"
+        data-project-nav-section="true"
+        data-project-nav-label="Location"
         className="sld-project-detail__location-map"
         aria-labelledby="sld-project-location-heading"
       >
@@ -1767,6 +2025,45 @@ export default function ProjectDetailPage() {
       </section>
 
       {/* =====================================================================
+          12. Optional Additional / Future Registered Project Sections
+          ===================================================================== */}
+      {Array.isArray(project.additionalSections) &&
+        project.additionalSections.map((customSec, idx) => (
+          <ProjectNavSection
+            key={customSec.id || `custom-section-${idx}`}
+            id={customSec.id}
+            label={customSec.label}
+            order={customSec.order}
+            enabled={customSec.enabled !== false}
+            className="sld-project-detail__custom-section"
+          >
+            <div className="sld-project-detail__container">
+              {customSec.heading && (
+                <header className="sld-project-detail__section-header">
+                  {customSec.eyebrow && (
+                    <div className="sld-project-detail__section-eyebrow">
+                      <span
+                        className="sld-project-detail__section-eyebrow-line"
+                        aria-hidden="true"
+                      />
+                      <span>{customSec.eyebrow}</span>
+                      <span
+                        className="sld-project-detail__section-eyebrow-line"
+                        aria-hidden="true"
+                      />
+                    </div>
+                  )}
+                  <h2 className="sld-project-detail__section-heading">
+                    {customSec.heading}
+                  </h2>
+                </header>
+              )}
+              {customSec.content && <p>{customSec.content}</p>}
+            </div>
+          </ProjectNavSection>
+        ))}
+
+      {/* =====================================================================
           Full-Image Lightbox Modal for Project Gallery & Floor Plans
           ===================================================================== */}
       {isLightboxOpen && activeLightboxItems[lightboxIndex] && (
@@ -1852,6 +2149,16 @@ export default function ProjectDetailPage() {
           )}
         </div>
       )}
+
+      {/* =====================================================================
+          Download Project Brochure Enquiry Popup Modal
+          ===================================================================== */}
+      <BrochureEnquiryModal
+        isOpen={isBrochureModalOpen}
+        onClose={() => setIsBrochureModalOpen(false)}
+        project={project}
+        onDownloadSuccess={(feedback) => setBrochureDownloadFeedback(feedback)}
+      />
     </div>
   );
 }

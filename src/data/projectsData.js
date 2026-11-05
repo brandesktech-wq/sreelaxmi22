@@ -41,11 +41,15 @@ const RAW_PROJECTS_DATA = [
     aliases: ['gardenia'],
     name: 'Sree Laxmi Gardenia',
     status: 'Ongoing',
+    reraNumber: 'TS RERA No. P01100004771',
+    landArea: '1.6 Acres',
+    totalUnits: '168 Luxury Apartments',
+    configuration: '2 & 3 BHK',
     location: 'Rameshwaram Banda, Kistareddypet, Patancheru, Hyderabad',
     mapQuery:
       'Sree Laxmi Gardenia, Rameshwaram Banda, Kistareddypet, Hyderabad, Telangana',
-    brochureUrl: '/assets/brochures/sree-laxmi-gardenia-brochure.pdf',
-    brochureFileName: 'sree-laxmi-gardenia-brochure.pdf',
+    brochureUrl: '/brochures/sree-laxmi-gardenia-brochure.pdf',
+    brochureFileName: 'Sree-Laxmi-Gardenia-Brochure.pdf',
     youtubeVideoUrl: 'https://www.youtube.com/watch?v=NIQeoDnJg7s',
     videoCoverImage: '/assets/projects/gardenia-night.webp',
     image: '/assets/projects/gardenia-aerial.webp',
@@ -68,32 +72,38 @@ const RAW_PROJECTS_DATA = [
     detailRoute: '/projects/sree-laxmi-gardenia',
     overview:
       'Strategically located near Outer Ring Road at Rameshwaram Banda, Kistareddypet, Hyderabad, Sree Laxmi Gardenia is an HMDA & TS RERA approved (RERA No: P01100004771) gated community spread across 1.6 acres featuring 168 deluxe 2 & 3 BHK apartments across 3 blocks (Cellar + Ground + 5 Floors) and a dedicated G+4 6,000 sq. ft. clubhouse.',
-    specifications: [
-      {
-        label: 'Project Type',
-        value: '2 & 3 BHK Deluxe Gated Community Apartments (3 Blocks, C+G+5)',
-      },
-      {
-        label: 'Total Area & Units',
-        value: '1.6 Acres | 168 Deluxe Apartments',
-      },
-      {
-        label: 'Clubhouse',
-        value: '1 Exclusive Clubhouse (G+4) — 6,000 Sq. Ft.',
-      },
-      {
-        label: 'Approvals & RERA',
-        value: 'HMDA & TS RERA Approved (P01100004771)',
-      },
-      {
-        label: 'Unit Sizes & Facing',
-        value: '1,000 – 1,355 Sq. Ft. | 100% Vaastu (East & West Facing)',
-      },
-      {
-        label: 'Road Connectivity',
-        value: '0.8 km from Outer Ring Road (Between Exit 3 & Exit 4)',
-      },
-    ],
+    specifications: {
+      structure:
+        'R.C.C. framed structure built to withstand wind and seismic loads, featuring solid cement brick masonry with 9" external and 4" internal walls.',
+      walls:
+        'Internal walls finished with smooth luppam plaster and Asian emulsion paint; external walls treated with sponge-textured weatherproof Asian paints.',
+      flooring:
+        '600x600 mm vitrified tiles in living, dining, bedrooms and kitchen; antiskid tiles in balconies/toilets, and granite/vitrified corridors.',
+      doorsWindows:
+        'Polished teak wood main door frame with veneer shutter, teak-framed flush internal doors, and UPVC windows/French doors with safety grills.',
+      kitchen:
+        'Modular kitchen provision with granite platform, SS sink, municipal/bore water taps, 2\' glazed tile dado, and utility wash machine point.',
+      electrical:
+        '3-phase supply with MCBs, concealed Finecab/Havells copper wiring, Legrand/Havells modular switches, bedroom AC points, and bathroom geyser points.',
+      plumbing:
+        'Door-height glazed tile dado, white Parryware western commodes & washbasins, Parryware/Jaguar CP mixer fittings, and municipal/borewell water supply.',
+    },
+    specificationsFull: {
+      structure:
+        'R.C.C. framed structure to withstand wind & seismic loads. Solid cement bricks with 9" thick external walls and 4" thick internal walls.',
+      walls:
+        'Internal Wall Finishes: Smooth plastered surface treated with luppam and painted with emulsion paint of Asian or equivalent make. External Wall Finishes: Sponge finished texture paint wherever required and painted with weatherproof paints of Asian or equivalent make.',
+      flooring:
+        'Living, Drawing, Dining, Bedrooms & Kitchen: 600 x 600 mm vitrified tiles of reputed brand. Sit-outs & Balcony: Antiskid tiles of reputed brand. Toilets: Antiskid acid-resistant tiles. Corridors & Staircase: Vitrified tiles / natural granite stone.',
+      doorsWindows:
+        'Main Door: Teak wood frame & designed teak veneer shutter finished with polish and reputed make hardware. Internal Doors: Teak wood frame with flush designed doors of reputed make. Windows & French Door: UPVC window system with glass, mosquito net track & safety grills; UPVC French door with glass-paneled sliding shutters.',
+      kitchen:
+        'Designed / provision for ultra modular kitchen with granite platform and SS sink. Separate taps for municipal and bore water. Glazed ceramic tile dado up to 2\'-0" height above the platform. Power points for cooking range (2 Nos. of 16 amps), water purifier, and exhaust fan / chimney. Utility & Wash Area with glazed ceramic tiles up to 3\' height, antiskid acid-resistant floor tiles, and washing machine provision.',
+      electrical:
+        '3-phase power supply with MCBs of reputed make. Concealed copper wiring (in conduits) of Finecab / Havells or equivalent make. Modular switches of Legrand / Havells or equivalent make. Power outlets for air conditioners in bedrooms only. Power points for geysers and exhaust fans in all bathrooms.',
+      plumbing:
+        'Toilets with glazed ceramic tile dado up to door height of reputed make. Western commodes with health faucet and washbasins of Parryware or equivalent make (white color only). Wall mixture with overhead shower and taps of Parryware / Jaguar or equivalent make. Provision for both municipal and borewell water through sump and overhead tanks.',
+    },
     amenities: [
       { icon: 'clubhouse', label: 'Clubhouse (6,000 Sq.ft)' },
       { icon: 'supermarket', label: 'Super Market' },
@@ -197,6 +207,10 @@ const RAW_PROJECTS_DATA = [
     aliases: ['sarovar'],
     name: 'Sree Laxmi Sarovar',
     status: 'Ongoing',
+    reraNumber: 'Details Coming Soon',
+    landArea: '150 Sq. Yds / Villa',
+    totalUnits: '160 Triplex Villas',
+    configuration: 'Triplex Villas',
     location: 'Khajipalli, Near Bachupally Cross Roads, Hyderabad',
     mapQuery: 'Khajipalli, Near Bachupally Cross Roads, Hyderabad, Telangana',
     brochureUrl: '',
@@ -206,18 +220,16 @@ const RAW_PROJECTS_DATA = [
     detailRoute: '/projects/sree-laxmi-sarovar',
     overview:
       'Sree Laxmi Sarovar is a premier gated villa community comprising 160 triplex villas in Khajipalli, offering spacious 2,200 sq. ft. homes on 150 sq. yards plots with rapid access to Bachupally, Miyapur, and Hitec City.',
-    specifications: [
-      { label: 'Project Type', value: 'Luxury Triplex Villas' },
-      { label: 'Total Units', value: '160 Triplex Villas' },
-      {
-        label: 'Location',
-        value: 'Khajipalli, Near Bachupally Cross Roads',
-      },
-      {
-        label: 'Road Connectivity',
-        value: '5 Mins from Bachupally Cross Roads | 15 Mins to Miyapur',
-      },
-    ],
+    specifications: {
+      structure:
+        'Gated villa community comprising 160 triplex villas planned on 150 sq. yards plots with 2,200 sq. ft. built-up area per villa.',
+      walls: '',
+      flooring: '',
+      doorsWindows: '',
+      kitchen: '',
+      electrical: '',
+      plumbing: '',
+    },
     amenities: [
       { icon: 'security', label: 'Gated Security' },
       { icon: 'garden', label: 'Landscaped Avenues' },
@@ -271,6 +283,10 @@ const RAW_PROJECTS_DATA = [
     aliases: ['dwaja'],
     name: 'SLN Dwaja',
     status: 'Ongoing',
+    reraNumber: 'Details Coming Soon',
+    landArea: '6 Acres',
+    totalUnits: '462 Apartments',
+    configuration: '2 & 3 BHK',
     location: 'Near IIT Hyderabad, Kandi – Patancheru Corridor',
     mapQuery: 'Kandi, Near IIT Hyderabad, Sangareddy, Telangana',
     brochureUrl: '',
@@ -280,15 +296,16 @@ const RAW_PROJECTS_DATA = [
     detailRoute: '/projects/sln-dwaja',
     overview:
       'SLN Dwaja is a 2 & 3 BHK gated community apartment project designed around modern living, green spaces, and a brighter future. Spread across 6 acres with 6 residential blocks and 462 units, it features a grand clubhouse, outdoor recreation, and indoor lifestyle amenities.',
-    specifications: [
-      { label: 'Project Type', value: '2 & 3 BHK Gated Community Apartments' },
-      { label: 'Total Units', value: '462 Units (6 Blocks | 6 Acres)' },
-      { label: 'Location', value: 'Near IIT Hyderabad, Kandi – Patancheru' },
-      {
-        label: 'Road Connectivity',
-        value: '2 km from IIT Hyderabad | 11 km from ORR Exit 3',
-      },
-    ],
+    specifications: {
+      structure:
+        'Gated community residential apartment development spread across 6 acres featuring 6 residential blocks and 462 2 & 3 BHK units.',
+      walls: '',
+      flooring: '',
+      doorsWindows: '',
+      kitchen: '',
+      electrical: '',
+      plumbing: '',
+    },
     amenities: [
       { icon: 'clubhouse', label: 'Clubhouse & Pool' },
       { icon: 'play-area', label: "Children's Play Area" },
@@ -376,6 +393,10 @@ const RAW_PROJECTS_DATA = [
     aliases: ['royale'],
     name: 'Sree Laxmi Royale',
     status: 'Ongoing',
+    reraNumber: 'Details Coming Soon',
+    landArea: 'Details Coming Soon',
+    totalUnits: 'G+5 Residences',
+    configuration: '3 BHK',
     location: 'Saketh Township, Kapra, Hyderabad',
     mapQuery: 'Saket Township, Kapra, Secunderabad, Hyderabad, Telangana',
     brochureUrl: '',
@@ -385,15 +406,16 @@ const RAW_PROJECTS_DATA = [
     detailRoute: '/projects/sree-laxmi-royale',
     overview:
       'Sree Laxmi Royale is a modern residential apartment development in Saketh Township, Kapra, crafted with Vastu-compliant 3 BHK floor plans, 60-ft road-facing access, two-car parking, and peaceful neighborhood connectivity.',
-    specifications: [
-      { label: 'Project Type', value: '3 BHK Luxury Residential Apartments' },
-      { label: 'Configuration', value: 'G+5 Exclusive 3 BHK Residences' },
-      { label: 'Location', value: 'Saketh Township, Kapra, Hyderabad' },
-      {
-        label: 'Road Connectivity',
-        value: '60-Ft Road-Facing Access in Saketh Township',
-      },
-    ],
+    specifications: {
+      structure:
+        'G+5 residential apartment development featuring 100% Vastu-compliant 3 BHK residences with 60-ft road-facing access and two-car parking.',
+      walls: '',
+      flooring: '',
+      doorsWindows: '',
+      kitchen: '',
+      electrical: '',
+      plumbing: '',
+    },
     amenities: [
       { icon: 'security', label: '24/7 Security' },
       { icon: 'parking', label: 'Two-Car Parking' },
@@ -445,6 +467,10 @@ const RAW_PROJECTS_DATA = [
     aliases: ['sultanpur-villas'],
     name: 'Luxury Villa Project — Sultanpur',
     status: 'Upcoming',
+    reraNumber: 'Details Coming Soon',
+    landArea: '150 Sq. Yds / Villa',
+    totalUnits: 'Details Coming Soon',
+    configuration: 'Triplex Villas',
     location: 'Khajipalli, Near Sultanpur, Hyderabad',
     mapQuery: 'Sultanpur, Khajipalli, Patancheru, Hyderabad, Telangana',
     brochureUrl: '',
@@ -454,18 +480,16 @@ const RAW_PROJECTS_DATA = [
     detailRoute: '/projects/sree-laxmi-villas-sultanpur',
     overview:
       'An upcoming gated luxury villa development near Sultanpur and Khajipalli with direct access to the Outer Ring Road (Exit 4) and Sultanpur Medical Devices Park, planned with contemporary triplex villa architecture and clubhouse lifestyle amenities.',
-    specifications: [
-      { label: 'Project Type', value: 'Gated Community Luxury Triplex Villas' },
-      {
-        label: 'Plot & Built-up',
-        value: '150 Sq. Yards | 2,200 Sq. Ft. Villas',
-      },
-      { label: 'Location', value: 'Khajipalli / Near Sultanpur, Hyderabad' },
-      {
-        label: 'Road Connectivity',
-        value: 'Near ORR Exit 4 (Sultanpur) & Bachupally Cross Roads',
-      },
-    ],
+    specifications: {
+      structure:
+        'Upcoming gated community luxury triplex villas planned on 150 sq. yards plots with 2,200 sq. ft. built-up area near Sultanpur.',
+      walls: '',
+      flooring: '',
+      doorsWindows: '',
+      kitchen: '',
+      electrical: '',
+      plumbing: '',
+    },
     amenities: [
       { icon: 'clubhouse', label: 'Clubhouse' },
       { icon: 'security', label: 'Gated Security' },
@@ -507,6 +531,10 @@ const RAW_PROJECTS_DATA = [
     aliases: ['meadows'],
     name: 'SLN Meadows',
     status: 'Upcoming',
+    reraNumber: 'Details Coming Soon',
+    landArea: 'Details Coming Soon',
+    totalUnits: 'Details Coming Soon',
+    configuration: 'Residential Community',
     location: 'Kandi, Sangareddy',
     mapQuery: 'Kandi, Sangareddy, Telangana',
     brochureUrl: '',
@@ -516,15 +544,15 @@ const RAW_PROJECTS_DATA = [
     detailRoute: '/projects/sln-meadows',
     overview:
       'SLN Meadows is an upcoming residential development in Kandi, Sangareddy, thoughtfully designed to combine serene green living with close proximity to IIT Hyderabad and the Mumbai Highway growth corridor.',
-    specifications: [
-      { label: 'Project Type', value: 'Upcoming Residential Community' },
-      { label: 'Project Status', value: 'Upcoming Launch' },
-      { label: 'Location', value: 'Kandi, Sangareddy' },
-      {
-        label: 'Road Connectivity',
-        value: 'Near IIT Hyderabad & NH-65 Mumbai Highway',
-      },
-    ],
+    specifications: {
+      structure: '',
+      walls: '',
+      flooring: '',
+      doorsWindows: '',
+      kitchen: '',
+      electrical: '',
+      plumbing: '',
+    },
     amenities: [
       { icon: 'garden', label: 'Landscaped Open Spaces' },
       { icon: 'security', label: '24/7 Security' },
@@ -573,6 +601,10 @@ const RAW_PROJECTS_DATA = [
     id: 'sreelaxmi-elite',
     name: 'Sreelaxmi Elite',
     status: 'Completed',
+    reraNumber: 'Details Coming Soon',
+    landArea: '18,000 Sq. Ft. Built-Up',
+    totalUnits: '15 Apartments',
+    configuration: '5 Floors Residential',
     location: 'Mallampet, Hyderabad',
     mapQuery: 'Mallampet, Hyderabad, Telangana',
     brochureUrl: '',
@@ -582,12 +614,16 @@ const RAW_PROJECTS_DATA = [
     detailRoute: '/projects/sreelaxmi-elite',
     overview:
       'Sreelaxmi Elite is a completed 5-floor residential apartment project in Mallampet, Hyderabad, comprising 15 well-appointed flats across 18,000 sq. ft. of built-up area and delivered on schedule in 18 months.',
-    specifications: [
-      { label: 'Project Type', value: '5-Floor Residential Apartments' },
-      { label: 'Total Units', value: '15 Flats (18,000 Sq. Ft.)' },
-      { label: 'Location', value: 'Mallampet, Hyderabad' },
-      { label: 'Completion Time', value: 'Delivered in 18 Months' },
-    ],
+    specifications: {
+      structure:
+        'Completed 5-floor residential apartment building comprising 15 flats across 18,000 sq. ft. of built-up area in Mallampet, Hyderabad.',
+      walls: '',
+      flooring: '',
+      doorsWindows: '',
+      kitchen: '',
+      electrical: '',
+      plumbing: '',
+    },
     amenities: [
       { icon: 'security', label: '24/7 Security' },
       { icon: 'parking', label: 'Dedicated Parking' },
@@ -622,6 +658,10 @@ const RAW_PROJECTS_DATA = [
     id: 'sreelaxmi-residency',
     name: 'Sreelaxmi Residency',
     status: 'Completed',
+    reraNumber: 'Details Coming Soon',
+    landArea: '18,000 Sq. Ft. Built-Up',
+    totalUnits: '15 Apartments',
+    configuration: '5 Floors Residential',
     location: 'Mallampet, Hyderabad',
     mapQuery: 'Mallampet, Hyderabad, Telangana',
     brochureUrl: '',
@@ -631,12 +671,16 @@ const RAW_PROJECTS_DATA = [
     detailRoute: '/projects/sreelaxmi-residency',
     overview:
       'Sreelaxmi Residency is a completed 5-floor residential community in Mallampet, Hyderabad, featuring 15 flats across 18,000 sq. ft. of built-up area, completed within 18 months.',
-    specifications: [
-      { label: 'Project Type', value: '5-Floor Residential Apartments' },
-      { label: 'Total Units', value: '15 Flats (18,000 Sq. Ft.)' },
-      { label: 'Location', value: 'Mallampet, Hyderabad' },
-      { label: 'Completion Time', value: 'Delivered in 18 Months' },
-    ],
+    specifications: {
+      structure:
+        'Completed 5-floor residential apartment building comprising 15 flats across 18,000 sq. ft. of built-up area in Mallampet, Hyderabad.',
+      walls: '',
+      flooring: '',
+      doorsWindows: '',
+      kitchen: '',
+      electrical: '',
+      plumbing: '',
+    },
     amenities: [
       { icon: 'security', label: '24/7 Security' },
       { icon: 'parking', label: 'Dedicated Parking' },
@@ -671,6 +715,10 @@ const RAW_PROJECTS_DATA = [
     id: 'sree-urmila-avenue',
     name: 'Sree Urmila Avenue',
     status: 'Completed',
+    reraNumber: 'Details Coming Soon',
+    landArea: '40,000 Sq. Ft. Built-Up',
+    totalUnits: '30 Apartments',
+    configuration: '5 Floors Residential',
     location: 'Mallampet, Hyderabad',
     mapQuery: 'Mallampet, Hyderabad, Telangana',
     brochureUrl: '',
@@ -680,12 +728,16 @@ const RAW_PROJECTS_DATA = [
     detailRoute: '/projects/sree-urmila-avenue',
     overview:
       'Sree Urmila Avenue is a landmark completed residential apartment complex in Mallampet, Hyderabad, spanning 40,000 sq. ft. of built-up area with 30 flats across 5 floors, completed in 20 months.',
-    specifications: [
-      { label: 'Project Type', value: '5-Floor Residential Complex' },
-      { label: 'Total Units', value: '30 Flats (40,000 Sq. Ft.)' },
-      { label: 'Location', value: 'Mallampet, Hyderabad' },
-      { label: 'Completion Time', value: 'Delivered in 20 Months' },
-    ],
+    specifications: {
+      structure:
+        'Completed 5-floor residential complex comprising 30 flats across 40,000 sq. ft. of built-up area in Mallampet, Hyderabad.',
+      walls: '',
+      flooring: '',
+      doorsWindows: '',
+      kitchen: '',
+      electrical: '',
+      plumbing: '',
+    },
     amenities: [
       { icon: 'security', label: '24/7 Security' },
       { icon: 'parking', label: 'Dedicated Parking' },
@@ -720,6 +772,10 @@ const RAW_PROJECTS_DATA = [
     id: 'sree-rudra-avenue',
     name: 'Sree Rudra Avenue',
     status: 'Completed',
+    reraNumber: 'Details Coming Soon',
+    landArea: '28,000 Sq. Ft. Built-Up',
+    totalUnits: '20 Apartments',
+    configuration: '5 Floors Residential',
     location: 'Mallampet, Hyderabad',
     mapQuery: 'Mallampet, Hyderabad, Telangana',
     brochureUrl: '',
@@ -729,12 +785,16 @@ const RAW_PROJECTS_DATA = [
     detailRoute: '/projects/sree-rudra-avenue',
     overview:
       'Sree Rudra Avenue is a completed 5-floor residential apartment building in Mallampet, Hyderabad, offering 20 flats across 28,000 sq. ft. of built-up area and completed in 18 months.',
-    specifications: [
-      { label: 'Project Type', value: '5-Floor Residential Apartments' },
-      { label: 'Total Units', value: '20 Flats (28,000 Sq. Ft.)' },
-      { label: 'Location', value: 'Mallampet, Hyderabad' },
-      { label: 'Completion Time', value: 'Delivered in 18 Months' },
-    ],
+    specifications: {
+      structure:
+        'Completed 5-floor residential apartment building comprising 20 flats across 28,000 sq. ft. of built-up area in Mallampet, Hyderabad.',
+      walls: '',
+      flooring: '',
+      doorsWindows: '',
+      kitchen: '',
+      electrical: '',
+      plumbing: '',
+    },
     amenities: [
       { icon: 'security', label: '24/7 Security' },
       { icon: 'parking', label: 'Dedicated Parking' },
@@ -769,6 +829,10 @@ const RAW_PROJECTS_DATA = [
     id: 'sree-mahalaxmi-residency',
     name: 'Sree Mahalaxmi Residency',
     status: 'Completed',
+    reraNumber: 'Details Coming Soon',
+    landArea: '56,000 Sq. Ft. Built-Up',
+    totalUnits: '40 Apartments',
+    configuration: '5 Floors Residential',
     location: 'Mallampet, Hyderabad',
     mapQuery: 'Mallampet, Hyderabad, Telangana',
     brochureUrl: '',
@@ -778,12 +842,16 @@ const RAW_PROJECTS_DATA = [
     detailRoute: '/projects/sree-mahalaxmi-residency',
     overview:
       'Sree Mahalaxmi Residency is a large-scale completed residential development in Mallampet, Hyderabad, featuring 40 apartments across 5 floors and 56,000 sq. ft. of built-up space, delivered in just 18 months.',
-    specifications: [
-      { label: 'Project Type', value: '5-Floor Residential Development' },
-      { label: 'Total Units', value: '40 Flats (56,000 Sq. Ft.)' },
-      { label: 'Location', value: 'Mallampet, Hyderabad' },
-      { label: 'Completion Time', value: 'Delivered in 18 Months' },
-    ],
+    specifications: {
+      structure:
+        'Completed 5-floor residential development comprising 40 apartments across 56,000 sq. ft. of built-up area in Mallampet, Hyderabad.',
+      walls: '',
+      flooring: '',
+      doorsWindows: '',
+      kitchen: '',
+      electrical: '',
+      plumbing: '',
+    },
     amenities: [
       { icon: 'security', label: '24/7 Security' },
       { icon: 'parking', label: 'Dedicated Parking' },
@@ -818,6 +886,10 @@ const RAW_PROJECTS_DATA = [
     id: 'sreelaxmi-pearl',
     name: 'Sreelaxmi Pearl',
     status: 'Completed',
+    reraNumber: 'Details Coming Soon',
+    landArea: '15,000 Sq. Ft. Built-Up',
+    totalUnits: '15 Apartments',
+    configuration: '5 Floors Residential',
     location: 'Mallampet, Hyderabad',
     mapQuery: 'Mallampet, Hyderabad, Telangana',
     brochureUrl: '',
@@ -827,12 +899,16 @@ const RAW_PROJECTS_DATA = [
     detailRoute: '/projects/sreelaxmi-pearl',
     overview:
       'Sreelaxmi Pearl is a completed 5-floor residential project in Mallampet, Hyderabad, comprising 15 apartments with a total built-up area of 15,000 sq. ft., completed in 15 months.',
-    specifications: [
-      { label: 'Project Type', value: '5-Floor Residential Apartments' },
-      { label: 'Total Units', value: '15 Flats (15,000 Sq. Ft.)' },
-      { label: 'Location', value: 'Mallampet, Hyderabad' },
-      { label: 'Completion Time', value: 'Delivered in 15 Months' },
-    ],
+    specifications: {
+      structure:
+        'Completed 5-floor residential apartment building comprising 15 apartments across 15,000 sq. ft. of built-up area in Mallampet, Hyderabad.',
+      walls: '',
+      flooring: '',
+      doorsWindows: '',
+      kitchen: '',
+      electrical: '',
+      plumbing: '',
+    },
     amenities: [
       { icon: 'security', label: '24/7 Security' },
       { icon: 'parking', label: 'Dedicated Parking' },
@@ -867,6 +943,10 @@ const RAW_PROJECTS_DATA = [
     id: 'sreelaxmi-nilayam',
     name: 'Sreelaxmi Nilayam',
     status: 'Completed',
+    reraNumber: 'Details Coming Soon',
+    landArea: '32,000 Sq. Ft. Built-Up',
+    totalUnits: '20 Apartments',
+    configuration: '2 BHK',
     location: 'Mallampet, Hyderabad',
     mapQuery: 'Mallampet, Hyderabad, Telangana',
     brochureUrl: '',
@@ -876,12 +956,16 @@ const RAW_PROJECTS_DATA = [
     detailRoute: '/projects/sreelaxmi-nilayam',
     overview:
       'Sreelaxmi Nilayam is a completed 5-floor residential building in Mallampet, Hyderabad, featuring 20 thoughtfully designed 2 BHK apartments across 32,000 sq. ft. of built-up area, completed in 22 months.',
-    specifications: [
-      { label: 'Project Type', value: '2 BHK Residential Apartments' },
-      { label: 'Total Units', value: '20 Flats (32,000 Sq. Ft.)' },
-      { label: 'Location', value: 'Mallampet, Hyderabad' },
-      { label: 'Completion Time', value: 'Delivered in 22 Months' },
-    ],
+    specifications: {
+      structure:
+        'Completed 5-floor 2 BHK residential apartment building comprising 20 apartments across 32,000 sq. ft. of built-up area in Mallampet, Hyderabad.',
+      walls: '',
+      flooring: '',
+      doorsWindows: '',
+      kitchen: '',
+      electrical: '',
+      plumbing: '',
+    },
     amenities: [
       { icon: 'security', label: '24/7 Security' },
       { icon: 'parking', label: 'Dedicated Parking' },
@@ -916,6 +1000,10 @@ const RAW_PROJECTS_DATA = [
     id: 'sreelaxmi-pride',
     name: 'Sreelaxmi Pride',
     status: 'Completed',
+    reraNumber: 'Details Coming Soon',
+    landArea: '18,000 Sq. Ft. Built-Up',
+    totalUnits: '15 Apartments',
+    configuration: '3 BHK',
     location: 'Mallampet, Hyderabad',
     mapQuery: 'Mallampet, Hyderabad, Telangana',
     brochureUrl: '',
@@ -925,12 +1013,16 @@ const RAW_PROJECTS_DATA = [
     detailRoute: '/projects/sreelaxmi-pride',
     overview:
       'Sreelaxmi Pride is a completed 5-floor 3 BHK residential apartment project in Mallampet, Hyderabad, comprising 15 apartments across 18,000 sq. ft. of built-up area and completed in 18 months.',
-    specifications: [
-      { label: 'Project Type', value: '3 BHK Residential Apartments' },
-      { label: 'Total Units', value: '15 Flats (18,000 Sq. Ft.)' },
-      { label: 'Location', value: 'Mallampet, Hyderabad' },
-      { label: 'Completion Time', value: 'Delivered in 18 Months' },
-    ],
+    specifications: {
+      structure:
+        'Completed 5-floor 3 BHK residential apartment building comprising 15 apartments across 18,000 sq. ft. of built-up area in Mallampet, Hyderabad.',
+      walls: '',
+      flooring: '',
+      doorsWindows: '',
+      kitchen: '',
+      electrical: '',
+      plumbing: '',
+    },
     amenities: [
       { icon: 'security', label: '24/7 Security' },
       { icon: 'parking', label: 'Dedicated Parking' },
@@ -965,6 +1057,10 @@ const RAW_PROJECTS_DATA = [
     id: 'sree-balaji-homes',
     name: 'Sree Balaji Homes',
     status: 'Completed',
+    reraNumber: 'Details Coming Soon',
+    landArea: '18,000 Sq. Ft. Built-Up',
+    totalUnits: '15 Apartments',
+    configuration: '3 BHK',
     location: 'Shambhipur, Hyderabad',
     mapQuery: 'Shambhipur, Dundigal, Hyderabad, Telangana',
     brochureUrl: '',
@@ -974,12 +1070,16 @@ const RAW_PROJECTS_DATA = [
     detailRoute: '/projects/sree-balaji-homes',
     overview:
       'Sree Balaji Homes is a completed 5-floor 3 BHK residential apartment community in Shambhipur, Hyderabad, offering 15 spacious apartments across 18,000 sq. ft. of built-up area and delivered in 18 months.',
-    specifications: [
-      { label: 'Project Type', value: '3 BHK Residential Apartments' },
-      { label: 'Total Units', value: '15 Flats (18,000 Sq. Ft.)' },
-      { label: 'Location', value: 'Shambhipur, Hyderabad' },
-      { label: 'Completion Time', value: 'Delivered in 18 Months' },
-    ],
+    specifications: {
+      structure:
+        'Completed 5-floor 3 BHK residential apartment community comprising 15 apartments across 18,000 sq. ft. of built-up area in Shambhipur, Hyderabad.',
+      walls: '',
+      flooring: '',
+      doorsWindows: '',
+      kitchen: '',
+      electrical: '',
+      plumbing: '',
+    },
     amenities: [
       { icon: 'security', label: '24/7 Security' },
       { icon: 'parking', label: 'Dedicated Parking' },
@@ -1014,6 +1114,10 @@ const RAW_PROJECTS_DATA = [
     id: 'sree-laxmi-avenue',
     name: 'Sree Laxmi Avenue',
     status: 'Completed',
+    reraNumber: 'Details Coming Soon',
+    landArea: '12,000 Sq. Ft. Built-Up',
+    totalUnits: '15 Apartments',
+    configuration: '5 Floors Residential',
     location: 'Mallampet, Hyderabad',
     mapQuery: 'Mallampet, Hyderabad, Telangana',
     brochureUrl: '',
@@ -1023,12 +1127,16 @@ const RAW_PROJECTS_DATA = [
     detailRoute: '/projects/sree-laxmi-avenue',
     overview:
       'Sree Laxmi Avenue is a completed 5-floor residential apartment project in Mallampet, Hyderabad, featuring 15 well-planned apartments across 12,000 sq. ft. of built-up area, completed in 18 months.',
-    specifications: [
-      { label: 'Project Type', value: '5-Floor Residential Apartments' },
-      { label: 'Total Units', value: '15 Flats (12,000 Sq. Ft.)' },
-      { label: 'Location', value: 'Mallampet, Hyderabad' },
-      { label: 'Completion Time', value: 'Delivered in 18 Months' },
-    ],
+    specifications: {
+      structure:
+        'Completed 5-floor residential apartment building comprising 15 apartments across 12,000 sq. ft. of built-up area in Mallampet, Hyderabad.',
+      walls: '',
+      flooring: '',
+      doorsWindows: '',
+      kitchen: '',
+      electrical: '',
+      plumbing: '',
+    },
     amenities: [
       { icon: 'security', label: '24/7 Security' },
       { icon: 'parking', label: 'Dedicated Parking' },
@@ -1061,46 +1169,52 @@ const RAW_PROJECTS_DATA = [
   },
 ];
 
-export const PROJECT_FLOOR_PLAN_CATEGORIES = [
+const RAW_PROJECT_FLOOR_PLAN_CATEGORIES = [
   {
     id: 'ground-floor',
     label: 'Ground Floor',
     items: [
       {
         id: 'ground-floor-block-a',
+        block: 'Block A',
         title: 'Ground Floor – Block A',
         alt: 'Ground Floor Plan – Block A',
-        image: '/assets/floor-plans/ground-floor-block-a.svg',
+        image: '/assets/floor-plans/ground-floor-block-a.png',
       },
       {
         id: 'ground-floor-block-b',
+        block: 'Block B',
         title: 'Ground Floor – Block B',
         alt: 'Ground Floor Plan – Block B',
-        image: '/assets/floor-plans/ground-floor-block-b.svg',
+        image: '/assets/floor-plans/ground-floor-block-b.png',
       },
       {
         id: 'ground-floor-block-c',
+        block: 'Block C',
         title: 'Ground Floor – Block C',
         alt: 'Ground Floor Plan – Block C',
-        image: '/assets/floor-plans/ground-floor-block-c.svg',
+        image: '/assets/floor-plans/ground-floor-block-c.png',
       },
       {
         id: 'ground-floor-block-d',
+        block: 'Block D',
         title: 'Ground Floor – Block D',
         alt: 'Ground Floor Plan – Block D',
-        image: '/assets/floor-plans/ground-floor-block-d.svg',
+        image: '/assets/floor-plans/ground-floor-block-d.png',
       },
       {
         id: 'ground-floor-block-e',
+        block: 'Block E',
         title: 'Ground Floor – Block E',
         alt: 'Ground Floor Plan – Block E',
-        image: '/assets/floor-plans/ground-floor-block-e.svg',
+        image: '/assets/floor-plans/ground-floor-block-e.png',
       },
       {
         id: 'ground-floor-block-f',
+        block: 'Block F',
         title: 'Ground Floor – Block F',
         alt: 'Ground Floor Plan – Block F',
-        image: '/assets/floor-plans/ground-floor-block-f.svg',
+        image: '/assets/floor-plans/ground-floor-block-f.png',
       },
     ],
   },
@@ -1110,43 +1224,53 @@ export const PROJECT_FLOOR_PLAN_CATEGORIES = [
     items: [
       {
         id: 'typical-floor-block-a',
+        block: 'Block A',
         title: 'Typical Floor – Block A',
         alt: 'Typical Floor Plan – Block A',
-        image: '/assets/floor-plans/typical-floor-block-a.svg',
+        image: '/assets/floor-plans/typical-floor-block-a.png',
       },
       {
         id: 'typical-floor-block-b',
+        block: 'Block B',
         title: 'Typical Floor – Block B',
         alt: 'Typical Floor Plan – Block B',
-        image: '/assets/floor-plans/typical-floor-block-b.svg',
+        image: '/assets/floor-plans/typical-floor-block-b.png',
       },
       {
         id: 'typical-floor-block-c',
+        block: 'Block C',
         title: 'Typical Floor – Block C',
         alt: 'Typical Floor Plan – Block C',
-        image: '/assets/floor-plans/typical-floor-block-c.svg',
+        image: '/assets/floor-plans/typical-floor-block-c.png',
       },
       {
         id: 'typical-floor-block-d',
+        block: 'Block D',
         title: 'Typical Floor – Block D',
         alt: 'Typical Floor Plan – Block D',
-        image: '/assets/floor-plans/typical-floor-block-d.svg',
+        image: '/assets/floor-plans/typical-floor-block-d.png',
       },
       {
         id: 'typical-floor-block-e',
+        block: 'Block E',
         title: 'Typical Floor – Block E',
         alt: 'Typical Floor Plan – Block E',
-        image: '/assets/floor-plans/typical-floor-block-e.svg',
+        image: '/assets/floor-plans/typical-floor-block-e.png',
       },
       {
         id: 'typical-floor-block-f',
+        block: 'Block F',
         title: 'Typical Floor – Block F',
         alt: 'Typical Floor Plan – Block F',
-        image: '/assets/floor-plans/typical-floor-block-f.svg',
+        image: '/assets/floor-plans/typical-floor-block-f.png',
       },
     ],
   },
 ];
+
+export const PROJECT_FLOOR_PLAN_CATEGORIES = mapAssetUrls(
+  RAW_PROJECT_FLOOR_PLAN_CATEGORIES
+);
 
 export const PROJECTS_DATA = mapAssetUrls(RAW_PROJECTS_DATA);
 
