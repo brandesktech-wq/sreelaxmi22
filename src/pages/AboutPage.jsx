@@ -13,7 +13,7 @@ export default function AboutPage() {
     <div className="sld-about-page">
       <AboutTitleBar />
       <AboutStorySection />
-      <FunFactsSection showHeader={false} />
+      <FunFactsSection />
       <MissionVisionSection />
       <CredentialsSection />
       <LeadershipSection />

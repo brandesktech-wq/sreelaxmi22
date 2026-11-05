@@ -115,10 +115,12 @@ export default function ContactSection({
   contactInfo = CONTACT_DETAILS,
   projectOptions = PROJECT_ENQUIRY_OPTIONS,
   defaultProject = '',
+  defaultEnquiryContext = '',
   onSubmitEnquiry = null,
 } = {}) {
   const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [enquiryContext, setEnquiryContext] = useState(defaultEnquiryContext || '');
 
   const effectiveProjectOptions = React.useMemo(() => {
     if (!defaultProject) return projectOptions;
@@ -149,6 +151,39 @@ export default function ContactSection({
       }));
     }
   }, [defaultProject]);
+
+  // Listen for Site Visit CTA prefill events
+  useEffect(() => {
+    if (typeof window === 'undefined') return undefined;
+
+    const handlePrefillEnquiry = (event) => {
+      const detail = event?.detail || {};
+      const nextContext = detail.context || 'Site Visit';
+      const prefillMessage =
+        detail.message ||
+        'Site Visit Request: I would like to schedule a site visit to explore your project in person.';
+
+      setEnquiryContext(nextContext);
+      setSubmitStatus(null);
+      setFormValues((prev) => {
+        const currentMsg = prev.message.trim();
+        const shouldPrefillMessage =
+          !currentMsg || currentMsg.startsWith('Site Visit Request:');
+        return {
+          ...prev,
+          message: shouldPrefillMessage ? prefillMessage : prev.message,
+        };
+      });
+      setFieldErrors((prev) => ({
+        ...prev,
+        message: undefined,
+      }));
+    };
+
+    window.addEventListener('sld:prefill-enquiry', handlePrefillEnquiry);
+    return () =>
+      window.removeEventListener('sld:prefill-enquiry', handlePrefillEnquiry);
+  }, []);
 
   // Subtle fade-up reveal when entering viewport
   useEffect(() => {
@@ -245,6 +280,7 @@ export default function ContactSection({
       phone: formValues.phone.trim(),
       email: formValues.email.trim(),
       project: formValues.project,
+      enquiryType: enquiryContext || 'General Enquiry',
       message: formValues.message.trim(),
     };
 
@@ -266,6 +302,7 @@ export default function ContactSection({
         ...INITIAL_FORM_VALUES,
         project: defaultProject || '',
       });
+      setEnquiryContext(defaultEnquiryContext || '');
       setTouchedFields({});
       setFieldErrors({});
       setSubmitStatus({
@@ -288,6 +325,7 @@ export default function ContactSection({
 
   return (
     <section
+      id="sld-contact-section"
       ref={sectionRef}
       className={`sld-contact ${isVisible ? 'sld-contact--visible' : ''}`}
       aria-labelledby="sld-contact-heading"
@@ -325,6 +363,18 @@ export default function ContactSection({
               noValidate
             >
               <div className="sld-contact__form-grid">
+                {enquiryContext && (
+                  <div
+                    className="sld-contact__context-banner sld-contact__field--full"
+                    role="status"
+                    aria-live="polite"
+                  >
+                    <span className="sld-contact__context-dot" aria-hidden="true" />
+                    <span className="sld-contact__context-text">
+                      Enquiry Type: <strong>{enquiryContext}</strong>
+                    </span>
+                  </div>
+                )}
                 {/* Row 1, Col 1: Name */}
                 <div className="sld-contact__field">
                   <label

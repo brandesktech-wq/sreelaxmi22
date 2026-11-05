@@ -2,13 +2,13 @@
 .sld-funfacts {
   --ff-primary: #01183C;
   --ff-secondary: #001E3D;
-  --ff-panel-bg: rgba(1, 22, 52, 0.74);
-  --ff-item-hover: rgba(4, 38, 78, 0.78);
+  --ff-panel-bg: rgba(1, 22, 52, 0.78);
+  --ff-item-hover: rgba(4, 38, 78, 0.72);
   --ff-gold: #C9A45C;
   --ff-gold-bright: #E4C582;
-  --ff-ivory: #F8FAFC;
-  --ff-label-color: #DCE5F2;
-  --ff-border-gold: rgba(201, 164, 92, 0.34);
+  --ff-ivory: #FFFFFF;
+  --ff-label-color: #E8EEF6;
+  --ff-border-gold: rgba(201, 164, 92, 0.38);
   --ff-font-serif: 'Cinzel', Georgia, serif;
   --ff-font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --ff-ease: cubic-bezier(0.16, 1, 0.3, 1);
@@ -16,7 +16,7 @@
   position: relative;
   width: 100%;
   background: linear-gradient(180deg, var(--ff-primary) 0%, var(--ff-secondary) 100%);
-  padding: clamp(5.25rem, 8.5vw, 7.5rem) 0;
+  padding: clamp(5rem, 8vw, 7rem) 0;
   font-family: var(--ff-font-sans);
   color: var(--ff-ivory);
   border-top: 1px solid rgba(201, 164, 92, 0.24);
@@ -24,7 +24,7 @@
   overflow: hidden;
 }
 
-/* Understated Architectural Grid Pattern */
+/* Understated Architectural Grid Pattern Inside Dark Section */
 .sld-funfacts__bg-decor {
   position: absolute;
   inset: 0;
@@ -51,7 +51,7 @@
 
 .sld-funfacts__ambient-light {
   position: absolute;
-  top: 56%;
+  top: 58%;
   left: 50%;
   width: 860px;
   height: 420px;
@@ -67,22 +67,25 @@
   animation: sldAmbientPulse 9s ease-in-out infinite;
 }
 
+/* Centered Container (Width: 100% of available content container, Max-width ~1180px) */
 .sld-funfacts__container {
   position: relative;
   z-index: 1;
-  max-width: 1260px;
+  width: 100%;
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 0 2.5rem;
+  padding: 0 2rem;
+  box-sizing: border-box;
 }
 
-/* Centered Section Heading: OUR ACHIEVEMENTS */
+/* Centered Section Heading: Our Achievements */
 .sld-funfacts__header {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin-bottom: clamp(3.25rem, 5.5vw, 4.75rem);
+  margin-bottom: clamp(2.75rem, 4.5vw, 3.75rem);
   opacity: 0;
   transform: translateY(20px);
   transition:
@@ -100,12 +103,12 @@
   align-items: center;
   justify-content: center;
   gap: 0.85rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.95rem;
   font-family: var(--ff-font-sans);
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.24em;
-  color: var(--ff-gold-bright);
+  color: var(--ff-gold);
   text-transform: uppercase;
 }
 
@@ -120,10 +123,10 @@
 .sld-funfacts__heading {
   margin: 0 0 1.15rem 0;
   font-family: var(--ff-font-serif);
-  font-size: clamp(2rem, 3.2vw, 2.9rem);
+  font-size: clamp(2.1rem, 3.3vw, 2.95rem);
   font-weight: 600;
   line-height: 1.2;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
   color: var(--ff-ivory);
 }
 
@@ -162,7 +165,7 @@
 .sld-funfacts__heading-diamond {
   width: 7px;
   height: 7px;
-  background-color: var(--ff-gold-bright);
+  background-color: var(--ff-gold);
   transform: rotate(45deg) scale(0);
   transition: transform 600ms var(--ff-ease) 260ms;
 }
@@ -171,17 +174,27 @@
   transform: rotate(45deg) scale(1);
 }
 
-/* Glass-Like Dark Navy Statistics Container with Gold Light Sweep */
+/* Full-Width Dark Navy Counter Widget Card (Desktop Height ~310px, Rounded Corners ~8px) */
 .sld-funfacts__panel {
   position: relative;
-  background-color: var(--ff-panel-bg);
+  width: 100%;
+  min-height: 310px;
+  display: flex;
+  align-items: stretch;
+  background:
+    radial-gradient(
+      ellipse at 50% 45%,
+      rgba(10, 46, 92, 0.45) 0%,
+      rgba(1, 24, 60, 0) 72%
+    ),
+    linear-gradient(180deg, rgba(1, 24, 60, 0.88) 0%, rgba(0, 30, 61, 0.94) 100%);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--ff-border-gold);
-  border-radius: 4px;
+  border-radius: 8px;
   box-shadow:
     0 24px 56px -16px rgba(0, 8, 22, 0.65),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
   overflow: hidden;
   transition:
     border-color 350ms var(--ff-ease),
@@ -208,7 +221,7 @@
 }
 
 .sld-funfacts__panel:hover {
-  border-color: rgba(201, 164, 92, 0.55);
+  border-color: rgba(201, 164, 92, 0.56);
   box-shadow:
     0 28px 64px -16px rgba(0, 8, 22, 0.75),
     0 0 32px -10px rgba(201, 164, 92, 0.14);
@@ -218,10 +231,12 @@
   left: 135%;
 }
 
-/* Four-Column Statistics Grid on Desktop */
+/* Four Equal-Width Columns in One Horizontal Row on Desktop */
 .sld-funfacts__grid {
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: stretch;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -235,7 +250,9 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 3.35rem 1.85rem;
+  min-height: 310px;
+  box-sizing: border-box;
+  padding: 3rem 1.75rem;
   opacity: 0;
   transform: translateY(22px);
   transition:
@@ -244,18 +261,18 @@
     background-color 320ms var(--ff-ease);
 }
 
-/* Subtle Vertical Separator Between Statistics on Desktop */
+/* Subtle Vertical Separator Between the Four Counters on Desktop */
 .sld-funfacts__item:not(:last-child)::after {
   content: '';
   position: absolute;
-  top: 18%;
-  bottom: 18%;
+  top: 16%;
+  bottom: 16%;
   right: 0;
   width: 1px;
   background: linear-gradient(
     180deg,
     rgba(201, 164, 92, 0) 0%,
-    rgba(201, 164, 92, 0.36) 50%,
+    rgba(201, 164, 92, 0.3) 50%,
     rgba(201, 164, 92, 0) 100%
   );
   pointer-events: none;
@@ -299,7 +316,7 @@
 }
 
 .sld-funfacts__item:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
   background-color: var(--ff-item-hover);
 }
 
@@ -308,7 +325,7 @@
   transform: scaleX(1);
 }
 
-/* Circular Architectural Medallion with Layered Outer Ring */
+/* 1. Circular Gold Outline Icon Container */
 .sld-funfacts__medallion {
   position: relative;
   width: 74px;
@@ -316,7 +333,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.6rem;
+  margin-bottom: 1.45rem;
 }
 
 /* Outer Decorative Architectural Ring */
@@ -343,10 +360,10 @@
   justify-content: center;
   background: radial-gradient(
     circle at 30% 30%,
-    rgba(4, 38, 78, 0.95) 0%,
+    rgba(5, 38, 78, 0.96) 0%,
     rgba(1, 20, 48, 0.98) 100%
   );
-  border: 1px solid rgba(201, 164, 92, 0.62);
+  border: 1px solid rgba(201, 164, 92, 0.65);
   color: var(--ff-gold);
   box-shadow:
     0 8px 20px rgba(0, 8, 22, 0.45),
@@ -383,7 +400,7 @@
   transform: scale(1.08);
 }
 
-/* Large, Bold Animated Statistic Number */
+/* 2. Large Achievement Number (Elegant Serif, ~48-54px on Desktop) */
 .sld-funfacts__number {
   display: inline-flex;
   align-items: baseline;
@@ -391,7 +408,7 @@
   margin: 0 0 0.85rem 0;
   font-family: var(--ff-font-serif);
   font-variant-numeric: tabular-nums;
-  font-size: clamp(2.35rem, 3.5vw, 3.25rem);
+  font-size: clamp(2.85rem, 3.6vw, 3.25rem);
   font-weight: 700;
   line-height: 1.08;
   letter-spacing: 0.02em;
@@ -404,7 +421,7 @@
 
 .sld-funfacts__suffix {
   color: var(--ff-gold);
-  margin-left: 0.06em;
+  margin-left: 0.04em;
   transition: color 250ms var(--ff-ease);
 }
 
@@ -412,13 +429,13 @@
   color: var(--ff-gold-bright);
 }
 
-/* Small Elegant Gold Divider Beneath Each Number */
+/* 3. Small Gold Decorative Line with Diamond Ornament */
 .sld-funfacts__divider {
   position: relative;
-  width: 36px;
+  width: 38px;
   height: 1.5px;
-  background-color: rgba(201, 164, 92, 0.52);
-  margin-bottom: 0.9rem;
+  background-color: rgba(201, 164, 92, 0.55);
+  margin-bottom: 0.95rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -445,14 +462,14 @@
   transform: rotate(45deg) scale(1.15);
 }
 
-/* Statistic Label */
+/* 4. Supporting Label Below Number (Clean Sans-Serif, ~16px, Soft White/Ivory) */
 .sld-funfacts__label {
   margin: 0;
   font-family: var(--ff-font-sans);
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 500;
   line-height: 1.45;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.025em;
   color: var(--ff-label-color);
   transition: color 250ms var(--ff-ease);
 }
@@ -461,10 +478,14 @@
   color: var(--ff-ivory);
 }
 
-/* Tablet Responsive Layout (Two Columns, Two Rows) */
+/* Tablet Responsive Layout (Two Counters Per Row) */
 @media (max-width: 1024px) {
   .sld-funfacts__container {
-    padding: 0 1.5rem;
+    padding: 0 1.75rem;
+  }
+
+  .sld-funfacts__panel {
+    min-height: 0;
   }
 
   .sld-funfacts__grid {
@@ -472,8 +493,9 @@
   }
 
   .sld-funfacts__item {
-    padding: 2.75rem 1.5rem;
-    border-bottom: 1px solid rgba(201, 164, 92, 0.16);
+    min-height: 240px;
+    padding: 2.5rem 1.5rem;
+    border-bottom: 1px solid rgba(201, 164, 92, 0.18);
   }
 
   .sld-funfacts__item:nth-child(2n)::after {
@@ -485,7 +507,7 @@
   }
 }
 
-/* Mobile Responsive Layout (Single Column — One Statistic Per Row) */
+/* Mobile Responsive Layout (One Counter Per Row, Stacked Vertically) */
 @media (max-width: 640px) {
   .sld-funfacts {
     padding: 3.5rem 0;
@@ -526,7 +548,8 @@
   }
 
   .sld-funfacts__item {
-    padding: 1.95rem 1.25rem;
+    min-height: 0;
+    padding: 2rem 1.25rem;
     border-bottom: 1px solid rgba(201, 164, 92, 0.2);
   }
 
@@ -536,7 +559,7 @@
     display: none;
   }
 
-  /* Ensure the final row has no bottom border */
+  /* Ensure only the final row has no bottom border */
   .sld-funfacts__item:nth-last-child(-n + 2) {
     border-bottom: 1px solid rgba(201, 164, 92, 0.2);
   }
@@ -546,33 +569,33 @@
   }
 
   .sld-funfacts__medallion {
-    width: 62px;
-    height: 62px;
-    margin-bottom: 1rem;
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1.05rem;
   }
 
   .sld-funfacts__medallion-core {
-    width: 48px;
-    height: 48px;
+    width: 50px;
+    height: 50px;
   }
 
   .sld-funfacts__icon {
-    width: 21px;
-    height: 21px;
+    width: 22px;
+    height: 22px;
   }
 
   .sld-funfacts__number {
-    font-size: clamp(1.95rem, 7.5vw, 2.35rem);
-    margin-bottom: 0.55rem;
+    font-size: clamp(2.1rem, 8vw, 2.5rem);
+    margin-bottom: 0.6rem;
   }
 
   .sld-funfacts__divider {
-    width: 32px;
-    margin-bottom: 0.65rem;
+    width: 34px;
+    margin-bottom: 0.7rem;
   }
 
   .sld-funfacts__label {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     letter-spacing: 0.025em;
   }
 }

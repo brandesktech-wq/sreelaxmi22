@@ -77,16 +77,20 @@
 .sld-footer__container {
   position: relative;
   z-index: 1;
-  max-width: 1260px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: clamp(4.25rem, 6.5vw, 5.75rem) 2.5rem 0;
 }
 
-/* Three-Column Layout on Desktop */
+/* Four-Column Layout on Desktop */
 .sld-footer__grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.8fr) minmax(0, 1.15fr);
-  gap: clamp(2.5rem, 5vw, 4.75rem);
+  grid-template-columns:
+    minmax(0, 1.28fr)
+    minmax(0, 0.78fr)
+    minmax(0, 0.98fr)
+    minmax(0, 1.15fr);
+  gap: clamp(1.85rem, 3.2vw, 3.25rem);
   align-items: start;
   padding-bottom: clamp(3.25rem, 5vw, 4.5rem);
 }
@@ -241,7 +245,7 @@
 }
 
 /* ==========================================================================
-   Column 2 & Column 3 Shared Gold Serif Headings
+   Column 2, Column 3 & Column 4 Shared Gold Serif Headings
    ========================================================================== */
 .sld-footer__heading {
   position: relative;
@@ -269,7 +273,7 @@
 }
 
 /* ==========================================================================
-   Column 2 – Explore Menu (Six Links with Gold Chevrons)
+   Column 2 (Explore) & Column 3 (Projects) Navigation Lists
    ========================================================================== */
 .sld-footer__nav-list {
   list-style: none;
@@ -290,7 +294,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  font-size: 0.96rem;
+  font-size: 0.95rem;
   font-weight: 400;
   line-height: 1.45;
   color: var(--ft-white);
@@ -327,7 +331,7 @@
 }
 
 /* ==========================================================================
-   Column 3 – Contact Us (Three Rows with Circular Gold-Outline Icons)
+   Column 4 – Contact Us (Three Rows with Circular Gold-Outline Icons)
    ========================================================================== */
 .sld-footer__contact-list {
   list-style: none;
@@ -405,7 +409,7 @@
 }
 
 .sld-footer__contact-value {
-  font-size: 0.975rem;
+  font-size: 0.95rem;
   font-weight: 500;
   line-height: 1.45;
   color: var(--ft-white);
@@ -421,39 +425,17 @@
 }
 
 /* ==========================================================================
-   Thin Gold Divider with Diamond Ornament & Bottom Copyright Bar
+   Main Horizontal Divider & Bottom Copyright / RERA Section
    ========================================================================== */
 .sld-footer__divider {
-  display: flex;
-  align-items: center;
   width: 100%;
-  gap: 0.75rem;
-}
-
-.sld-footer__divider-line {
-  flex: 1 1 auto;
   height: 1px;
   background: linear-gradient(
     90deg,
     rgba(201, 164, 92, 0.18) 0%,
-    rgba(201, 164, 92, 0.55) 100%
-  );
-}
-
-.sld-footer__divider-line:last-child {
-  background: linear-gradient(
-    90deg,
-    rgba(201, 164, 92, 0.55) 0%,
+    rgba(201, 164, 92, 0.48) 50%,
     rgba(201, 164, 92, 0.18) 100%
   );
-}
-
-.sld-footer__divider-diamond {
-  width: 6px;
-  height: 6px;
-  background-color: var(--ft-gold);
-  transform: rotate(45deg);
-  flex-shrink: 0;
 }
 
 .sld-footer__bottom {
@@ -461,7 +443,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.55rem 0;
+  padding: 1.35rem 0 1.05rem;
 }
 
 .sld-footer__copyright {
@@ -474,48 +456,37 @@
   text-align: center;
 }
 
-/* Decorative Gold Line and Diamond Ornament Toward the Right Side */
-.sld-footer__bottom-ornament {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
+/* ==========================================================================
+   One-Line RERA Disclaimer Strip at Bottom of Footer
+   ========================================================================== */
+.sld-footer__rera-bar {
+  width: 100%;
+  padding: 0.95rem 0 1.45rem;
+  border-top: 1px solid rgba(201, 164, 92, 0.18);
+  text-align: center;
 }
 
-.sld-footer__bottom-line {
-  width: 56px;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    rgba(201, 164, 92, 0.12) 0%,
-    var(--ft-gold) 100%
-  );
+.sld-footer__rera-text {
+  margin: 0 auto;
+  font-family: var(--ft-font-sans);
+  font-size: 0.775rem;
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: 0.015em;
+  color: rgba(228, 233, 242, 0.78);
+  text-align: center;
 }
 
-.sld-footer__bottom-line--short {
-  width: 24px;
-  background: linear-gradient(
-    90deg,
-    var(--ft-gold) 0%,
-    rgba(201, 164, 92, 0.2) 100%
-  );
-}
-
-.sld-footer__bottom-diamond {
-  width: 6px;
-  height: 6px;
-  background-color: var(--ft-gold);
-  transform: rotate(45deg);
-  flex-shrink: 0;
+@media (min-width: 1180px) {
+  .sld-footer__rera-text {
+    white-space: nowrap;
+  }
 }
 
 /* ==========================================================================
-   Tablet Responsive Layout
+   Tablet Responsive Layout (Balanced Two-Column Grid)
    ========================================================================== */
-@media (max-width: 1024px) {
+@media (max-width: 1080px) {
   .sld-footer__container {
     padding: 3.75rem 1.75rem 0;
   }
@@ -525,21 +496,13 @@
     gap: 2.5rem;
   }
 
-  .sld-footer__col--about {
-    grid-column: 1 / -1;
-  }
-
   .sld-footer__description {
-    max-width: 540px;
-  }
-
-  .sld-footer__bottom-ornament {
-    display: none;
+    max-width: 440px;
   }
 }
 
 /* ==========================================================================
-   Mobile Responsive Layout (Stack 1. Logo/About/Social, 2. Explore, 3. Contact)
+   Mobile Responsive Layout (Stack All Four Columns Vertically)
    ========================================================================== */
 @media (max-width: 640px) {
   .sld-footer__container {
@@ -550,10 +513,6 @@
     grid-template-columns: minmax(0, 1fr);
     gap: 2.35rem;
     padding-bottom: 2.65rem;
-  }
-
-  .sld-footer__col--about {
-    grid-column: auto;
   }
 
   .sld-footer__logo-img {
@@ -590,11 +549,20 @@
   }
 
   .sld-footer__bottom {
-    padding: 1.35rem 0;
+    padding: 1.25rem 0 0.95rem;
   }
 
   .sld-footer__copyright {
     font-size: 0.825rem;
+  }
+
+  .sld-footer__rera-bar {
+    padding: 0.85rem 0 1.35rem;
+  }
+
+  .sld-footer__rera-text {
+    font-size: 0.74rem;
+    line-height: 1.6;
   }
 }
 

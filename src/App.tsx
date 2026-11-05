@@ -10,11 +10,12 @@ import HeroSlider from './components/HeroSlider.jsx';
 import OurStory from './components/OurStory.jsx';
 import WhySreeLaxmi from './components/WhySreeLaxmi.jsx';
 import ProjectsSection from './components/ProjectsSection.jsx';
-import FunFactsSection from './components/FunFactsSection.jsx';
 import GallerySection from './components/GallerySection.jsx';
 import TestimonialsSection from './components/TestimonialsSection.jsx';
+import BookSiteVisitCTA from './components/BookSiteVisitCTA.jsx';
 import ContactSection from './components/ContactSection.jsx';
 import Footer from './components/Footer.jsx';
+import FloatingWhatsApp from './components/FloatingWhatsApp.jsx';
 import AboutPage from './pages/AboutPage.jsx';
 import ProjectPortfolioPage from './pages/ProjectPortfolioPage.jsx';
 import ProjectDetailPage from './pages/ProjectDetailPage.jsx';
@@ -59,9 +60,9 @@ function HomePage() {
       <OurStory />
       <WhySreeLaxmi />
       <ProjectsSection />
-      <FunFactsSection />
       <GallerySection />
       <TestimonialsSection />
+      <BookSiteVisitCTA />
       <ContactSection />
     </>
   );
@@ -116,6 +117,7 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
+      <FloatingWhatsApp />
     </BrowserRouter>
   );
 }

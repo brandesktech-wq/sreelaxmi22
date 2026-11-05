@@ -1,6 +1,8 @@
 :root {
   --sld-primary: #01183C;
   --sld-secondary: #001E3D;
+  --sld-gold: #C9A45C;
+  --sld-gold-hover: #B89146;
   --sld-white: #FFFFFF;
   --sld-surface-subtle: #F7F8FA;
   --sld-surface-active: rgba(0, 30, 61, 0.06);
@@ -44,7 +46,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 /* Zone 1: Brand Identity / Logo + Two-Line Brand Name */
@@ -116,7 +118,7 @@
 .sld-nav__list {
   display: flex;
   align-items: center;
-  gap: 2.25rem;
+  gap: 1.85rem;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -300,7 +302,7 @@
 .sld-actions {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
   flex-shrink: 0;
 }
 
@@ -308,12 +310,15 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.7rem 1.5rem;
+  gap: 0.45rem;
+  min-height: 42px;
+  padding: 0.625rem 1.25rem;
   background-color: var(--sld-primary);
   color: var(--sld-white);
   font-family: var(--sld-font-sans);
   font-size: 0.875rem;
   font-weight: 600;
+  line-height: 1.2;
   letter-spacing: 0.04em;
   text-decoration: none;
   border: 1px solid var(--sld-primary);
@@ -344,6 +349,40 @@
 .sld-cta:focus-visible {
   outline: 2px solid var(--sld-secondary);
   outline-offset: 3px;
+}
+
+/* Outline-Style Call Now Button (Gold Border + Navy Text) */
+.sld-cta--call {
+  background-color: transparent;
+  color: var(--sld-primary);
+  border: 1.5px solid var(--sld-gold);
+  box-shadow: none;
+}
+
+.sld-cta--call:hover {
+  background-color: rgba(201, 164, 92, 0.12);
+  border-color: var(--sld-gold-hover);
+  color: var(--sld-primary);
+  transform: translateY(-1.5px);
+  box-shadow: 0 4px 14px rgba(201, 164, 92, 0.22);
+}
+
+.sld-cta--call:focus-visible {
+  outline: 2px solid var(--sld-gold);
+  outline-offset: 3px;
+}
+
+.sld-cta__icon {
+  width: 15px;
+  height: 15px;
+  color: var(--sld-gold-hover);
+  flex-shrink: 0;
+  transition: transform 180ms var(--sld-ease), color 180ms var(--sld-ease);
+}
+
+.sld-cta--call:hover .sld-cta__icon {
+  color: var(--sld-primary);
+  transform: scale(1.06);
 }
 
 /* Hamburger Menu Toggle Button */
@@ -513,50 +552,58 @@
 .sld-mobile-panel__cta-wrapper {
   padding-top: 1.25rem;
   margin-top: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
 }
 
 .sld-cta--mobile {
   width: 100%;
   min-height: 48px;
-  font-size: 0.95rem;
+  font-size: 0.925rem;
 }
 
 /* Tablet Adjustments */
 @media (max-width: 1200px) {
   .sld-header__container {
-    padding: 0 1.5rem;
-    gap: 1.25rem;
+    padding: 0 1.25rem;
+    gap: 1rem;
   }
 
   .sld-brand {
-    gap: 0.7rem;
+    gap: 0.65rem;
   }
 
   .sld-brand__logo-img {
-    height: 40px;
+    height: 38px;
   }
 
   .sld-brand__line-primary {
-    font-size: 1.025rem;
-    letter-spacing: 0.1em;
+    font-size: 1rem;
+    letter-spacing: 0.09em;
   }
 
   .sld-brand__line-secondary {
-    font-size: 0.65rem;
-    letter-spacing: 0.22em;
+    font-size: 0.625rem;
+    letter-spacing: 0.2em;
   }
 
   .sld-nav__list {
-    gap: 1.35rem;
+    gap: 1.1rem;
   }
 
   .sld-nav__link {
-    font-size: 0.875rem;
+    font-size: 0.85rem;
+  }
+
+  .sld-actions {
+    gap: 0.55rem;
   }
 
   .sld-cta {
-    padding: 0.65rem 1.15rem;
-    font-size: 0.825rem;
+    min-height: 38px;
+    padding: 0.55rem 0.95rem;
+    font-size: 0.8125rem;
   }
 }
 
@@ -571,8 +618,14 @@
   }
 
   .sld-nav,
-  .sld-actions .sld-cta {
+  .sld-actions .sld-cta--enquire {
     display: none;
+  }
+
+  .sld-actions .sld-cta--call {
+    min-height: 40px;
+    padding: 0.5rem 0.9rem;
+    font-size: 0.8125rem;
   }
 
   .sld-mobile-toggle {
@@ -601,6 +654,16 @@
   .sld-brand__line-secondary {
     font-size: 0.6rem;
     letter-spacing: 0.2em;
+  }
+
+  .sld-actions .sld-cta--call {
+    padding: 0.45rem 0.7rem;
+    font-size: 0.75rem;
+    min-height: 38px;
+  }
+
+  .sld-mobile-panel__cta-wrapper {
+    grid-template-columns: 1fr;
   }
 }
 

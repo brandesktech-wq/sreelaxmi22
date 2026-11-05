@@ -1,0 +1,367 @@
+/* Scoped styles for Homepage Book A Site Visit CTA Band (Light Minimal Version) */
+.sld-site-visit-cta {
+  --sv-bg: #F3F0E8;
+  --sv-bg-alt: #F8F7F3;
+  --sv-primary: #01183C;
+  --sv-secondary: #001E3D;
+  --sv-text-body: #536174;
+  --sv-gold: #C9A45C;
+  --sv-gold-bright: #E4C582;
+  --sv-white: #FFFFFF;
+  --sv-font-serif: 'Cinzel', Georgia, serif;
+  --sv-font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --sv-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  position: relative;
+  width: 100%;
+  background-color: var(--sv-bg);
+  padding: clamp(2.85rem, 4.5vw, 3.85rem) 0;
+  font-family: var(--sv-font-sans);
+  color: var(--sv-primary);
+  border-top: 1px solid rgba(201, 164, 92, 0.36);
+  border-bottom: 1px solid rgba(201, 164, 92, 0.42);
+  overflow: hidden;
+}
+
+/* Understated Architectural Line Detail */
+.sld-site-visit-cta__bg-lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(90deg, rgba(1, 24, 60, 0.024) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(201, 164, 92, 0.045) 1px, transparent 1px);
+  background-size: 160px 160px;
+  background-position: center center;
+  z-index: 0;
+}
+
+.sld-site-visit-cta__container {
+  position: relative;
+  z-index: 1;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+  box-sizing: border-box;
+}
+
+.sld-site-visit-cta__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(2rem, 4vw, 4rem);
+}
+
+/* Left Side: Eyebrow, Heading, Gold Ornament & Supporting Text */
+.sld-site-visit-cta__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  max-width: 660px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 650ms var(--sv-ease),
+    transform 650ms var(--sv-ease);
+}
+
+.sld-site-visit-cta--visible .sld-site-visit-cta__content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sld-site-visit-cta__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.55rem;
+  font-family: var(--sv-font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: var(--sv-gold);
+  text-transform: uppercase;
+}
+
+.sld-site-visit-cta__eyebrow-line {
+  width: 26px;
+  height: 1.5px;
+  background-color: var(--sv-gold);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.sld-site-visit-cta__heading {
+  margin: 0 0 0.7rem 0;
+  font-family: var(--sv-font-serif);
+  font-size: clamp(1.75rem, 2.7vw, 2.35rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.03em;
+  color: var(--sv-primary);
+}
+
+.sld-site-visit-cta__heading-accent {
+  color: var(--sv-gold);
+}
+
+/* Short Gold Decorative Line with Small Diamond Ornament Below Heading */
+.sld-site-visit-cta__ornament {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+}
+
+.sld-site-visit-cta__ornament-line {
+  height: 1.5px;
+  transform: scaleX(0);
+  transition: transform 650ms var(--sv-ease) 140ms;
+}
+
+.sld-site-visit-cta__ornament-line--left {
+  width: 38px;
+  background: linear-gradient(
+    90deg,
+    var(--sv-gold) 0%,
+    rgba(201, 164, 92, 0.35) 100%
+  );
+  transform-origin: left center;
+}
+
+.sld-site-visit-cta__ornament-line--right {
+  width: 38px;
+  background: linear-gradient(
+    90deg,
+    rgba(201, 164, 92, 0.35) 0%,
+    rgba(201, 164, 92, 0.08) 100%
+  );
+  transform-origin: left center;
+}
+
+.sld-site-visit-cta--visible .sld-site-visit-cta__ornament-line {
+  transform: scaleX(1);
+}
+
+.sld-site-visit-cta__ornament-diamond {
+  width: 6px;
+  height: 6px;
+  background-color: var(--sv-gold);
+  transform: rotate(45deg) scale(0);
+  transition: transform 500ms var(--sv-ease) 220ms;
+}
+
+.sld-site-visit-cta--visible .sld-site-visit-cta__ornament-diamond {
+  transform: rotate(45deg) scale(1);
+}
+
+.sld-site-visit-cta__description {
+  margin: 0;
+  font-family: var(--sv-font-sans);
+  font-size: clamp(0.95rem, 1.05vw, 1.02rem);
+  font-weight: 400;
+  line-height: 1.68;
+  color: var(--sv-text-body);
+}
+
+/* Right Side: Vertically Centered CTA Button */
+.sld-site-visit-cta__actions {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 650ms var(--sv-ease) 120ms,
+    transform 650ms var(--sv-ease) 120ms;
+}
+
+.sld-site-visit-cta--visible .sld-site-visit-cta__actions {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Deep Navy Button (#01183C) with White Text & Subtle Gold Border */
+.sld-site-visit-cta__button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  min-height: 50px;
+  padding: 0 1.95rem;
+  font-family: var(--sv-font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--sv-white);
+  background-color: var(--sv-primary);
+  border: 1px solid rgba(201, 164, 92, 0.55);
+  border-radius: 5px;
+  box-shadow: 0 10px 24px -12px rgba(1, 24, 60, 0.28);
+  cursor: pointer;
+  transition:
+    transform 260ms var(--sv-ease),
+    background-color 260ms var(--sv-ease),
+    border-color 260ms var(--sv-ease),
+    color 260ms var(--sv-ease),
+    box-shadow 260ms var(--sv-ease);
+}
+
+.sld-site-visit-cta__button:hover {
+  transform: translateY(-2px);
+  background-color: var(--sv-secondary);
+  border-color: var(--sv-gold);
+  color: var(--sv-gold-bright);
+  box-shadow: 0 14px 28px -12px rgba(1, 24, 60, 0.36);
+}
+
+.sld-site-visit-cta__button:active {
+  transform: translateY(0);
+}
+
+.sld-site-visit-cta__button:focus-visible {
+  outline: 2px solid var(--sv-gold);
+  outline-offset: 4px;
+}
+
+.sld-site-visit-cta__button-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: var(--sv-gold);
+  transition:
+    transform 260ms var(--sv-ease),
+    color 260ms var(--sv-ease);
+}
+
+.sld-site-visit-cta__button:hover .sld-site-visit-cta__button-icon {
+  transform: scale(1.06);
+  color: var(--sv-gold-bright);
+}
+
+/* Tablet Layout: Keep Horizontal Layout Where Space Allows */
+@media (max-width: 1024px) {
+  .sld-site-visit-cta {
+    padding: 2.65rem 0;
+  }
+
+  .sld-site-visit-cta__container {
+    padding: 0 1.75rem;
+  }
+
+  .sld-site-visit-cta__inner {
+    gap: 1.75rem;
+  }
+
+  .sld-site-visit-cta__button {
+    padding: 0 1.65rem;
+    min-height: 48px;
+  }
+}
+
+/* Mobile Layout: Stack Content and Button Vertically, Centered */
+@media (max-width: 768px) {
+  .sld-site-visit-cta {
+    padding: 2.65rem 0;
+  }
+
+  .sld-site-visit-cta__container {
+    padding: 0 1.25rem;
+  }
+
+  .sld-site-visit-cta__inner {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .sld-site-visit-cta__content {
+    align-items: center;
+    text-align: center;
+  }
+
+  .sld-site-visit-cta__eyebrow {
+    justify-content: center;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    gap: 0.5rem;
+  }
+
+  .sld-site-visit-cta__eyebrow-line {
+    width: 18px;
+  }
+
+  .sld-site-visit-cta__heading {
+    font-size: clamp(1.55rem, 5.8vw, 2rem);
+  }
+
+  .sld-site-visit-cta__ornament {
+    justify-content: center;
+  }
+
+  .sld-site-visit-cta__ornament-line--left {
+    background: linear-gradient(
+      90deg,
+      rgba(201, 164, 92, 0.15) 0%,
+      var(--sv-gold) 100%
+    );
+    transform-origin: right center;
+  }
+
+  .sld-site-visit-cta__ornament-line--right {
+    background: linear-gradient(
+      90deg,
+      var(--sv-gold) 0%,
+      rgba(201, 164, 92, 0.15) 100%
+    );
+    transform-origin: left center;
+  }
+
+  .sld-site-visit-cta__description {
+    font-size: 0.94rem;
+    line-height: 1.65;
+  }
+
+  .sld-site-visit-cta__actions {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .sld-site-visit-cta__button {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+/* Reduced Motion Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .sld-site-visit-cta__content,
+  .sld-site-visit-cta__ornament-line,
+  .sld-site-visit-cta__ornament-diamond,
+  .sld-site-visit-cta__actions,
+  .sld-site-visit-cta__button,
+  .sld-site-visit-cta__button-icon {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .sld-site-visit-cta__content,
+  .sld-site-visit-cta__actions {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .sld-site-visit-cta__ornament-line {
+    transform: scaleX(1) !important;
+  }
+
+  .sld-site-visit-cta__ornament-diamond {
+    transform: rotate(45deg) scale(1) !important;
+  }
+}

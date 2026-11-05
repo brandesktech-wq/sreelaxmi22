@@ -2,10 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight, Phone, Mail, MapPin } from 'lucide-react';
 import { CONTACT_DETAILS } from './ContactSection.jsx';
+import { PROJECTS_DATA } from '../data/projectsData.js';
 import { withBaseUrl } from '../utils/assetUrl.ts';
 import './Footer.css';
 
 const DEFAULT_LOGO_SRC = withBaseUrl('/assets/aistudio/logo_e890ebd1.png');
+
+export const MAX_FOOTER_PROJECTS = 6;
+
+export const FOOTER_RERA_DISCLAIMER =
+  'RERA Registration: Project-specific RERA registration details are applicable wherever required. Buyers are advised to verify the relevant project registration details before making a purchase decision.';
 
 /**
  * Six-item Explore navigation menu in exact required order
@@ -18,6 +24,62 @@ export const FOOTER_EXPLORE_LINKS = [
   { label: 'Gallery', path: '/gallery' },
   { label: 'Contact Us', path: '/contact' },
 ];
+
+/**
+ * Dynamically build up to 6 project links from centralized PROJECTS_DATA,
+ * ensuring representation across Ongoing, Upcoming, and Completed categories.
+ */
+export function getFooterProjectLinks(
+  projects = PROJECTS_DATA,
+  maxCount = MAX_FOOTER_PROJECTS
+) {
+  if (!Array.isArray(projects) || projects.length === 0) {
+    return [];
+  }
+
+  const normalizeProject = (project) => ({
+    id: project.id,
+    name: project.name,
+    status: project.status,
+    path: project.detailRoute || `/projects/${project.id}`,
+  });
+
+  if (projects.length <= maxCount) {
+    return projects.map(normalizeProject);
+  }
+
+  const ongoing = projects.filter(
+    (p) => p.status && p.status.toLowerCase() === 'ongoing'
+  );
+  const upcoming = projects.filter(
+    (p) => p.status && p.status.toLowerCase() === 'upcoming'
+  );
+  const completed = projects.filter(
+    (p) => p.status && p.status.toLowerCase() === 'completed'
+  );
+
+  const selected = [];
+  const addUnique = (list, count) => {
+    let added = 0;
+    for (const item of list) {
+      if (selected.length >= maxCount || added >= count) break;
+      if (!selected.some((existing) => existing.id === item.id)) {
+        selected.push(item);
+        added += 1;
+      }
+    }
+  };
+
+  // Include Ongoing, Upcoming, and Completed projects (up to maxCount = 6)
+  addUnique(ongoing, 3);
+  addUnique(upcoming, 2);
+  addUnique(completed, 1);
+
+  // Fill any remaining slots in order from all projects
+  addUnique(projects, maxCount);
+
+  return selected.slice(0, maxCount).map(normalizeProject);
+}
 
 /**
  * Centralized Social Media Configuration (Editable Placeholders)
@@ -193,9 +255,17 @@ export default function Footer({
   logoSrc = DEFAULT_LOGO_SRC,
   logoAlt = 'Sree Laxmi Developers Logo',
   exploreLinks = FOOTER_EXPLORE_LINKS,
+  projects = PROJECTS_DATA,
+  maxProjectLinks = MAX_FOOTER_PROJECTS,
   socialLinks = FOOTER_SOCIAL_LINKS,
   contactInfo = CONTACT_DETAILS,
+  reraDisclaimer = FOOTER_RERA_DISCLAIMER,
 } = {}) {
+  const projectLinks = React.useMemo(
+    () => getFooterProjectLinks(projects, maxProjectLinks),
+    [projects, maxProjectLinks]
+  );
+
   const handleSocialClick = (event, item) => {
     if (item.isPlaceholder || item.url.startsWith('#')) {
       event.preventDefault();
@@ -211,7 +281,7 @@ export default function Footer({
       </div>
 
       <div className="sld-footer__container">
-        {/* Three-Column Main Footer Layout */}
+        {/* Four-Column Main Footer Layout */}
         <div className="sld-footer__grid">
           {/* Column 1 – Prominent White Logo, Gold Line, About Text, and Social Icons */}
           <div className="sld-footer__col sld-footer__col--about">
@@ -293,7 +363,33 @@ export default function Footer({
             </ul>
           </nav>
 
-          {/* Column 3 – Contact Us (Three Rows with Circular Gold-Outline Icons) */}
+          {/* Column 3 – Projects (Six Individual Project Detail Links) */}
+          <nav
+            className="sld-footer__col sld-footer__col--projects"
+            aria-label="Footer Projects Navigation"
+          >
+            <h2 className="sld-footer__heading">Projects</h2>
+            <ul className="sld-footer__nav-list">
+              {projectLinks.map((project) => (
+                <li key={project.id} className="sld-footer__nav-item">
+                  <Link
+                    to={project.path}
+                    className="sld-footer__nav-link"
+                    aria-label={`View ${project.name} (${project.status} Project)`}
+                  >
+                    <ChevronRight
+                      className="sld-footer__nav-chevron"
+                      strokeWidth={2}
+                      aria-hidden="true"
+                    />
+                    <span>{project.name}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* Column 4 – Contact Us (Three Rows with Circular Gold-Outline Icons) */}
           <div className="sld-footer__col sld-footer__col--contact">
             <h2 className="sld-footer__heading">Contact Us</h2>
             <ul className="sld-footer__contact-list">
@@ -375,24 +471,19 @@ export default function Footer({
           </div>
         </div>
 
-        {/* Thin Gold Divider with Diamond Ornament Between Main Footer & Copyright Bar */}
-        <div className="sld-footer__divider" aria-hidden="true">
-          <span className="sld-footer__divider-line" />
-          <span className="sld-footer__divider-diamond" />
-          <span className="sld-footer__divider-line" />
-        </div>
+        {/* Main Horizontal Divider Separating Footer Columns From Copyright Section */}
+        <div className="sld-footer__divider" aria-hidden="true" />
 
-        {/* Bottom Copyright Bar with Exact Wording & Right-Side Gold Diamond Ornament */}
+        {/* Bottom Copyright Bar with Exact Wording */}
         <div className="sld-footer__bottom">
           <p className="sld-footer__copyright">
             All Rights Reserved by Sree Laxmi Developers
           </p>
+        </div>
 
-          <div className="sld-footer__bottom-ornament" aria-hidden="true">
-            <span className="sld-footer__bottom-line" />
-            <span className="sld-footer__bottom-diamond" />
-            <span className="sld-footer__bottom-line sld-footer__bottom-line--short" />
-          </div>
+        {/* One-Line RERA Disclaimer Strip at Bottom of Footer */}
+        <div className="sld-footer__rera-bar">
+          <p className="sld-footer__rera-text">{reraDisclaimer}</p>
         </div>
       </div>
     </footer>

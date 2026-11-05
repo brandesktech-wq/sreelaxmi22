@@ -325,6 +325,13 @@
   transition-delay: 420ms;
 }
 
+/* Integrated Achievements Counter Strip Inside About Us Container */
+.sld-about-story__counter-strip {
+  grid-column: 1 / -1;
+  width: 100%;
+  margin-top: clamp(1rem, 2.5vw, 2rem);
+}
+
 /* Tablet Layout */
 @media (max-width: 1024px) {
   .sld-about-story__container {

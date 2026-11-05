@@ -38,9 +38,10 @@ const ANIMATION_DURATION_MS = 1650;
 
 export default function FunFactsSection({
   eyebrow = 'OUR JOURNEY IN NUMBERS',
-  heading = 'OUR ACHIEVEMENTS',
+  heading = 'Our Achievements',
   stats = FUN_FACTS_STATS,
   showHeader = true,
+  embedded = false,
 } = {}) {
   const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -111,18 +112,24 @@ export default function FunFactsSection({
     };
   }, [isVisible, stats]);
 
+  const WrapperTag = embedded ? 'div' : 'section';
+
   return (
-    <section
+    <WrapperTag
       ref={sectionRef}
       className={`sld-funfacts ${isVisible ? 'sld-funfacts--visible' : ''} ${
         !showHeader ? 'sld-funfacts--headless' : ''
-      }`}
+      } ${embedded ? 'sld-funfacts--embedded' : ''}`}
       aria-labelledby={showHeader ? 'sld-funfacts-heading' : undefined}
       aria-label={!showHeader ? 'Company Achievements and Statistics' : undefined}
     >
-      {/* Subtle Architectural Grid & Ambient Radial Glow */}
-      <div className="sld-funfacts__bg-decor" aria-hidden="true" />
-      <div className="sld-funfacts__ambient-light" aria-hidden="true" />
+      {/* Subtle Architectural Grid & Ambient Radial Glow (Standalone section only) */}
+      {!embedded && (
+        <>
+          <div className="sld-funfacts__bg-decor" aria-hidden="true" />
+          <div className="sld-funfacts__ambient-light" aria-hidden="true" />
+        </>
+      )}
 
       <div className="sld-funfacts__container">
         {/* Centered Section Heading with Animated Gold Underline (Hidden when showHeader is false) */}
@@ -197,6 +204,6 @@ export default function FunFactsSection({
           </ul>
         </div>
       </div>
-    </section>
+    </WrapperTag>
   );
 }

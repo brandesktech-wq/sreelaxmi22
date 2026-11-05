@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { ChevronDown, ChevronRight, Menu, X } from 'lucide-react';
+import { ChevronDown, ChevronRight, Menu, Phone, X } from 'lucide-react';
 import { withBaseUrl } from '../utils/assetUrl.ts';
 import './Header.css';
 
 const DEFAULT_LOGO_SRC = withBaseUrl('/assets/aistudio/logo_e890ebd1.png');
+export const HEADER_PHONE_HREF = 'tel:+919849835455';
 
 export const NAVIGATION_ITEMS = [
   { label: 'Home', path: '/' },
@@ -225,9 +226,18 @@ export default function Header({
           </ul>
         </nav>
 
-        {/* Zone 3: Header CTA & Mobile Menu Toggle */}
+        {/* Zone 3: Header CTA Buttons & Mobile Menu Toggle */}
         <div className="sld-actions">
-          <Link to="/contact" className="sld-cta">
+          <a
+            href={HEADER_PHONE_HREF}
+            className="sld-cta sld-cta--call"
+            aria-label="Call Sree Laxmi Developers at +91 98498 35455"
+          >
+            <Phone className="sld-cta__icon" size={15} aria-hidden="true" />
+            <span className="sld-cta__label">Call Now</span>
+          </a>
+
+          <Link to="/contact" className="sld-cta sld-cta--enquire">
             Enquire Now
           </Link>
 
@@ -336,9 +346,19 @@ export default function Header({
           </ul>
 
           <div className="sld-mobile-panel__cta-wrapper">
+            <a
+              href={HEADER_PHONE_HREF}
+              className="sld-cta sld-cta--call sld-cta--mobile"
+              aria-label="Call Sree Laxmi Developers at +91 98498 35455"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <Phone className="sld-cta__icon" size={16} aria-hidden="true" />
+              <span>Call Now</span>
+            </a>
+
             <Link
               to="/contact"
-              className="sld-cta sld-cta--mobile"
+              className="sld-cta sld-cta--enquire sld-cta--mobile"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Enquire Now

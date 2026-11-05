@@ -216,6 +216,32 @@
   grid-column: 1 / -1;
 }
 
+.sld-contact__context-banner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.9rem;
+  background-color: rgba(201, 164, 92, 0.12);
+  border: 1px solid rgba(201, 164, 92, 0.45);
+  border-radius: 5px;
+  font-family: var(--ct-font-sans);
+  font-size: 0.82rem;
+  color: var(--ct-primary);
+}
+
+.sld-contact__context-dot {
+  width: 7px;
+  height: 7px;
+  background-color: var(--ct-gold-dark);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+.sld-contact__context-text strong {
+  font-weight: 700;
+  color: var(--ct-primary);
+}
+
 .sld-contact__label {
   font-family: var(--ct-font-sans);
   font-size: 0.85rem;
