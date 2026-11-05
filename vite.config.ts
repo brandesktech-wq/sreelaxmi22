@@ -5,66 +5,34 @@ import path from 'path';
 import {defineConfig, Plugin} from 'vite';
 
 const rootDir = import.meta.dirname;
+const GITHUB_PAGES_BASE = '/sreelaxmi22/';
 
 /**
- * Resolves the production base path for GitHub Pages or root domain deployment:
- * 1. Explicit `VITE_BASE_PATH` environment variable (set by `.github/workflows/deploy.yml`
- *    via `actions/configure-pages` or manual override, e.g. `/sree-laxmi-developers/`).
- * 2. If a custom domain `CNAME` file is present, uses `/`.
- * 3. In GitHub Actions (`GITHUB_REPOSITORY="owner/repo"`), extracts the exact repository
- *    name (`/<repo>/`), or `/` for `<username>.github.io` root repositories.
- * 4. When `GITHUB_PAGES=true` is passed locally, inspects `.git/config` remote origin URL.
- * 5. Defaults to `/` for local development, AI Studio preview, and root domain hosting.
+ * 1. In production build (`vite build`), generates `dist/404.html` (copy of `dist/index.html`)
+ *    and `dist/.nojekyll` so refreshing any internal React Router route on GitHub Pages
+ *    (`https://brandesktech-wq.github.io/sreelaxmi22/...`) loads the SPA without a 404 or blank page.
+ * 2. In local preview (`vite`), allows root `/` requests in the preview iframe to resolve
+ *    seamlessly alongside `/sreelaxmi22/`.
  */
-function resolveProductionBasePath(): string {
-  if (process.env.VITE_BASE_PATH) {
-    const raw = process.env.VITE_BASE_PATH.trim();
-    if (raw === '/' || raw === './') {
-      return raw;
-    }
-    return `/${raw.replace(/^\/+|\/+$/g, '')}/`;
-  }
-
-  if (
-    fs.existsSync(path.resolve(rootDir, 'public/CNAME')) ||
-    fs.existsSync(path.resolve(rootDir, 'CNAME'))
-  ) {
-    return '/';
-  }
-
-  if (process.env.GITHUB_REPOSITORY) {
-    const parts = process.env.GITHUB_REPOSITORY.split('/');
-    const repoName = parts[1]?.trim();
-    if (repoName) {
-      if (repoName.toLowerCase().endsWith('.github.io')) {
-        return '/';
-      }
-      return `/${repoName}/`;
-    }
-  }
-
-  const gitConfigPath = path.resolve(rootDir, '.git/config');
-  if (process.env.GITHUB_PAGES === 'true' && fs.existsSync(gitConfigPath)) {
-    const gitConfig = fs.readFileSync(gitConfigPath, 'utf-8');
-    const match = gitConfig.match(/github\.com[:/][^/]+\/([^\s/.]+)(?:\.git)?/i);
-    const repoName = match?.[1]?.trim();
-    if (repoName && !repoName.toLowerCase().endsWith('.github.io')) {
-      return `/${repoName}/`;
-    }
-  }
-
-  return '/';
-}
-
-/**
- * Generates `dist/404.html` (identical to compiled `dist/index.html`) and `dist/.nojekyll`
- * so refreshing any internal React Router route on GitHub Pages (`/about`, `/projects`,
- * `/projects/sree-laxmi-gardenia`, `/blogs`, `/gallery`, `/contact`) loads the SPA cleanly
- * without a 404 page or blank white screen.
- */
-function githubPagesSpaFallbackPlugin(): Plugin {
+function githubPagesSpaPlugin(): Plugin {
   return {
-    name: 'github-pages-spa-fallback',
+    name: 'github-pages-spa-plugin',
+    configureServer(server) {
+      server.middlewares.use((req, _res, next) => {
+        if (
+          req.url &&
+          !req.url.startsWith(GITHUB_PAGES_BASE) &&
+          !req.url.startsWith('/@') &&
+          !req.url.startsWith('/src/') &&
+          !req.url.startsWith('/node_modules/')
+        ) {
+          req.url = `${GITHUB_PAGES_BASE.replace(/\/$/, '')}${
+            req.url.startsWith('/') ? '' : '/'
+          }${req.url}`;
+        }
+        next();
+      });
+    },
     closeBundle() {
       const outDir = path.resolve(rootDir, 'dist');
       const indexHtmlPath = path.join(outDir, 'index.html');
@@ -82,11 +50,9 @@ function githubPagesSpaFallbackPlugin(): Plugin {
 }
 
 export default defineConfig(() => {
-  const base = resolveProductionBasePath();
-
   return {
-    base,
-    plugins: [react(), tailwindcss(), githubPagesSpaFallbackPlugin()],
+    base: GITHUB_PAGES_BASE,
+    plugins: [react(), tailwindcss(), githubPagesSpaPlugin()],
     resolve: {
       dedupe: ['react', 'react-dom'],
       alias: {

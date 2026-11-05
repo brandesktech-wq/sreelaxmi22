@@ -25,11 +25,21 @@ import ContactPage from './pages/ContactPage.jsx';
 import { getEffectiveBaseUrl } from './utils/assetUrl.ts';
 
 function getRouterBasename(): string {
-  const effectiveBase = getEffectiveBaseUrl();
-  if (!effectiveBase || effectiveBase === '/') {
+  if (
+    typeof window !== 'undefined' &&
+    window.location.pathname.startsWith('/sreelaxmi22')
+  ) {
+    return '/sreelaxmi22';
+  }
+  const effectiveBase = getEffectiveBaseUrl().replace(/\/+$/, '');
+  if (
+    typeof window !== 'undefined' &&
+    effectiveBase &&
+    !window.location.pathname.startsWith(effectiveBase)
+  ) {
     return '/';
   }
-  return effectiveBase.replace(/\/+$/, '');
+  return effectiveBase || '/sreelaxmi22';
 }
 
 function ScrollToTopOnNavigate() {

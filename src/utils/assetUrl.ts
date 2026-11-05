@@ -1,21 +1,6 @@
-const KNOWN_APP_TOP_ROUTES = new Set([
-  'about',
-  'projects',
-  'ongoing-projects',
-  'upcoming-projects',
-  'completed-projects',
-  'portfolio',
-  'blogs',
-  'blog',
-  'gallery',
-  'contact',
-  'contact-us',
-  'assets',
-]);
-
 /**
  * Determines the active deployment base path (always starting and ending with `/`)
- * using Vite's `import.meta.env.BASE_URL` and automatic `*.github.io/<repo>/` detection.
+ * using Vite's `import.meta.env.BASE_URL` (`/sreelaxmi22/` for GitHub Pages).
  */
 export function getEffectiveBaseUrl(): string {
   const rawBase =
@@ -23,26 +8,11 @@ export function getEffectiveBaseUrl(): string {
     import.meta.env &&
     typeof import.meta.env.BASE_URL === 'string'
       ? import.meta.env.BASE_URL
-      : '/';
+      : '/sreelaxmi22/';
 
   if (rawBase && rawBase !== '/' && rawBase !== './') {
     const cleaned = rawBase.replace(/^\/+|\/+$/g, '');
     return cleaned ? `/${cleaned}/` : '/';
-  }
-
-  // Fallback runtime detection if deployed on https://<user>.github.io/<repo-name>/
-  if (
-    typeof window !== 'undefined' &&
-    window.location &&
-    window.location.hostname.endsWith('.github.io')
-  ) {
-    const segments = window.location.pathname.split('/').filter(Boolean);
-    if (
-      segments.length > 0 &&
-      !KNOWN_APP_TOP_ROUTES.has(segments[0].toLowerCase())
-    ) {
-      return `/${segments[0]}/`;
-    }
   }
 
   return '/';
@@ -50,10 +20,8 @@ export function getEffectiveBaseUrl(): string {
 
 /**
  * Resolves a public `/assets/...` path using Vite's `import.meta.env.BASE_URL`
- * so images, logos, floor plan SVGs, and PDF brochures resolve accurately on:
- * - GitHub Pages project repositories (`/<repo-name>/assets/...`)
- * - GitHub user/organization root repositories or custom domains (`/assets/...`)
- * - Hostinger shared hosting and local Vite development (`/assets/...`)
+ * (`/sreelaxmi22/assets/...`) so images, logos, floor plan SVGs, and PDF brochures
+ * load from `https://brandesktech-wq.github.io/sreelaxmi22/assets/...`.
  */
 export function withBaseUrl(assetPath: string): string {
   if (!assetPath || typeof assetPath !== 'string') {
