@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { withBaseUrl } from '../utils/assetUrl.ts';
 import './HeroSlider.css';
 
 export const HERO_SLIDES = [
@@ -8,7 +9,7 @@ export const HERO_SLIDES = [
     id: 'slide-luxury-apartments',
     kicker: 'SREE LAXMI DEVELOPERS',
     headingLines: ['A Better Way to Live.', 'A Brighter Way to Invest.'],
-    image: '/assets/hero-slide-1.jpg',
+    image: withBaseUrl('/assets/hero-slide-1.jpg'),
     imageAlt:
       'Contemporary luxury residential apartment building with glass balconies and warm architectural illumination',
     cta: {
@@ -20,7 +21,7 @@ export const HERO_SLIDES = [
     id: 'slide-premium-living',
     kicker: 'SPACES DESIGNED FOR LIFE',
     headingLines: ['Your Dream Home.', 'Your Next Chapter.'],
-    image: '/assets/hero-slide-2.jpg',
+    image: withBaseUrl('/assets/hero-slide-2.jpg'),
     imageAlt:
       'Modern luxury residential development featuring contemporary architecture, expansive glass windows, and landscaped grounds',
     cta: {

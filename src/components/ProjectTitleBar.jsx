@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { withBaseUrl } from '../utils/assetUrl.ts';
 import './ProjectTitleBar.css';
 
 export default function ProjectTitleBar({
@@ -11,6 +12,7 @@ export default function ProjectTitleBar({
   backgroundImage = '/assets/hero-slide-2.jpg',
 } = {}) {
   const [isVisible, setIsVisible] = useState(false);
+  const resolvedBackgroundImage = withBaseUrl(backgroundImage);
 
   useEffect(() => {
     const timer = window.requestAnimationFrame(() => {
@@ -29,7 +31,7 @@ export default function ProjectTitleBar({
       {/* Subtle Low-Opacity Architectural Image & Refined Dark Navy Overlay */}
       <div
         className="sld-project-banner__bg-image"
-        style={{ backgroundImage: `url('${backgroundImage}')` }}
+        style={{ backgroundImage: `url('${resolvedBackgroundImage}')` }}
         aria-hidden="true"
       />
       <div className="sld-project-banner__overlay" aria-hidden="true" />

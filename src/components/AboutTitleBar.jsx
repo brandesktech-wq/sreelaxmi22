@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { withBaseUrl } from '../utils/assetUrl.ts';
 import './AboutTitleBar.css';
 
 export const ABOUT_TITLE_BAR_CONTENT = {
@@ -7,7 +8,7 @@ export const ABOUT_TITLE_BAR_CONTENT = {
   breadcrumbHomePath: '/',
   breadcrumbCurrentLabel: 'About Us',
   title: 'About Us',
-  backgroundImage: '/assets/hero-slide-1.jpg',
+  backgroundImage: withBaseUrl('/assets/hero-slide-1.jpg'),
 };
 
 export default function AboutTitleBar({
@@ -18,6 +19,7 @@ export default function AboutTitleBar({
   backgroundImage = ABOUT_TITLE_BAR_CONTENT.backgroundImage,
 } = {}) {
   const [isVisible, setIsVisible] = useState(false);
+  const resolvedBackgroundImage = withBaseUrl(backgroundImage);
 
   useEffect(() => {
     const timer = window.requestAnimationFrame(() => {
@@ -36,7 +38,7 @@ export default function AboutTitleBar({
       {/* Subtle Low-Opacity Architectural Image & Refined Dark Navy Overlay */}
       <div
         className="sld-about-banner__bg-image"
-        style={{ backgroundImage: `url('${backgroundImage}')` }}
+        style={{ backgroundImage: `url('${resolvedBackgroundImage}')` }}
         aria-hidden="true"
       />
       <div className="sld-about-banner__overlay" aria-hidden="true" />

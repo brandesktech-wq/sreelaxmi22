@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { withBaseUrl } from '../utils/assetUrl.ts';
 import './OurStory.css';
 
 export const OUR_STORY_CONTENT = {
@@ -16,7 +17,7 @@ export const OUR_STORY_CONTENT = {
     path: '/about',
   },
   image: {
-    src: '/assets/our-story-residence.jpg',
+    src: withBaseUrl('/assets/our-story-residence.jpg'),
     alt: 'Contemporary luxury residential property developed with modern architecture, glass balconies, and sunlit outdoor spaces',
   },
 };

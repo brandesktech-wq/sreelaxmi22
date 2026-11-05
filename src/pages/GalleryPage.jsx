@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Maximize2, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import ProjectTitleBar from '../components/ProjectTitleBar.jsx';
 import { GALLERY_IMAGES } from '../components/GallerySection.jsx';
+import { mapAssetUrls } from '../utils/assetUrl.ts';
 import './GalleryPage.css';
 
 /**
@@ -12,7 +13,7 @@ import './GalleryPage.css';
  * and zero text overlays, while the lightbox displays full uncropped images
  * using `object-fit: contain`.
  */
-export const GALLERY_PAGE_IMAGES = [
+export const GALLERY_PAGE_IMAGES = mapAssetUrls([
   ...GALLERY_IMAGES,
   {
     id: 'gallery-page-item-9',
@@ -54,7 +55,7 @@ export const GALLERY_PAGE_IMAGES = [
     src: '/assets/projects/completed-sree-laxmi-avenue.webp',
     alt: 'Modern residential apartment facade and architectural finishes',
   },
-];
+]);
 
 export default function GalleryPage({
   eyebrow = 'A GLIMPSE OF OUR WORLD',

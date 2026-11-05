@@ -2,9 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight, Phone, Mail, MapPin } from 'lucide-react';
 import { CONTACT_DETAILS } from './ContactSection.jsx';
+import { withBaseUrl } from '../utils/assetUrl.ts';
 import './Footer.css';
 
-const DEFAULT_LOGO_SRC = '/assets/aistudio/logo_e890ebd1.png';
+const DEFAULT_LOGO_SRC = withBaseUrl('/assets/aistudio/logo_e890ebd1.png');
 
 /**
  * Six-item Explore navigation menu in exact required order

@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { ChevronDown, ChevronRight, Menu, X } from 'lucide-react';
+import { withBaseUrl } from '../utils/assetUrl.ts';
 import './Header.css';
 
-const DEFAULT_LOGO_SRC = '/assets/aistudio/logo_e890ebd1.png';
+const DEFAULT_LOGO_SRC = withBaseUrl('/assets/aistudio/logo_e890ebd1.png');
 
 export const NAVIGATION_ITEMS = [
   { label: 'Home', path: '/' },

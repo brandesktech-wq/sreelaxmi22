@@ -6,6 +6,8 @@
  * - https://sreelaxmidevelopers.com/completed-projects/
  */
 
+import { mapAssetUrls } from '../utils/assetUrl.ts';
+
 export const PORTFOLIO_TABS = [
   {
     id: 'Ongoing',
@@ -30,7 +32,7 @@ export const PORTFOLIO_TABS = [
   },
 ];
 
-export const PROJECTS_DATA = [
+const RAW_PROJECTS_DATA = [
   // ===========================================================================
   // ONGOING PROJECTS
   // ===========================================================================
@@ -1145,6 +1147,8 @@ export const PROJECT_FLOOR_PLAN_CATEGORIES = [
     ],
   },
 ];
+
+export const PROJECTS_DATA = mapAssetUrls(RAW_PROJECTS_DATA);
 
 export function getProjectsByStatus(status) {
   if (!status) return PROJECTS_DATA;

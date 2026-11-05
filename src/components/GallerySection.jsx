@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Maximize2, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { mapAssetUrls } from '../utils/assetUrl.ts';
 import './GallerySection.css';
 
 /**
@@ -9,7 +10,7 @@ import './GallerySection.css';
  * Thumbnails render in a uniform 1:1 square grid using `object-fit: cover`,
  * while the popup lightbox displays the full uncropped image with `object-fit: contain`.
  */
-export const GALLERY_IMAGES = [
+export const GALLERY_IMAGES = mapAssetUrls([
   {
     id: 'gallery-item-1',
     src: '/assets/project-royale.jpg',
@@ -58,7 +59,7 @@ export const GALLERY_IMAGES = [
     alt: 'Twilight perspective of modern residential apartment tower — Sample Architectural Perspective',
     isSampleImage: true,
   },
-];
+]);
 
 export default function GallerySection({
   eyebrow = 'A GLIMPSE OF OUR WORLD',

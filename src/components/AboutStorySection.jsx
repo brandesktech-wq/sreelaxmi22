@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { withBaseUrl } from '../utils/assetUrl.ts';
 import './AboutStorySection.css';
 
 /**
@@ -15,7 +16,7 @@ export const ABOUT_STORY_CONTENT = {
     'With a commitment to quality, transparency, and customer satisfaction, we strive to develop spaces that offer lasting value and a better living experience.',
   ],
   image: {
-    src: '/assets/our-story-residence.jpg',
+    src: withBaseUrl('/assets/our-story-residence.jpg'),
     alt: 'Contemporary residential property with sunlit glass facade and landscaped outdoor terrace — Sample Architectural Image',
     isSampleImage: true,
   },

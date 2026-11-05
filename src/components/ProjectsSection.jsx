@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, MapPin } from 'lucide-react';
+import { withBaseUrl } from '../utils/assetUrl.ts';
 import './ProjectsSection.css';
 
 export const PROJECT_STATUS_TABS = ['Ongoing', 'Upcoming', 'Completed'];
@@ -11,7 +12,7 @@ export const FEATURED_PROJECTS = [
     name: 'Sree Laxmi Royale',
     status: 'Ongoing',
     location: 'Saketh Township, Kapra',
-    image: '/assets/project-royale.jpg',
+    image: withBaseUrl('/assets/project-royale.jpg'),
     imageAlt:
       'Sree Laxmi Royale — modern residential apartment development in Saketh Township, Kapra with landscaped surroundings',
     path: '/portfolio/royale',
@@ -21,7 +22,7 @@ export const FEATURED_PROJECTS = [
     name: 'SLN Meadows',
     status: 'Upcoming',
     location: 'Kandi, Sangareddy',
-    image: '/assets/project-meadows.jpg',
+    image: withBaseUrl('/assets/project-meadows.jpg'),
     imageAlt:
       'SLN Meadows — contemporary residential development in Kandi, Sangareddy featuring modern architecture and greenery',
     path: '/portfolio/meadows',
@@ -31,7 +32,7 @@ export const FEATURED_PROJECTS = [
     name: 'Sree Laxmi Gardenia',
     status: 'Completed',
     location: 'Kapra / ECIL',
-    image: '/assets/project-gardenia.jpg',
+    image: withBaseUrl('/assets/project-gardenia.jpg'),
     imageAlt:
       'Sree Laxmi Gardenia — completed residential apartment community in Kapra / ECIL',
     path: '/portfolio/gardenia',

@@ -22,6 +22,15 @@ import BlogsPage from './pages/BlogsPage.jsx';
 import BlogDetailPage from './pages/BlogDetailPage.jsx';
 import GalleryPage from './pages/GalleryPage.jsx';
 import ContactPage from './pages/ContactPage.jsx';
+import { getEffectiveBaseUrl } from './utils/assetUrl.ts';
+
+function getRouterBasename(): string {
+  const effectiveBase = getEffectiveBaseUrl();
+  if (!effectiveBase || effectiveBase === '/') {
+    return '/';
+  }
+  return effectiveBase.replace(/\/+$/, '');
+}
 
 function ScrollToTopOnNavigate() {
   const { pathname } = useLocation();
@@ -49,8 +58,10 @@ function HomePage() {
 }
 
 export default function App() {
+  const routerBasename = getRouterBasename();
+
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={routerBasename}>
       <ScrollToTopOnNavigate />
       <Header />
       <main>

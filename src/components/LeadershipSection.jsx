@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { withBaseUrl } from '../utils/assetUrl.ts';
 import './LeadershipSection.css';
 
 /**
@@ -14,7 +15,7 @@ export const LEADERSHIP_PROFILES = [
     designation: 'Managing Partner',
     description:
       'Oversees strategy, business development, project planning, and overall operations, with a focus on quality, transparency, and long-term value.',
-    imageSrc: '/assets/leader-managing-partner.svg',
+    imageSrc: withBaseUrl('/assets/leader-managing-partner.svg'),
     imageAlt: 'Managing Partner — Sree Laxmi Developers Executive Portrait',
   },
   {
@@ -23,7 +24,7 @@ export const LEADERSHIP_PROFILES = [
     designation: 'Partner',
     description:
       'Supports business growth, project coordination, and customer relationships, helping deliver thoughtfully planned spaces and a positive customer experience.',
-    imageSrc: '/assets/leader-partner.svg',
+    imageSrc: withBaseUrl('/assets/leader-partner.svg'),
     imageAlt: 'Partner — Sree Laxmi Developers Executive Portrait',
   },
 ];
