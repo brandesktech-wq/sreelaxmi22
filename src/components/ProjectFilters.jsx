@@ -61,14 +61,6 @@ export default function ProjectFilters({
             );
           })}
         </div>
-
-        {activeStatus && (
-          <div className="sld-portfolio-filters__all-wrap">
-            <Link to="/projects" className="sld-portfolio-filters__all-link">
-              View All Projects in Portfolio
-            </Link>
-          </div>
-        )}
       </nav>
     </div>
   );

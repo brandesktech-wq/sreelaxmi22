@@ -1274,8 +1274,39 @@ export const PROJECT_FLOOR_PLAN_CATEGORIES = mapAssetUrls(
 
 export const PROJECTS_DATA = mapAssetUrls(RAW_PROJECTS_DATA);
 
+export function getCombinedPortfolioProjects(projects = PROJECTS_DATA) {
+  const buckets = new Map();
+  projects.forEach((project) => {
+    const key = (project.status || 'other').toLowerCase();
+    if (!buckets.has(key)) {
+      buckets.set(key, []);
+    }
+    buckets.get(key).push(project);
+  });
+
+  const bucketLists = Array.from(buckets.values());
+  const maxLength = bucketLists.reduce(
+    (max, list) => Math.max(max, list.length),
+    0
+  );
+  const combined = [];
+  const seenIds = new Set();
+
+  for (let index = 0; index < maxLength; index += 1) {
+    for (const list of bucketLists) {
+      const project = list[index];
+      if (project && !seenIds.has(project.id)) {
+        seenIds.add(project.id);
+        combined.push(project);
+      }
+    }
+  }
+
+  return combined;
+}
+
 export function getProjectsByStatus(status) {
-  if (!status) return PROJECTS_DATA;
+  if (!status) return getCombinedPortfolioProjects(PROJECTS_DATA);
   return PROJECTS_DATA.filter(
     (project) => project.status.toLowerCase() === status.toLowerCase()
   );

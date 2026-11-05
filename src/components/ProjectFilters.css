@@ -93,7 +93,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.9rem;
 }
 
 .sld-portfolio-filters__tabs {
@@ -158,27 +157,6 @@
   height: 2px;
   background-color: var(--pf-gold);
   border-radius: 2px;
-}
-
-.sld-portfolio-filters__all-wrap {
-  text-align: center;
-}
-
-.sld-portfolio-filters__all-link {
-  display: inline-block;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  color: var(--pf-gold-dark);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(201, 164, 92, 0.55);
-  padding-bottom: 0.15rem;
-  transition: color 200ms ease, border-color 200ms ease;
-}
-
-.sld-portfolio-filters__all-link:hover {
-  color: var(--pf-navy);
-  border-color: var(--pf-navy);
 }
 
 @media (max-width: 640px) {

@@ -1,11 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
 import ProjectTitleBar from '../components/ProjectTitleBar.jsx';
 import ProjectFilters from '../components/ProjectFilters.jsx';
 import ProjectCard from '../components/ProjectCard.jsx';
 import {
   PORTFOLIO_TABS,
+  getCombinedPortfolioProjects,
   getProjectsByStatus,
 } from '../data/projectsData.js';
 import './ProjectPortfolioPage.css';
@@ -41,16 +40,16 @@ export default function ProjectPortfolioPage({ statusFilter = '' } = {}) {
         { label: 'Project Portfolio', path: null },
       ];
 
-  const filteredProjects = statusFilter
+  const displayedProjects = statusFilter
     ? getProjectsByStatus(statusFilter)
-    : [];
+    : getCombinedPortfolioProjects();
 
   return (
     <div className="sld-portfolio-page">
       {/* Part 1: Compact Dark Luxury Title Bar */}
       <ProjectTitleBar title={bannerTitle} breadcrumbs={breadcrumbs} />
 
-      {/* Part 2 & 3: Portfolio Section with Navigable Filter Tabs & Project Cards */}
+      {/* Part 2 & 3: Portfolio Section with Navigable Filter Tabs & Unified Project Grid */}
       <section
         ref={sectionRef}
         className={`sld-portfolio-section ${
@@ -64,72 +63,20 @@ export default function ProjectPortfolioPage({ statusFilter = '' } = {}) {
             activeStatus={statusFilter}
           />
 
-          {statusFilter ? (
-            /* Single Status Page View (/ongoing-projects, /upcoming-projects, /completed-projects) */
-            <div className="sld-portfolio-section__group">
-              <div className="sld-portfolio-section__grid" role="list">
-                {filteredProjects.map((project, index) => (
-                  <div
-                    key={project.id}
-                    role="listitem"
-                    className="sld-portfolio-section__grid-item"
-                    style={{ '--card-index': index }}
-                  >
-                    <ProjectCard project={project} index={index} />
-                  </div>
-                ))}
-              </div>
+          <div className="sld-portfolio-section__group">
+            <div className="sld-portfolio-section__grid" role="list">
+              {displayedProjects.map((project, index) => (
+                <div
+                  key={project.id}
+                  role="listitem"
+                  className="sld-portfolio-section__grid-item"
+                  style={{ '--card-index': index }}
+                >
+                  <ProjectCard project={project} index={index} />
+                </div>
+              ))}
             </div>
-          ) : (
-            /* Main Portfolio Overview (/projects) — Grouped by Ongoing, Upcoming & Completed */
-            <div className="sld-portfolio-section__categories">
-              {PORTFOLIO_TABS.map((category) => {
-                const categoryProjects = getProjectsByStatus(category.id);
-
-                return (
-                  <div
-                    key={category.id}
-                    className="sld-portfolio-section__category-block"
-                  >
-                    <div className="sld-portfolio-section__category-bar">
-                      <div className="sld-portfolio-section__category-titles">
-                        <span className="sld-portfolio-section__category-tag">
-                          {category.label}
-                        </span>
-                        <h3 className="sld-portfolio-section__category-heading">
-                          {category.title}
-                        </h3>
-                      </div>
-
-                      <Link
-                        to={category.route}
-                        className="sld-portfolio-section__category-link"
-                      >
-                        <span>Explore {category.title}</span>
-                        <ArrowRight
-                          className="sld-portfolio-section__category-icon"
-                          aria-hidden="true"
-                        />
-                      </Link>
-                    </div>
-
-                    <div className="sld-portfolio-section__grid" role="list">
-                      {categoryProjects.map((project, index) => (
-                        <div
-                          key={project.id}
-                          role="listitem"
-                          className="sld-portfolio-section__grid-item"
-                          style={{ '--card-index': index }}
-                        >
-                          <ProjectCard project={project} index={index} />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          )}
+          </div>
         </div>
       </section>
     </div>
