@@ -21,10 +21,11 @@ export const HEAD_OFFICE_DETAILS = {
   whatsappUrl: 'https://wa.me/919849835455',
   email: 'contact@sreelaxmidevelopers.com',
   emailUrl: 'mailto:contact@sreelaxmidevelopers.com',
+  mapsOpenUrl: 'https://www.google.com/maps?q=17.5633244,78.367227',
   mapsDirectionsUrl:
-    'https://www.google.com/maps/search/?api=1&query=Plot+No.+69%2FP+to+62%2C+70A%2C+Bowrampet%2C+Dommara+Pochampally%2C+Telangana+500042',
+    'https://www.google.com/maps/dir/?api=1&destination=17.5633244,78.367227',
   mapsEmbedUrl:
-    'https://maps.google.com/maps?q=Plot+No.+69%2FP+to+62%2C+70A%2C+Bowrampet%2C+Dommara+Pochampally%2C+Telangana+500042&t=&z=15&ie=UTF8&iwloc=&output=embed',
+    'https://www.google.com/maps?q=17.5633244,78.367227&output=embed',
 };
 
 const INITIAL_CONTACT_FORM = {
@@ -618,6 +619,19 @@ export default function ContactPage({
               {/* Embedded Google Map + Get Directions Button */}
               <div className="sld-contact-page__map-section">
                 <div className="sld-contact-page__map-frame">
+                  <a
+                    href={
+                      officeDetails.mapsOpenUrl ||
+                      'https://www.google.com/maps?q=17.5633244,78.367227'
+                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="sld-contact-page__map-open-link"
+                    aria-label="Open Sree Laxmi Developers location in Google Maps"
+                  >
+                    <span>Open in Maps</span>
+                  </a>
+
                   {!mapLoadError ? (
                     <iframe
                       title="Sree Laxmi Developers Head Office Location Map — Bowrampet, Dommara Pochampally, Telangana 500042"
@@ -661,7 +675,7 @@ export default function ContactPage({
                     aria-label="Get directions to Sree Laxmi Developers Head Office on Google Maps"
                   >
                     <MapPin size={15} strokeWidth={1.75} aria-hidden="true" />
-                    <span>Get Directions</span>
+                    <span>GET DIRECTIONS</span>
                     <ExternalLink
                       size={14}
                       strokeWidth={1.75}
